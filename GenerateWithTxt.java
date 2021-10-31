@@ -1,0 +1,56 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.List;
+
+
+public class GenerateWithTxt {
+    
+    private Scanner input;
+    public LinkedList<Pokemon> pokeList = new LinkedList<Pokemon>();
+    // private String pathConfig = "";
+
+    private static Scanner createScanner(String filename) throws FileNotFoundException{
+        String x = filename + ".txt";
+        File fileobj = new File(x);
+        Scanner sc;
+        if(!fileobj.exists()){
+            throw new FileNotFoundException();
+        }
+        else{
+            sc = new Scanner(fileobj);
+        }
+        return sc;
+    }
+
+    public GenerateWithTxt(String filename){
+        try{
+            this.input = createScanner(filename);
+        } catch (FileNotFoundException e){
+            System.out.println("Nao existe arquivo " + filename);
+            System.exit(1);
+        }
+    }
+
+    public void readPokemonFromTxt(){
+
+        input.useDelimiter("/\n");
+
+
+        while(input.hasNext()){
+            
+            // TODO: leitura automatica das habilidades e tipos
+
+            String test[] = input.nextLine().split("/");
+            int hp = Integer.parseInt(test[1]);
+            int atk = Integer.parseInt(test[2]);
+            int def = Integer.parseInt(test[3]);
+            
+            Pokemon p = new Pokemon(test[0], hp, atk, def);
+            pokeList.add(p);
+        }
+    }
+
+
+}

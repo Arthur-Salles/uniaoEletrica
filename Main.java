@@ -1,8 +1,15 @@
 public class Main {
     public static void main(String[] args) throws Exception {
         // so para testar
-        Tipo[] type = new Tipo[2];
-        System.out.println(type.length);
-    
+
+        // TODO : melhorar o sistema de path
+        String path = "D:\\EAD\\2021.2\\MC322\\uniaoEletrica\\poketest";
+
+        GenerateWithTxt k = new GenerateWithTxt(path);
+        k.readPokemonFromTxt();
+
+        for(Pokemon p : k.pokeList){
+            System.out.println(p.toString());
+        }
     }
 }   

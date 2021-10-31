@@ -1,0 +1,4 @@
+pikachu/1/2/3
+meow/1/2/3
+bulbassauro/1/2/3
+sharpedo/1/2/3
