@@ -34,20 +34,27 @@ public class GenerateWithTxt {
     }
 
     public void readPokemonFromTxt(){
-
-        input.useDelimiter("/\n");
-
+        // retornar a lista inteira
 
         while(input.hasNext()){
-            
-            // TODO: leitura automatica das habilidades e tipos
 
             String test[] = input.nextLine().split("/");
             int hp = Integer.parseInt(test[1]);
             int atk = Integer.parseInt(test[2]);
             int def = Integer.parseInt(test[3]);
             
-            Pokemon p = new Pokemon(test[0], hp, atk, def);
+            // Tipo t1[] = Tipo.valueOf(test[4].split("$"))
+            String aux[] = test[4].split("-");
+            Tipo[] type = new Tipo[2];
+            Habilidade[] skills = new Habilidade[4];
+
+            type[0] = Tipo.valueOf(aux[0].toUpperCase());
+            type[1] = (aux.length > 1) ? Tipo.valueOf(aux[1].toUpperCase()) : Tipo.NULO;  
+
+            aux = test[5].split("#");
+
+            // Pokemon p = new Pokemon(test[0], hp, atk, def);
+            Pokemon p = new Pokemon(test[0], hp, atk, def, type, aux);
             pokeList.add(p);
         }
     }

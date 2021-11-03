@@ -1,20 +1,19 @@
 
 public class Pokemon{
-    String nome;
+    private String nome;
     private int hp, atk, def;
     private Tipo[] type = new Tipo[2];
     private Habilidade[] skills = new Habilidade[4];
 
-
-    public Pokemon(String n, int h, int a, int d, Tipo[] g, Habilidade ... s){
+    public Pokemon(String n, int h, int a, int d, Tipo[] g, String[] s){
         nome = n;
         hp = h;
         atk = a;
         def = d;
         type[0] = g[0];
-        type[1] = g.length == 2 ? g[1] : Tipo.NULO;
+        type[1] = g[1];
         for(int i = 0; i < s.length; i++){
-            skills[i] = s[i];
+            skills[i] = new Habilidade(s[i]);
         }
     }
 
@@ -36,8 +35,18 @@ public class Pokemon{
         hp += 1;
     }
 
+    public void showSkills(){
+        for(int i = 0; i < this.skills.length; i++){
+            System.out.print(skills[i].toString());
+        }
+        System.out.print("\n");
+    }
+
     @Override
     public String toString(){
-        return (String.format("%s\nHP:%d\nATK:%d\nDEF:%d\n", nome,hp,def,atk));
+        String x = String.format("%s\nHP:%d\nATK:%d\nDEF:%d\n", nome,hp,def,atk);
+        x = x + String.format("Tipos:%s %s\n", type[0].name(),(type[1] != Tipo.NULO) ? type[1].name() : "");
+        // x = x + String.format("Habilidades: %s\n", this.showSkills());
+        return x;
     }
 }

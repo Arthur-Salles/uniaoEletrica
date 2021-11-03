@@ -9,7 +9,7 @@ public class Main {
         k.readPokemonFromTxt();
 
         for(Pokemon p : k.pokeList){
-            System.out.println(p.toString());
+            p.showSkills();
         }
     }
 }   
