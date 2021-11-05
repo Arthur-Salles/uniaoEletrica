@@ -1,5 +1,3 @@
-import java.io.ObjectInputStream.GetField;
-
 public class Habilidade {
     
     private String nome;
@@ -10,5 +8,12 @@ public class Habilidade {
     }
     public String toString(){
         return this.nome;
+    }
+    
+    public void passiveEffect(Pokemon p){
+        return;
+    }
+    public void activeEffect(Pokemon p){
+        return;
     }
 }

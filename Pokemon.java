@@ -4,6 +4,7 @@ public class Pokemon{
     private String nome;
     private int hp, atk, def;
     private Tipo[] type = new Tipo[2];
+    private int oldAtk;
     // private Habilidade[] skills = new Habilidade[4];
     private ArrayList<Habilidade> skills = new ArrayList<Habilidade>();
 
@@ -12,6 +13,7 @@ public class Pokemon{
         hp = h;
         atk = a;
         def = d;
+        oldAtk = atk;
         type[0] = g[0];
         type[1] = g[1];
         for(int i = 0; i < s.length; i++){
@@ -51,4 +53,27 @@ public class Pokemon{
         // x = x + String.format("Habilidades: %s\n", this.showSkills());
         return x;
     }
+    public boolean checkTipo(Tipo a){
+        if(type[0].equals(a) || type[1].equals(a)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkHalfHp(){
+        return (hp > (hp/2));
+    }
+
+    public void changeAtk(int a){
+        if(atk != oldAtk){
+            return;
+        }
+        oldAtk = atk;
+        atk = atk * a;
+    }
+
+    public void resetAtk(){
+        atk = oldAtk;
+    }
+
 }

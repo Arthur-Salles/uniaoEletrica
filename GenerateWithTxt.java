@@ -52,8 +52,7 @@ public class GenerateWithTxt {
             type[1] = (aux.length > 1) ? Tipo.valueOf(aux[1].toUpperCase()) : Tipo.NULO;  
 
             aux = test[5].split("#");
-            // System.out.println(aux);
-            // Pokemon p = new Pokemon(test[0], hp, atk, def);
+
             Pokemon p = new Pokemon(test[0], hp, atk, def, type, aux);
             pokeList.add(p);
         }
