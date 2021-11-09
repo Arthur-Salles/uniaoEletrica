@@ -1,3 +1,5 @@
+package pokemon;
+
 public class Habilidade {
     
     private String nome;

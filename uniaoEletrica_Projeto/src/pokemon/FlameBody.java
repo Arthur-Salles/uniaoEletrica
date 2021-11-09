@@ -1,3 +1,4 @@
+package pokemon;
 import java.util.Random;
 
 public class FlameBody extends Habilidade {

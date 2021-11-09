@@ -1,3 +1,5 @@
+package pokemon;
+
 public enum Tipo {
     FIRE,
     WATER,

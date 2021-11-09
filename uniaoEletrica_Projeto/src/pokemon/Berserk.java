@@ -1,3 +1,5 @@
+package pokemon;
+
 public class Berserk extends Habilidade {
     
     public Berserk(String n){
