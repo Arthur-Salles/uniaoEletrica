@@ -4,8 +4,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // so para testar
 
-
-        String path = "D:\\EAD\\2021.2\\MC322\\uniaoEletrica\\poketest";
+        String path = "D:\\Documentos\\2021.2\\MC322\\uniaoEletrica\\poketest";
 
         GenerateWithTxt k = new GenerateWithTxt(path);
         k.readPokemonFromTxt();
