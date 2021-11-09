@@ -4,13 +4,14 @@ public class Pokemon{
     private String nome;
     private int hp, atk, def;
     private Tipo[] type = new Tipo[2];
-    private int oldAtk;
+    private int oldAtk, maxHp;
     // private Habilidade[] skills = new Habilidade[4];
     private ArrayList<Habilidade> skills = new ArrayList<Habilidade>();
 
     public Pokemon(String n, int h, int a, int d, Tipo[] g, String ... s){
         nome = n;
         hp = h;
+        maxHp = h;
         atk = a;
         def = d;
         oldAtk = atk;
@@ -24,6 +25,7 @@ public class Pokemon{
     public Pokemon(String n, int h, int a, int d){
         nome = n;
         hp = h;
+        maxHp = h;
         atk = a;
         def = d;
     }
@@ -61,13 +63,13 @@ public class Pokemon{
     }
 
     public boolean checkHalfHp(){
-        return (hp > (hp/2));
+        return (hp > (maxHp/2));
     }
 
     public void changeAtk(int a){
-        if(atk != oldAtk){
+        if(atk != oldAtk){ // ja foi mudado uma vez
             return;
-        }
+        }   
         oldAtk = atk;
         atk = atk * a;
     }
