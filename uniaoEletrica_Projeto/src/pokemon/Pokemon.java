@@ -5,9 +5,10 @@ public class Pokemon{
     private String nome;
     private int hp, atk, def;
     private Tipo[] type = new Tipo[2];
-    private int oldAtk, maxHp;
+    private int oldAtk, maxHp, oldDef;
     // private Habilidade[] skills = new Habilidade[4];
     private ArrayList<Habilidade> skills = new ArrayList<Habilidade>();
+    // posicao dele tbm se for wild e a ilha
 
     public Pokemon(String n, int h, int a, int d, Tipo[] g, String ... s){
         nome = n;
@@ -15,6 +16,7 @@ public class Pokemon{
         maxHp = h;
         atk = a;
         def = d;
+        oldDef = def;
         oldAtk = atk;
         type[0] = g[0];
         type[1] = g[1];
@@ -37,6 +39,10 @@ public class Pokemon{
 
     public void takeDamage(int a){
         hp -= a;
+    }
+    public void takePokemonDamage(int a){
+        int d = ((a - def > 0) ? a - def : 1);
+        hp -= d;
     }
     public void regen(){
         hp += 1;
@@ -77,6 +83,36 @@ public class Pokemon{
 
     public void resetAtk(){
         atk = oldAtk;
+    }
+
+    public void changeDef(int a){
+        if(def != oldDef){
+            return;
+        }
+        oldDef = def;
+        def = def * a;
+    }
+
+    public int getDef(){
+        if(def > oldDef){
+            return def;
+        }
+        else{
+            return oldDef;
+        }
+    }
+
+    public int getAtk(){
+        if(atk > oldAtk){
+            return atk;
+        }
+        else{
+            return oldAtk;
+        }
+    }
+
+    public boolean isAlive(){
+        return hp > 0;
     }
 
 }
