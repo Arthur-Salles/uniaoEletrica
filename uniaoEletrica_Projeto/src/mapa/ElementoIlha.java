@@ -4,10 +4,9 @@ public class ElementoIlha extends Elemento{
 	private TriplaCoordenada posicaoAtual;
 	private int nivel;
 	
-	public ElementoIlha(TriplaCoordenada posicao, String icone, int nivel) {
+	public ElementoIlha(TriplaCoordenada posicao, String icone) {
 		super(icone);
 		this.posicaoAtual = posicao;
-		this.nivel = nivel;
 	}
 
 	public int getNivel() {
