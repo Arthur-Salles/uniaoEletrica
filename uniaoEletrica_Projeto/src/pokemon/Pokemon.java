@@ -2,7 +2,6 @@ package pokemon;
 import mapa.*;
 import skills.*;
 
-
 import java.util.ArrayList;
 
 public class Pokemon extends ElementoGeografico{
