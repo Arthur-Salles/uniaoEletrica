@@ -2,6 +2,9 @@ package pokemon;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import skills.Skills;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -47,15 +50,15 @@ public class GenerateWithTxt {
             // Tipo t1[] = Tipo.valueOf(test[4].split("$"))
             String aux[] = test[4].split("-");
             Tipo[] type = new Tipo[2];
-            Habilidade[] skills = new Habilidade[4];
+            Skills[] skills = new Skills[4];
 
             type[0] = Tipo.valueOf(aux[0].toUpperCase());
             type[1] = (aux.length > 1) ? Tipo.valueOf(aux[1].toUpperCase()) : Tipo.NULO;  
 
             aux = test[5].split("#");
 
-            Pokemon p = new Pokemon(test[0], hp, atk, def, type, aux);
-            pokeList.add(p);
+            // Pokemon p = new Pokemon(test[0], hp, atk, def, type, aux);
+            // pokeList.add(p);
         }
     }
 

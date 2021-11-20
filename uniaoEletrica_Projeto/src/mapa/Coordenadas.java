@@ -24,7 +24,11 @@ public class Coordenadas {
 			estaDentroMapa = false;
 		}	
 		return estaDentroMapa;
-	}	
+	}
+	
+	public double calculaDistancia(Coordenadas a){
+		return Math.abs(x-a.x) + Math.abs(y-a.y);
+	}
 	
 	public int getX() {
 		return x;

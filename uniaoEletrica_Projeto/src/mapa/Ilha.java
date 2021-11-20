@@ -1,10 +1,11 @@
 package mapa;
+import pokemon.Tipo;
 
 public class Ilha extends ElementoGeografico{
 	private static String iconeIlha = "I";
 	private ElementoIlha[][][] ilha;
 	private String iconePosicoesVazias = "--";
-	
+	private Tipo ilhaTipo;
 	
 	public Ilha(int i, int j, int k, Coordenadas coord) {
 		super(coord, iconeIlha);
@@ -26,7 +27,7 @@ public class Ilha extends ElementoGeografico{
 			this.ilha[coord.getX()][coord.getY()][coord.getZ()] = obj;
 			foiMovido = true;
 		}
-		
+
 		return foiMovido;
 	}
 	
