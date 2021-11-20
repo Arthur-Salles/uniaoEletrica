@@ -19,6 +19,11 @@ public class Player extends ElementoGeografico{
         return;
     }
 
+    public void move(int spaces){
+        // faz os boundries checks
+        return;
+    }
+
     public Coordenadas getCoordenadas(){
         return super.getPosicaoAtual();
     }

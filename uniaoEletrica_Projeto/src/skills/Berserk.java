@@ -1,5 +1,7 @@
 package skills;
 
+import pokemon.Pokemon;
+
 public class Berserk implements Skills{
 
     @Override
@@ -13,5 +15,6 @@ public class Berserk implements Skills{
         // TODO Auto-generated method stub
         
     }
+
     
 }
