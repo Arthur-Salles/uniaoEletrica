@@ -12,6 +12,7 @@ public class Pokemon extends ElementoGeografico{
     private int atq[] = new int[2]; // same index logic
     private int def[] = new int[2];
     private Skills[] habilidades = new Skills[2];
+    private boolean protectSkillsOn = false;
 
     public Pokemon(String n, Tipo types[], Coordenadas posicao, int vida, int atk, int defesa){
         super(posicao, n);
@@ -27,6 +28,43 @@ public class Pokemon extends ElementoGeografico{
 
     public char renderPokemon(){
         return nome.charAt(0);
+    }
+
+    public boolean ishalfHp() {
+        return (hp[0] > (hp[1] * 0.5));
+    }
+
+    public void boostAtk(double i) {
+        atq[0] = (int)(atq[0] * i);
+    }
+
+    public void boostDef(double i) {
+        def[0] = (int)(def[0] * i);
+    }
+
+    public void resetAttributes() {
+        atq[0] = atq[1];
+        def[0] = def[1];
+    }
+
+    public boolean isType(Tipo k) {
+        if(tipos[0] == k || tipos[1] == k){
+            return true;
+        }
+        return false;
+    }
+
+    public void takeHP(int i) {
+        hp[0] -= i;
+    }
+
+    public void heal(int i) {
+        int healthPool = (int)(hp[0] * i * 0.01);
+        hp[0] = (hp[0] + healthPool > hp[1]) ? hp[1] : hp[0] + healthPool;
+    }
+
+    public void setProtectSkillFlag(boolean b) { // needed to attend other guard skills method
+        this.protectSkillsOn = b;
     }
 
 
