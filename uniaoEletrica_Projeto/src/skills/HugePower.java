@@ -1,5 +1,7 @@
 package skills;
 
+import pokemon.Pokemon;
+
 public class HugePower implements Skills {
 
     @Override
