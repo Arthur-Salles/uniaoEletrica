@@ -6,6 +6,10 @@ import pokemon.Pokemon;
 
 public class Healer implements Skills {
 
+    public Healer(String nome){
+        return;
+    }
+
     @Override
     public void passiveEffect(Pokemon p, Pokemon taker) {
         return;

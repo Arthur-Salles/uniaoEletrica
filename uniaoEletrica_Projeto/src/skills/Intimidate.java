@@ -7,6 +7,10 @@ public class Intimidate implements Skills{
 
     private boolean hasBeenActive = false;
 
+    public Intimidate(String nome){
+        return;
+    }
+
     @Override
     public void passiveEffect(Pokemon p, Pokemon taker) { // p is the caller pokemon
         

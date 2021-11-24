@@ -7,6 +7,10 @@ import pokemon.Tipo;
 
 public class FlameBody implements Skills {
 
+    public FlameBody(String nome){
+        return;
+    }
+
     @Override
     public void passiveEffect(Pokemon p, Pokemon taker) {
         return;

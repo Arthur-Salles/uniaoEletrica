@@ -30,6 +30,7 @@ public class Pokemon extends ElementoGeografico{
         return nome.charAt(0);
     }
 
+    /*    skills related methods   */
     public boolean ishalfHp() {
         return (hp[0] > (hp[1] * 0.5));
     }

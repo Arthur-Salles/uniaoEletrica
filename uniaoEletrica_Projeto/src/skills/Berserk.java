@@ -4,6 +4,10 @@ import pokemon.Pokemon;
 
 public class Berserk implements Skills{
 
+    public Berserk(String nome){
+        return;
+    }
+
     @Override
     public void passiveEffect(Pokemon p, Pokemon taker) {
         if(p.ishalfHp()){

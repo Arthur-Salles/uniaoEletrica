@@ -4,7 +4,11 @@ import pokemon.Pokemon;
 
 public class HugePower implements Skills {
 
-    boolean hasBeenActive = false;
+    private boolean hasBeenActive = false;
+
+    public HugePower(String nome){
+        return;
+    }
 
     @Override
     public void passiveEffect(Pokemon p, Pokemon taker) {
