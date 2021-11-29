@@ -34,4 +34,8 @@ public class TriplaCoordenada extends Coordenadas{
 	public int getZ() {
 		return z;
 	}
+
+	public void zerarPosicao() {
+		super.zerarPosicao();	
+	}
 }

@@ -1,5 +1,7 @@
 package mapa;
 
+import player.Player;
+
 public class ElementoIlha extends Elemento{
 	private TriplaCoordenada posicaoAtual;
 	
@@ -27,4 +29,13 @@ public class ElementoIlha extends Elemento{
 	private void mover(int i, int j, int k){
 		posicaoAtual = posicaoAtual.mudarPosicao(i, j, k);
 	}
+
+	public boolean operar(Player player) {
+		return true;
+	}
+	
+	public void zerarPosicao() {
+		posicaoAtual.zerarPosicao();
+	}
+
 }

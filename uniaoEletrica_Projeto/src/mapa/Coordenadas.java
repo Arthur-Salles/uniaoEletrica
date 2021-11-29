@@ -36,4 +36,9 @@ public class Coordenadas {
 	public int getY() {
 		return y;
 	}
+
+	public void zerarPosicao() {
+		x = 0;
+		y = 0;		
+	}
 }
