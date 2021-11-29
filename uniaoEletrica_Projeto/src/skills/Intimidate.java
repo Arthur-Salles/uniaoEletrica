@@ -7,8 +7,10 @@ public class Intimidate implements Skills{
 
     private boolean hasBeenActive = false;
     private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON,Tipo.PSYCHIC};
+    private String m;
 
     public Intimidate(){
+        this.m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -42,7 +44,7 @@ public class Intimidate implements Skills{
 
     @Override
     public String getNome() {
-        return this.getClass().getName();
+        return this.m;
     }
     
 }

@@ -8,8 +8,10 @@ import pokemon.Tipo;
 public class Healer implements Skills {
 
     private Tipo legalTypes[] = {Tipo.WATER, Tipo.GRASS, Tipo.PSYCHIC};
+    private String m;
 
     public Healer(){
+        this.m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -37,7 +39,7 @@ public class Healer implements Skills {
 
     @Override
     public String getNome() {
-        return this.getClass().getName();
+        return this.m;
     }
 
 }

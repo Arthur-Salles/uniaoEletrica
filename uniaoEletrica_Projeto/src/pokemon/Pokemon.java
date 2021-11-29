@@ -53,10 +53,15 @@ public class Pokemon extends ElementoGeografico{
     }
 
     public boolean isType(Tipo k) {
-        if(tipos[0] == k || tipos[1] == k){
-            return true;
+        if(tipos.length == 2){
+            if(tipos[0].equals(k) || tipos[1].equals(k)){
+                return true;
+            }
+            return false;
         }
-        return false;
+        else{
+            return (tipos[0].equals(k));
+        }
     }
 
     public void takeHP(int i) {
@@ -74,13 +79,17 @@ public class Pokemon extends ElementoGeografico{
 
     public void addSkillWithTR(TR ebola){
         Skills skillDoTR = ebola.getSkill();
-        if(checkTypes(skillDoTR)){
+        if(checkTypes(skillDoTR) && !habilidades.contains(skillDoTR)){
             habilidades.add(skillDoTR);
+            System.out.println("Skill " + skillDoTR.getNome() + " added!");
         }
     }
 
     private boolean checkTypes(Skills k){
         Tipo[] allSkills = k.getTipo();
+        if(allSkills.length == 1 && allSkills[0].equals(Tipo.NULO)){ // all types are ok
+            return true;
+        }
         for (Tipo tp : allSkills) {
             if(this.isType(tp)){
                 return true;
@@ -90,8 +99,8 @@ public class Pokemon extends ElementoGeografico{
     }
 
     public void showAllSkills(){
-        for (Skills i : habilidades) {
-            System.out.println(i + ": "+ i.getNome());
+        for (int i = 0; i < habilidades.size(); i++){
+            System.out.println(i + ": "+ habilidades.get(i).getNome());
         }
     }
 

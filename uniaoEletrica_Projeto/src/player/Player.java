@@ -12,15 +12,18 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
 
     private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     private ArrayList<Item> itens = new ArrayList<Item>();
-    private Pokemon activePokemon = pokemons.get(0);
+    private Pokemon activePokemon;
 
 
     public Player(Coordenadas posicao){
         super(posicao, "P");
     }
 
-    public void addPokemon(PokemonNPC k){
+    public void addPokemon(Pokemon k){
         pokemons.add(k);
+        if(pokemons.size() == 0){
+            setActivePokemon(0);
+        }
     }
 
     public void move(int spaces){
@@ -41,6 +44,10 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
 
     public void setActivePokemon(int k){
         this.activePokemon = pokemons.get(k);
+    }
+
+    private void deleteItem(Item tk){
+        this.itens.remove(tk);
     }
 
 }

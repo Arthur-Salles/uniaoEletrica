@@ -8,8 +8,10 @@ import pokemon.Tipo;
 public class FlameBody implements Skills {
 
     private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON};
-    
+    private String m;
+
     public FlameBody(){
+        this.m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -37,6 +39,6 @@ public class FlameBody implements Skills {
     
     @Override
     public String getNome() {
-        return this.getClass().getName();
+        return this.m;
     }
 }

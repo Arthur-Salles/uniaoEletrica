@@ -6,8 +6,10 @@ import pokemon.Tipo;
 public class Berserk implements Skills{
 
     private Tipo legalTypes[] = {Tipo.ELECTRIC, Tipo.DRAGON};
+    private String m;
 
     public Berserk(){
+        this.m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -34,7 +36,7 @@ public class Berserk implements Skills{
 
     @Override
     public String getNome() {
-        return this.getClass().getName();
+        return this.m;
     }
 
 }

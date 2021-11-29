@@ -7,9 +7,10 @@ public class HugePower implements Skills {
 
     private boolean hasBeenActive = false;
     private Tipo legalTypes[] = {Tipo.NULO};
-
+    private String m;
 
     public HugePower(){
+        this.m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -39,7 +40,7 @@ public class HugePower implements Skills {
 
     @Override
     public String getNome() {
-        return this.getClass().getName();
+        return this.m;
     }
 
 }
