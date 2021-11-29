@@ -14,7 +14,6 @@ public class Main {
         // Interacao ui = new Interacao(l);
         // ui.movePlayer();
         TR t1 = new TR();
-        t1.generateSkill();
 
     }
 }   

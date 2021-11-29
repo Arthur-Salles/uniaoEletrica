@@ -1,10 +1,14 @@
 package skills;
 
 import pokemon.Pokemon;
+import pokemon.Tipo;
 
 public class Berserk implements Skills{
 
-    public Berserk(String nome){
+    private Tipo legalTypes[];
+
+    public Berserk(){
+
         return;
     }
 

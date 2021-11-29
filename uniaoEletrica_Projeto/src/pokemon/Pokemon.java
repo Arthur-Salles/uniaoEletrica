@@ -2,10 +2,7 @@ package pokemon;
 import mapa.*;
 import skills.*;
 
-import java.util.ArrayList;
-
 public class Pokemon extends ElementoGeografico{
-    
     private String nome;
     private Tipo tipos[] = new Tipo[2];
     private int hp[] = new int[2]; // hp[0] current hp, hp[1] max hp
@@ -26,11 +23,15 @@ public class Pokemon extends ElementoGeografico{
         def[1] = defesa;
     };
 
+    public String showInfo(){
+        return this.nome + " hp: " + hp[0] + "/" + hp[1]; 
+    }
+
     public char renderPokemon(){
         return nome.charAt(0);
     }
 
-    /*    skills related methods   */
+    /*      skills related methods      */
     public boolean ishalfHp() {
         return (hp[0] > (hp[1] * 0.5));
     }
@@ -66,6 +67,10 @@ public class Pokemon extends ElementoGeografico{
 
     public void setProtectSkillFlag(boolean b) { // needed to attend other guard skills method
         this.protectSkillsOn = b;
+    }
+
+    private void learnSkill(){
+        
     }
 
 

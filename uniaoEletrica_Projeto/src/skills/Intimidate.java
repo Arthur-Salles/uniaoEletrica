@@ -6,8 +6,9 @@ import pokemon.Tipo;
 public class Intimidate implements Skills{
 
     private boolean hasBeenActive = false;
+    private Tipo legalTypes[];
 
-    public Intimidate(String nome){
+    public Intimidate(){
         return;
     }
 

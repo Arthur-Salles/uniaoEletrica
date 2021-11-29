@@ -1,12 +1,15 @@
 package skills;
 
 import pokemon.Pokemon;
+import pokemon.Tipo;
 
 public class HugePower implements Skills {
 
     private boolean hasBeenActive = false;
+    private Tipo legalTypes[];
 
-    public HugePower(String nome){
+
+    public HugePower(){
         return;
     }
 

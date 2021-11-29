@@ -12,14 +12,12 @@ public class TR implements Item{
 
     private final String iconExists = "TR";
     private final String iconNonExists = "-";
+    private Skills habilidadeInTR;
 
 
-    private Skills habilidadeInTR = null;
-    
-
-    // public TR(){
-    //     r
-    // }
+    public TR(){
+        generateSkill();
+    }
 
     @Override
     public String render() {
@@ -28,29 +26,26 @@ public class TR implements Item{
 
     @Override
     public void use() {
-        // TODO Auto-generated method stub
-        
+        // TODO Auto-generated method stub   
     }
 
-    public void generateSkill(){
+    private void generateSkill(){
+
         Random rnd = new Random();
         File dir = new File("src/skills");
         File[] allSkills = dir.listFiles();
         int classNumber = rnd.nextInt(allSkills.length);
-
         while(allSkills[classNumber].getName().equals("Skills.java")){ // finds a random skill class in "src/skills"
             classNumber = rnd.nextInt(allSkills.length);
         }
-
         String nome = "skills." + (allSkills[classNumber].getName()).replace(".java", ""); // prepares the random class name
         Class<?> c; // creates the Skills class
         Constructor<?> k;
 
         try {
             c = Class.forName(nome);
-            k = c.getConstructor(String.class);
-            habilidadeInTR = (Skills) k.newInstance(nome.replace("skills.", ""));
-
+            k = c.getConstructor();
+            habilidadeInTR = (Skills) k.newInstance();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {

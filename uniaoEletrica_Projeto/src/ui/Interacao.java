@@ -17,7 +17,6 @@ public class Interacao {
         this.p = k;
     }
 
-
     private void startMovementTurn(){
         String show = "Voce tem ";
         movimento = dado.nextInt(12)+2;
@@ -65,6 +64,23 @@ public class Interacao {
             else{
                 System.out.println("Voce tem " + movimento + " restantes");
             }
+        }
+    }
+
+    public void choosePokemon(){
+        if(!movimentTurnOn){
+            int k = 0;
+            System.out.println("De o número para escolher o pokemon: ");
+            int max = p.printPokemons();
+            k = leitor.nextInt();
+            while(k < 0 || k > max){
+                System.out.println("De um número no intervalo correto!");
+                k = leitor.nextInt();
+            }
+            p.setActivePokemon(k);
+        }
+        else{
+            System.out.println("Finish movement turn first!");
         }
     }
 }

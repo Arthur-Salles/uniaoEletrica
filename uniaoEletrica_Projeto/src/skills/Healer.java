@@ -3,10 +3,13 @@ package skills;
 import java.util.Random;
 
 import pokemon.Pokemon;
+import pokemon.Tipo;
 
 public class Healer implements Skills {
 
-    public Healer(String nome){
+    private Tipo legalTypes[];
+
+    public Healer(){
         return;
     }
 
