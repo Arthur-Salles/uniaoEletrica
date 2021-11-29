@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import player.Player;
 
-
 public class Interacao {
     private Random dado = new Random();
     private int movimento;

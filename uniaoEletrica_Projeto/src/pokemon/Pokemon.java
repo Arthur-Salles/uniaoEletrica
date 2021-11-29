@@ -1,4 +1,7 @@
 package pokemon;
+import java.util.ArrayList;
+
+import itens.TR;
 import mapa.*;
 import skills.*;
 
@@ -8,7 +11,7 @@ public class Pokemon extends ElementoGeografico{
     private int hp[] = new int[2]; // hp[0] current hp, hp[1] max hp
     private int atq[] = new int[2]; // same index logic
     private int def[] = new int[2];
-    private Skills[] habilidades = new Skills[2];
+    private ArrayList<Skills> habilidades = new ArrayList<Skills>();
     private boolean protectSkillsOn = false;
 
     public Pokemon(String n, Tipo types[], Coordenadas posicao, int vida, int atk, int defesa){
@@ -69,8 +72,27 @@ public class Pokemon extends ElementoGeografico{
         this.protectSkillsOn = b;
     }
 
-    private void learnSkill(){
-        
+    public void addSkillWithTR(TR ebola){
+        Skills skillDoTR = ebola.getSkill();
+        if(checkTypes(skillDoTR)){
+            habilidades.add(skillDoTR);
+        }
+    }
+
+    private boolean checkTypes(Skills k){
+        Tipo[] allSkills = k.getTipo();
+        for (Tipo tp : allSkills) {
+            if(this.isType(tp)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void showAllSkills(){
+        for (Skills i : habilidades) {
+            System.out.println(i + ": "+ i.getNome());
+        }
     }
 
 

@@ -12,7 +12,7 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
 
     private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     private ArrayList<Item> itens = new ArrayList<Item>();
-    private Pokemon activePokemon;
+    private Pokemon activePokemon = pokemons.get(0);
 
 
     public Player(Coordenadas posicao){

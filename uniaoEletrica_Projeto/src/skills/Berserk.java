@@ -8,7 +8,6 @@ public class Berserk implements Skills{
     private Tipo legalTypes[] = {Tipo.ELECTRIC, Tipo.DRAGON};
 
     public Berserk(){
-
         return;
     }
 
@@ -28,7 +27,14 @@ public class Berserk implements Skills{
         return;
     }
 
-    
+    @Override
+    public Tipo[] getTipo() {
+        return legalTypes;
+    }
 
-    
+    @Override
+    public String getNome() {
+        return this.getClass().getName();
+    }
+
 }

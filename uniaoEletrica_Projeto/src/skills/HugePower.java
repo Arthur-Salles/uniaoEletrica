@@ -31,5 +31,15 @@ public class HugePower implements Skills {
         p.takeHP(5);
         hasBeenActive = true;
     }
-    
+
+    @Override
+    public Tipo[] getTipo() {
+        return legalTypes;
+    }
+
+    @Override
+    public String getNome() {
+        return this.getClass().getName();
+    }
+
 }

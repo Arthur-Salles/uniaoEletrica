@@ -32,8 +32,9 @@ public class TR implements Item{
     private void generateSkill(){
 
         Random rnd = new Random();
-        File dir = new File("src/skills");
+        File dir = new File("skills"); // sempre mudar ao mudar a pasta do vs
         File[] allSkills = dir.listFiles();
+
         int classNumber = rnd.nextInt(allSkills.length);
         while(allSkills[classNumber].getName().equals("Skills.java")){ // finds a random skill class in "src/skills"
             classNumber = rnd.nextInt(allSkills.length);
@@ -61,6 +62,10 @@ public class TR implements Item{
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    public Skills getSkill() {
+        return habilidadeInTR;
     }
 
     

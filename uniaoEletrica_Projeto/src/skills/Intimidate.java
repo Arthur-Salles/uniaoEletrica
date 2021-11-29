@@ -35,6 +35,14 @@ public class Intimidate implements Skills{
         return;
     }
 
+    @Override
+    public Tipo[] getTipo() {
+        return legalTypes;
+    }
 
+    @Override
+    public String getNome() {
+        return this.getClass().getName();
+    }
     
 }

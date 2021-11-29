@@ -30,4 +30,13 @@ public class FlameBody implements Skills {
         }
     }
     
+    @Override
+    public Tipo[] getTipo() {
+        return legalTypes;
+    }
+    
+    @Override
+    public String getNome() {
+        return this.getClass().getName();
+    }
 }
