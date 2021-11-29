@@ -9,7 +9,9 @@ public class TriplaCoordenada extends Coordenadas{
 	}
 	
 	public TriplaCoordenada mudarPosicao(int a, int b, int c) {
-		TriplaCoordenada novaCoordenada = new TriplaCoordenada(a, b, c);	
+		int x = super.getX();
+		int y = super.getY();
+		TriplaCoordenada novaCoordenada = new TriplaCoordenada(x+a, y+b, z+c);	
 			
 		return novaCoordenada;
 	}

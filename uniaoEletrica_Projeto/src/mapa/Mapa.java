@@ -24,6 +24,15 @@ public class Mapa {
 		
 		return foiAdicionado;
 	}
-	
+
+	public void imprimirMapa() {
+		for (int i=0; i<mapa.length; i++){
+			for (int j=0; j<mapa[0].length; j++) {
+				mapa[i][j].imprimirIcone();
+			}
+			System.out.println(" ");
+		}
+		
+	}
 	
 }

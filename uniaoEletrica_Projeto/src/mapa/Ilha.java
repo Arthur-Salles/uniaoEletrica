@@ -4,11 +4,11 @@ import pokemon.Tipo;
 public class Ilha extends ElementoGeografico{
 	private static String iconeIlha = "I";
 	private ElementoIlha[][][] ilha;
-	private String iconePosicoesVazias = "--";
+	private String iconePosicoesVazias = "-";
 	private Tipo ilhaTipo;
 	
-	public Ilha(int i, int j, int k, Coordenadas coord) {
-		super(coord, iconeIlha);
+	public Ilha(int i, int j, int k, Coordenadas posicaoNoMundo, String icone) {
+		super(posicaoNoMundo, icone);
 		ilha = new ElementoIlha[i][j][k];
 		
 		for(int c=0; c<k; c++) {
@@ -56,6 +56,17 @@ public class Ilha extends ElementoGeografico{
 		}
 
 		return estaDentro;
+	}
+
+	public void imprimirIlha(int nivel) {
+		for (int i=0; i<ilha.length; i++){
+			for (int j=0; j<ilha[0].length; j++) {
+				ilha[i][j][nivel].imprimirIcone();
+				System.out.print(" ");
+			}
+			System.out.println(" ");
+		}
+		
 	}
 
 	

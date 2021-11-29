@@ -18,6 +18,7 @@ public class ElementoGeografico extends Elemento {
 
 	public boolean estaDentroDoMapa(int a, int b) {
 		return posicaoAtual.verificarSeEstaDentroDoMapa(a, b);
-	} 
+	}
+
 
 }
