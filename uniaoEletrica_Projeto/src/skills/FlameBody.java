@@ -7,7 +7,7 @@ import pokemon.Tipo;
 
 public class FlameBody implements Skills {
 
-    private Tipo legalTypes[];
+    private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON};
     
     public FlameBody(){
         return;

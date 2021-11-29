@@ -7,7 +7,7 @@ import pokemon.Tipo;
 
 public class Healer implements Skills {
 
-    private Tipo legalTypes[];
+    private Tipo legalTypes[] = {Tipo.WATER, Tipo.GRASS, Tipo.PSYCHIC};
 
     public Healer(){
         return;

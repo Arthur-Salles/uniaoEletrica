@@ -6,7 +6,7 @@ import pokemon.Tipo;
 public class HugePower implements Skills {
 
     private boolean hasBeenActive = false;
-    private Tipo legalTypes[];
+    private Tipo legalTypes[] = {Tipo.NULO};
 
 
     public HugePower(){

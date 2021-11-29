@@ -5,7 +5,7 @@ import pokemon.Tipo;
 
 public class Berserk implements Skills{
 
-    private Tipo legalTypes[];
+    private Tipo legalTypes[] = {Tipo.ELECTRIC, Tipo.DRAGON};
 
     public Berserk(){
 
