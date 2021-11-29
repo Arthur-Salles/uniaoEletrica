@@ -21,7 +21,6 @@ public class Main {
         l.addPokemon(pikachu);
         l.printPokemons();
         pikachu.addSkillWithTR(t1);
-
         pikachu.showAllSkills();
 
     }

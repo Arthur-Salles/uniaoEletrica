@@ -82,5 +82,18 @@ public class Interacao {
             System.out.println("Finish movement turn first!");
         }
     }
+
+    public void useItem(){
+        int k = 0;
+        System.out.println("De o número para escolher o item: ");
+        int max = p.printItens();
+        k = leitor.nextInt();
+        while(k < 0 || k > max){
+            System.out.println("De um numero no intervalo correto!");
+            k = leitor.nextInt();
+        }
+        p.consumeItem(k);
+    }
+
 }
 

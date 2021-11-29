@@ -46,8 +46,23 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
         this.activePokemon = pokemons.get(k);
     }
 
+    public int printItens(){
+        for (int i = 0; i < itens.size(); i++){
+            System.out.println(i + ": " + itens.get(i).render());
+        }
+        return itens.size();
+    }
+
+
     private void deleteItem(Item tk){
         this.itens.remove(tk);
     }
 
+    public void consumeItem(int k){
+        Item using = this.itens.get(k);
+        using.use(activePokemon);
+        deleteItem(using);
+    }
+
+    
 }

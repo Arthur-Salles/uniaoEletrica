@@ -5,13 +5,13 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
+import pokemon.Pokemon;
 import skills.*;
 
 
 public class TR implements Item{
 
     private final String iconExists = "TR";
-    private final String iconNonExists = "-";
     private Skills habilidadeInTR;
 
 
@@ -25,7 +25,7 @@ public class TR implements Item{
     }
 
     @Override
-    public void use() {
+    public void use(Pokemon p) {
         // TODO Auto-generated method stub   
     }
 
