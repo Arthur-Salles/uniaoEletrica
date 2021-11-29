@@ -26,7 +26,7 @@ public class TR implements Item{
 
     @Override
     public void use(Pokemon p) {
-        // TODO Auto-generated method stub   
+        p.addSkillWithTR(this); 
     }
 
     private void generateSkill(){

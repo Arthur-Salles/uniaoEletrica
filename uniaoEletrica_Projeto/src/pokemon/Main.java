@@ -11,17 +11,24 @@ public class Main {
         // so para testar
         Player l = new Player(new Coordenadas(2, 9));
 
-        // Interacao ui = new Interacao(l);
-        // ui.movePlayer();
+        Interacao ui = new Interacao(l);
         TR t1 = new TR();
 
-        Tipo[] kek = {Tipo.ELECTRIC};
+        Tipo[] kek = {Tipo.DRAGON, Tipo.PSYCHIC};
 
         Pokemon pikachu = new Pokemon("pikachu", kek, new Coordenadas(2, 15), 20, 10, 6);
         l.addPokemon(pikachu);
-        l.printPokemons();
-        pikachu.addSkillWithTR(t1);
+        l.addItem(t1);
+
+        ui.choosePokemon();
+
         pikachu.showAllSkills();
+
+        ui.useItem();
+
+        pikachu.showAllSkills();
+
+        l.printItens();
 
     }
 }   

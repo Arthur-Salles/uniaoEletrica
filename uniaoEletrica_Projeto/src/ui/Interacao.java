@@ -10,7 +10,7 @@ public class Interacao {
     private int movimento;
     private Scanner leitor = new Scanner(System.in);
     private Player p;
-    private boolean movimentTurnOn = true;
+    private boolean movimentTurnOn = false; // trocar
 
     public Interacao(Player k){
         this.p = k;

@@ -26,6 +26,10 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
         }
     }
 
+    public void addItem(Item k){
+        itens.add(k);
+    }
+
     public void move(int spaces){
         // faz os boundries checks
         return;
@@ -47,21 +51,19 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
     }
 
     public int printItens(){
+        if(itens.size() == 0){
+            System.out.println("Não há itens");
+        }
         for (int i = 0; i < itens.size(); i++){
             System.out.println(i + ": " + itens.get(i).render());
         }
         return itens.size();
     }
 
-
-    private void deleteItem(Item tk){
-        this.itens.remove(tk);
-    }
-
     public void consumeItem(int k){
         Item using = this.itens.get(k);
         using.use(activePokemon);
-        deleteItem(using);
+        itens.remove(using);
     }
 
     
