@@ -25,22 +25,13 @@ public class Berserk extends Skills{
     }
 
     @Override
-    public void activeEffect(Pokemon p, Pokemon taker) {
-        return;
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public Tipo[] getTipo() {
-        return legalTypes;
-    }
-
-    // @Override
-    // public boolean isTypeCompatible(Tipo k){
-    //     for (Tipo tipo : legalTypes) {
-    //         if(k.equals(tipo)){
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
 }

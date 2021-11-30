@@ -39,6 +39,10 @@ public class Pokemon extends ElementoGeografico{
         return (hp[0] > (hp[1] * 0.5));
     }
 
+    public boolean isDead(){
+        return(hp[0] <= 0);
+    }
+
     public void boostAtk(double i) {
         atq[0] = (int)(atq[0] * i);
     }

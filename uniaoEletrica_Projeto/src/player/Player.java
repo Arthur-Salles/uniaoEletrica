@@ -66,5 +66,8 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
         itens.remove(using);
     }
 
+    public Pokemon getActivePokemon(){
+        return activePokemon;
+    }
     
 }

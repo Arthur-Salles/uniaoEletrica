@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import player.Player;
+import pokemon.Pokemon;
 
 public class Interacao {
     private Random dado = new Random();
@@ -93,6 +94,25 @@ public class Interacao {
             k = leitor.nextInt();
         }
         p.consumeItem(k);
+    }
+
+    public int chooseAction(){
+        System.out.println("1.Atacar\n2.Usar Habilidade\n3.Usar Item");
+        int k = leitor.nextInt();
+        while(k < 0 || k > 3){
+            System.out.println("Um numero entre os citados pfv!");
+            k = leitor.nextInt();
+        }
+        return k;
+    }
+
+    public void pokemonIsDead(Pokemon k){
+        System.out.println(k.showInfo() + " esta morto!\nEscolha outro!");
+        choosePokemon();
+    }
+
+    public void pokemonCaptured(Pokemon k){
+        System.out.println(k.showInfo() + " foi capturado!");
     }
 
 }

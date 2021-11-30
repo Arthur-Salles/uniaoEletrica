@@ -6,7 +6,7 @@ import pokemon.Tipo;
 public class Skills { 
 
     protected String m;
-    private Tipo legalTypes[] = {Tipo.NULO};
+    private Tipo legalTypes[] = {};
 
     public void passiveEffect(Pokemon p, Pokemon taker){
         return;

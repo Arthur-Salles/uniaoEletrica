@@ -14,11 +14,6 @@ public class HugePower extends Skills {
     }
 
     @Override
-    public void passiveEffect(Pokemon p, Pokemon taker) {
-        return;
-    }
-
-    @Override
     public void activeEffect(Pokemon p, Pokemon taker) {
         
         if(hasBeenActive){ // protection for twice activating
@@ -33,13 +28,13 @@ public class HugePower extends Skills {
     }
 
     @Override
-    public Tipo[] getTipo() {
-        return legalTypes;
-    }
-
-    @Override
-    public String getNome() {
-        return this.m;
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

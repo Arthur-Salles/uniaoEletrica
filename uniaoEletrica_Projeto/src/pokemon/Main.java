@@ -14,20 +14,15 @@ public class Main {
         Interacao ui = new Interacao(l);
         TR t1 = new TR();
 
-        Tipo[] kek = {Tipo.DRAGON, Tipo.PSYCHIC};
+        Tipo[] kek = {Tipo.WATER};
 
         Pokemon pikachu = new Pokemon("pikachu", kek, new Coordenadas(2, 15), 20, 10, 6);
         l.addPokemon(pikachu);
         l.addItem(t1);
-
         ui.choosePokemon();
-
         pikachu.showAllSkills();
-
         ui.useItem();
-
         pikachu.showAllSkills();
-
         l.printItens();
 
     }
