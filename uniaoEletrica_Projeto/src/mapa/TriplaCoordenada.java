@@ -38,4 +38,8 @@ public class TriplaCoordenada extends Coordenadas{
 	public void zerarPosicao() {
 		super.zerarPosicao();	
 	}
+
+	public void mudarDeNivel(int n) {
+		z=n;		
+	}
 }

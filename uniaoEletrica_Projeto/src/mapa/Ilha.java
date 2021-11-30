@@ -1,11 +1,11 @@
 package mapa;
 import player.Player;
 import pokemon.Tipo;
+import transporte.Elevador;
 import transporte.Ponte;
 import transporte.Portal;
 
 public class Ilha extends ElementoGeografico{
-	private static String iconeIlha = "I";
 	private ElementoIlha[][][] ilha;
 	private String iconePosicoesVazias = "-";
 	private Tipo ilhaTipo;
@@ -22,7 +22,14 @@ public class Ilha extends ElementoGeografico{
 			}
 			adicionarPontes(i, j, c);
 			adicionarPortal(i, j, c);
+			adicionarElevador(i, j,c);
 		}
+	}
+	
+	private void adicionarElevador(int i, int j, int c) {
+		Elevador elevador = new Elevador(new TriplaCoordenada(3, 3, c));
+		adicionarObjeto(elevador, elevador.getPosicaoAtual());
+
 	}
 	
 	private void adicionarPortal(int i, int j, int c) {
@@ -46,7 +53,7 @@ public class Ilha extends ElementoGeografico{
 	public boolean adicionarObjeto(ElementoIlha obj, TriplaCoordenada coord) {
 		boolean foiMovido = false;
 
-		if (verificarSeEstaDentroDoMapa(obj)) {
+		if (verificarSeEstaDentroDoMapa(coord)) {
 			this.ilha[coord.getX()][coord.getY()][coord.getZ()] = obj;
 			foiMovido = true;
 		}
@@ -61,22 +68,23 @@ public class Ilha extends ElementoGeografico{
 		ilha[linha][coluna][nivel] = new ElementoIlha(new TriplaCoordenada(linha, coluna, nivel), iconePosicoesVazias);
 	}
 	
-	public boolean moverPlayer(Player player, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
+	public boolean moverPlayer(Player player, Mapa mapa, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
 		int i = posicaoNova.getX();
 		int j = posicaoNova.getY();
 		int k = posicaoNova.getZ();
-		boolean running = false;
+		boolean viajou = false;
 		
-		if (ilha[i][j][k].operar(player)) {
-			running = true;
-			removerElemento(posicaoAntiga);
-			running = adicionarObjeto(player, posicaoNova);
-		}else {
-			removerElemento(posicaoAntiga);
-			running = false;
-		}	
-
-		return running;
+		if (posicaoNova.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {
+			if (ilha[i][j][k].ehTransporte()) {
+				ilha[i][j][k].transportar(player, mapa);
+				viajou = true;
+				removerElemento(posicaoAntiga);
+			}else {
+				removerElemento(posicaoAntiga);
+				viajou = adicionarObjeto(player, posicaoNova);
+			}
+		}
+		return viajou;
 	}
 	
 	public boolean moverElemento(Player player, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
@@ -85,12 +93,11 @@ public class Ilha extends ElementoGeografico{
 		return adicionarObjeto(player, posicaoNova);
 	}
 		
-	protected boolean verificarSeEstaDentroDoMapa(ElementoIlha obj){
+	protected boolean verificarSeEstaDentroDoMapa(TriplaCoordenada coord){
 		boolean estaDentro = false;
-		Coordenadas coord = obj.getPosicaoAtual();
 		
 		if (coord.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {
-			if (obj.getNivel() <= ilha[0][0].length){
+			if (coord.getZ() <= ilha[0][0].length && coord.getZ() >= 0){
 				estaDentro = true;
 			}
 		}
@@ -99,6 +106,7 @@ public class Ilha extends ElementoGeografico{
 	}
 
 	public void imprimirIlha(int nivel) {
+		System.out.println(" ----- " + super.getIcone() + " ----- ");
 		for (int i=0; i<ilha.length; i++){
 			for (int j=0; j<ilha[0].length; j++) {
 				ilha[i][j][nivel].imprimirIcone();
@@ -109,6 +117,19 @@ public class Ilha extends ElementoGeografico{
 		
 	}
 
-	
+	public void imprimirNiveisDisponiveis(int nivelAtual) {
+		for (int i=0; i<ilha[0][0].length; i++) {
+			if(i!=nivelAtual) {
+				System.out.print(" "+ i);
+			}
+		}
+		System.out.println(" ");
+	}
+
+	public void imprimirSeTemNivel(int n) {
+		if (ilha[0][0].length>=n) {
+			super.imprimirIcone(" ");
+		}
+	}
 	
 }

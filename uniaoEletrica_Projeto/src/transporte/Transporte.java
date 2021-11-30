@@ -1,6 +1,7 @@
 package transporte;
 
 import mapa.ElementoIlha;
+import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import player.Player;
 
@@ -10,12 +11,13 @@ public class Transporte extends ElementoIlha{
 		super(posicao, icone);
 	}
 	
-	@Override 
-	public boolean operar(Player player) {
-		return transportar(player);
+	@Override
+	public void transportar(Player player, Mapa mapa) {
+	             	
 	}
 	
-	public boolean transportar(Player player) {
+	@Override
+	public boolean ehTransporte() {
 		return true;
 	}
 }

@@ -1,8 +1,11 @@
 package mapa;
 
+import java.util.ArrayList;
+
 public class Mapa {
 	private ElementoGeografico[][] mapa;
-	String iconePosicoesVazias = "--";
+    private ArrayList<Ilha> ilhasDisponiveis = new ArrayList<Ilha>();
+	private String iconePosicoesVazias = "--";
 	
 	public Mapa (int i, int j) {
 		mapa = new ElementoGeografico[i][j];
@@ -20,6 +23,7 @@ public class Mapa {
 		if (ilha.estaDentroDoMapa(mapa.length, mapa[0].length)) {
 			this.mapa[coord.getX()][coord.getY()] = ilha;
 			foiAdicionado = true;
+			ilhasDisponiveis.add(ilha);
 		}
 		
 		return foiAdicionado;
@@ -32,7 +36,14 @@ public class Mapa {
 			}
 			System.out.println(" ");
 		}
-		
+	}
+
+	public void imprimirIlhasDisponiveis(int n) {
+		ilhasDisponiveis.forEach((k) -> k.imprimirSeTemNivel(n));
+	}
+	
+	public Ilha getIlha (int i) {
+		return ilhasDisponiveis.get(i-1);
 	}
 	
 }

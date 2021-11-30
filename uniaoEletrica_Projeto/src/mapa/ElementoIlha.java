@@ -26,16 +26,20 @@ public class ElementoIlha extends Elemento{
 		return posicaoAtual.verificarSeEstaDentroDoMapa(a, b, c);
 	} 
 	
-	private void mover(int i, int j, int k){
-		posicaoAtual = posicaoAtual.mudarPosicao(i, j, k);
-	}
-
-	public boolean operar(Player player) {
-		return true;
+	public void transportar(Player player, Mapa mapa) {
+		
 	}
 	
-	public void zerarPosicao() {
+	protected void zerarPosicao() {
 		posicaoAtual.zerarPosicao();
+	}
+
+	public boolean ehTransporte() {
+		return false;
+	}
+
+	public void mudarDeNivel(int i, int j, int n) {
+		posicaoAtual.mudarDeNivel(n);		
 	}
 
 }
