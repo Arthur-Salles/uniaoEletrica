@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import player.Player;
 import pokemon.Pokemon;
+import skills.Skills;
 
 public class Interacao {
     private Random dado = new Random();
@@ -67,6 +68,7 @@ public class Interacao {
         }
     }
 
+
     public void choosePokemon(){
         if(!movimentTurnOn){
             int k = 0;
@@ -84,7 +86,7 @@ public class Interacao {
         }
     }
 
-    public void useItem(){
+    public int chooseItem(){
         int k = 0;
         System.out.println("De o número para escolher o item: ");
         int max = p.printItens();
@@ -93,7 +95,7 @@ public class Interacao {
             System.out.println("De um numero no intervalo correto!");
             k = leitor.nextInt();
         }
-        p.consumeItem(k);
+        return k;
     }
 
     public int chooseAction(){
@@ -112,7 +114,34 @@ public class Interacao {
     }
 
     public void pokemonCaptured(Pokemon k){
-        System.out.println(k.showInfo() + " foi capturado!");
+        System.out.println(k.getNome() + " foi capturado!");
+    }
+
+    public Skills chooseSkill(Pokemon activePokemon){
+        try {
+            int max = activePokemon.showAllSkills();
+            if(max == 0){
+                throw new IndexOutOfBoundsException();
+            }
+            System.out.println("Digite o número da habilidade");
+            int k = leitor.nextInt();
+            while(k < 0 || k > max){
+                System.out.println("para de tentar quebrar o jogo namoral");
+                k = leitor.nextInt();
+            }
+            return activePokemon.getSkill(k);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Nada Acontece");
+            return new Skills();
+        }
+    }
+
+    public void printPokemonsStatus(Pokemon a, Pokemon b){
+        System.out.println(a.showInfo() + "\n" + b.showInfo());
+    }
+
+    public void printWinner(Pokemon a){
+        System.out.printf("O pokemon %s ganhou a luta\n", a.getNome());
     }
 
 }

@@ -1,6 +1,7 @@
 package pokemon;
 import java.util.ArrayList;
 
+import itens.Item;
 import itens.TR;
 import mapa.*;
 import skills.*;
@@ -25,6 +26,10 @@ public class Pokemon extends ElementoGeografico{
         def[0] = defesa;
         def[1] = defesa;
     };
+
+    public String getNome(){
+        return this.nome; 
+    }
 
     public String showInfo(){
         return this.nome + " hp: " + hp[0] + "/" + hp[1]; 
@@ -69,13 +74,19 @@ public class Pokemon extends ElementoGeografico{
     }
 
     public void takeHP(int i) {
-        hp[0] -= i;
+        hp[0] = hp[0]- i;
+        hp[0] = (hp[0] < 0) ? 0 : hp[0];
     }
 
     public void heal(int i) {
         int healthPool = (int)(hp[0] * i * 0.01);
         hp[0] = (hp[0] + healthPool > hp[1]) ? hp[1] : hp[0] + healthPool;
     }
+
+    public void addLife(int i){
+        hp[0] = ((hp[0] + i) > hp[1]) ? hp[1] : hp[0] + i; 
+    }
+
 
     public void setProtectSkillFlag(boolean b) { // needed to attend other guard skills method
         this.protectSkillsOn = b;
@@ -91,12 +102,29 @@ public class Pokemon extends ElementoGeografico{
         }
     }
     
-    public void showAllSkills(){
+    public int showAllSkills(){
         for (int i = 0; i < habilidades.size(); i++){
             System.out.println(i + ": "+ habilidades.get(i).getNome());
         }
+        return habilidades.size();
     }
 
+    public Skills getSkill(int j){
+        return this.habilidades.get(j);
+    }
+
+    public void attack(Pokemon h){
+        int dmg = this.atq[0] - h.def[0];
+        if(h.protectSkillsOn && !this.isType(Tipo.PSYCHIC)){
+            dmg = (int) (dmg * 0.5);
+        }
+        dmg = (dmg <= 0) ? 1 : dmg;
+        h.takeHP(dmg);
+    }
+
+    public void useItem(Item k){
+        k.use(this);
+    }
 
 
 }

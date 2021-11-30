@@ -12,8 +12,9 @@ public class Fruta implements Item {
     }
 
     @Override
-    public void use(Pokemon p) {
-        p.heal(1000000);
+    public void use(Pokemon p){
+        p.addLife(2000000);
+        System.out.println(p.getNome() + " foi curado!");
     }
     
 }

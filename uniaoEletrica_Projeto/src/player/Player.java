@@ -1,5 +1,6 @@
 package player; // dps fazer os pacotes serem todos referentes a pasta global
 
+import java.security.Policy;
 import java.util.ArrayList;
 
 import itens.Item;
@@ -40,6 +41,9 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
     }
 
     public int printPokemons(){
+        if(pokemons.size() == 0){
+            System.out.println("Nao há itens");
+        }
         for(int i = 0; i < pokemons.size(); i++){
             System.out.println(i+ ": " + pokemons.get(i).showInfo());
         }
@@ -65,9 +69,16 @@ public class Player extends ElementoGeografico{ // falta o extends pra definir o
         using.use(activePokemon);
         itens.remove(using);
     }
+    public void deleteItem(int k){
+        itens.remove(k);
+    }
 
     public Pokemon getActivePokemon(){
         return activePokemon;
+    }
+
+    public Item getItem(int k){
+        return this.itens.get(k);
     }
     
 }

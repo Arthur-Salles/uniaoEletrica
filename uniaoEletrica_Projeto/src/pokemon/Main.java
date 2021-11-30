@@ -15,15 +15,20 @@ public class Main {
         TR t1 = new TR();
 
         Tipo[] kek = {Tipo.WATER};
+        Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 
-        Pokemon pikachu = new Pokemon("pikachu", kek, new Coordenadas(2, 15), 20, 10, 6);
-        l.addPokemon(pikachu);
-        l.addItem(t1);
-        ui.choosePokemon();
-        pikachu.showAllSkills();
-        ui.useItem();
-        pikachu.showAllSkills();
-        l.printItens();
+        Pokemon pikachu = new Pokemon("pikachu", kek , new Coordenadas(2, 15), 20, 15, 7);
+        Pokemon leonardo = new Pokemon("leonardo", kek1, new Coordenadas(3, 145), 30, 20, 5);
+
+        leonardo.addSkillWithTR(t1);
+        l.addItem(new Fruta());
+
+        // l.addPokemon(pikachu);
+        l.addPokemon(leonardo);
+        // l.addPokemon(pikachu);
+        // l.setActivePokemon(0);
+
+        Combate rinhaDeAnimal = new Combate(l, pikachu);
 
     }
 }   
