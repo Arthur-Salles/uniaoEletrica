@@ -5,13 +5,12 @@ import java.util.Random;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class Healer implements Skills {
+public class Healer extends Skills {
 
     private Tipo legalTypes[] = {Tipo.WATER, Tipo.GRASS, Tipo.PSYCHIC};
-    private String m;
 
     public Healer(){
-        this.m = this.getClass().getName().replace("skills.", "");
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 

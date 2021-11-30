@@ -3,14 +3,13 @@ package skills;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class HugePower implements Skills {
+public class HugePower extends Skills {
 
     private boolean hasBeenActive = false;
-    private Tipo legalTypes[] = {Tipo.NULO};
-    private String m;
+    private Tipo legalTypes[] = {Tipo.NULO}; // using nulo to all
 
     public HugePower(){
-        this.m = this.getClass().getName().replace("skills.", "");
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 

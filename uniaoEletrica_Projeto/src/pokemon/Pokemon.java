@@ -79,25 +79,14 @@ public class Pokemon extends ElementoGeografico{
 
     public void addSkillWithTR(TR ebola){
         Skills skillDoTR = ebola.getSkill();
-        if(checkTypes(skillDoTR) && !habilidades.contains(skillDoTR)){
-            habilidades.add(skillDoTR);
-            System.out.println("Skill " + skillDoTR.getNome() + " added!");
-        }
-    }
-
-    private boolean checkTypes(Skills k){
-        Tipo[] allSkills = k.getTipo();
-        if(allSkills.length == 1 && allSkills[0].equals(Tipo.NULO)){ // all types are ok
-            return true;
-        }
-        for (Tipo tp : allSkills) {
-            if(this.isType(tp)){
-                return true;
+        for (Tipo i : this.tipos) {
+            if(skillDoTR.isTypeCompatible(i) && !habilidades.contains(skillDoTR)){
+                habilidades.add(skillDoTR);
+                System.out.println("Skill " + skillDoTR.getNome() + " added!"); 
             }
         }
-        return false;
     }
-
+    
     public void showAllSkills(){
         for (int i = 0; i < habilidades.size(); i++){
             System.out.println(i + ": "+ habilidades.get(i).getNome());

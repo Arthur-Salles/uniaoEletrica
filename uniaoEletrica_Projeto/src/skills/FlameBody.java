@@ -5,13 +5,12 @@ import java.util.Random;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class FlameBody implements Skills {
+public class FlameBody extends Skills {
 
     private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON};
-    private String m;
 
     public FlameBody(){
-        this.m = this.getClass().getName().replace("skills.", "");
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 

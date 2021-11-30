@@ -3,14 +3,13 @@ package skills;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class Intimidate implements Skills{
+public class Intimidate extends Skills{
 
     private boolean hasBeenActive = false;
     private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON,Tipo.PSYCHIC};
-    private String m;
-
+    
     public Intimidate(){
-        this.m = this.getClass().getName().replace("skills.", "");
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 

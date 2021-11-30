@@ -14,7 +14,6 @@ public class TR implements Item{
     private final String iconExists = "TR";
     private Skills habilidadeInTR;
 
-
     public TR(){
         generateSkill();
     }

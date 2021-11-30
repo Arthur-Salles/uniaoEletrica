@@ -13,7 +13,7 @@ public class Fruta implements Item {
 
     @Override
     public void use(Pokemon p) {
-        p.heal(100000);
+        p.heal(1000000);
     }
     
 }
