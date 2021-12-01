@@ -87,15 +87,24 @@ public class Interacao {
     }
 
     public int chooseItem(){
-        int k = 0;
-        System.out.println("De o número para escolher o item: ");
-        int max = p.printItens();
-        k = leitor.nextInt();
-        while(k < 0 || k > max){
-            System.out.println("De um numero no intervalo correto!");
-            k = leitor.nextInt();
+        try{
+            int max = p.printItens();
+            if(max == 0){
+                throw new IndexOutOfBoundsException();
+            }
+
+            System.out.println("De o número para escolher o item: ");
+
+            int k = leitor.nextInt();
+            while(k < 0 || k > max){
+                System.out.println("De um numero no intervalo correto!");
+                k = leitor.nextInt();
+            }
+            return k;
         }
-        return k;
+        catch(IndexOutOfBoundsException e){
+            return 0;
+        }
     }
 
     public int chooseAction(){

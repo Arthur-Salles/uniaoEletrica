@@ -33,7 +33,6 @@ public class Combate {
         while(!activePokemon.isDead() && !nonPlayer.isDead()){
             // player 
             int k = combatUi.chooseAction();
-
             if(k == 1){
                 activePokemon.attack(nonPlayer);
             }
@@ -43,8 +42,12 @@ public class Combate {
                 habilidadeDoPokemonPlayer.passiveEffect(activePokemon, nonPlayer);
             }
             else if(k == 3){
-                int itemSelector = combatUi.chooseItem();
-                jogador.consumeItem(itemSelector);
+                try {
+                    int itemSelector = combatUi.chooseItem();
+                    jogador.consumeItem(itemSelector);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Nada acontece");
+                }
             }
 
             // turno do NPC
