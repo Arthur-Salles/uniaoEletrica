@@ -65,7 +65,7 @@ public class Player extends ElementoIlha{
 		return posicaoAnterior;
 	}
 
-	public void viajarParaIlha(Ilha ilha) {
+	public void viajarParaIlha(Ilha ilha) { ///entrando na ilha
 		ilhaAtual = ilha;
 		zerarPosicao();
 		ilha.adicionarObjeto(this, super.getPosicaoAtual());
