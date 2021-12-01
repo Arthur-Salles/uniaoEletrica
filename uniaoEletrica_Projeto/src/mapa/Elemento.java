@@ -11,4 +11,11 @@ public class Elemento {
 		return icone;
 	}
 	
+	public void imprimirIcone() {
+		System.out.print(icone);		
+	} 
+	
+	public void imprimirIcone(String h) {
+		System.out.print(icone + h);		
+	} 
 }
