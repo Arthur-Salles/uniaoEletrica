@@ -77,6 +77,7 @@ public class Game {
 	private void travelToIsland(Player player, Mapa mapa) {
                
         while (travelling) {
+        	
         	executarMovimentosPlayer();
     	}	
         
