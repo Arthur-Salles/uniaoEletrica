@@ -1,4 +1,8 @@
 package pokemon;
+import java.util.ArrayList;
+
+import itens.Item;
+import itens.TR;
 import mapa.*;
 import skills.*;
 
@@ -8,7 +12,7 @@ public class Pokemon extends ElementoGeografico{
     private int hp[] = new int[2]; // hp[0] current hp, hp[1] max hp
     private int atq[] = new int[2]; // same index logic
     private int def[] = new int[2];
-    private Skills[] habilidades = new Skills[2];
+    private ArrayList<Skills> habilidades = new ArrayList<Skills>();
     private boolean protectSkillsOn = false;
 
     public Pokemon(String n, Tipo types[], Coordenadas posicao, int vida, int atk, int defesa){
@@ -23,6 +27,10 @@ public class Pokemon extends ElementoGeografico{
         def[1] = defesa;
     };
 
+    public String getNome(){
+        return this.nome; 
+    }
+
     public String showInfo(){
         return this.nome + " hp: " + hp[0] + "/" + hp[1]; 
     }
@@ -34,6 +42,10 @@ public class Pokemon extends ElementoGeografico{
     /*      skills related methods      */
     public boolean ishalfHp() {
         return (hp[0] > (hp[1] * 0.5));
+    }
+
+    public boolean isDead(){
+        return(hp[0] <= 0);
     }
 
     public void boostAtk(double i) {
@@ -50,14 +62,20 @@ public class Pokemon extends ElementoGeografico{
     }
 
     public boolean isType(Tipo k) {
-        if(tipos[0] == k || tipos[1] == k){
-            return true;
+        if(tipos.length == 2){
+            if(tipos[0].equals(k) || tipos[1].equals(k)){
+                return true;
+            }
+            return false;
         }
-        return false;
+        else{
+            return (tipos[0].equals(k));
+        }
     }
 
     public void takeHP(int i) {
-        hp[0] -= i;
+        hp[0] = hp[0]- i;
+        hp[0] = (hp[0] < 0) ? 0 : hp[0];
     }
 
     public void heal(int i) {
@@ -65,14 +83,48 @@ public class Pokemon extends ElementoGeografico{
         hp[0] = (hp[0] + healthPool > hp[1]) ? hp[1] : hp[0] + healthPool;
     }
 
+    public void addLife(int i){
+        hp[0] = ((hp[0] + i) > hp[1]) ? hp[1] : hp[0] + i; 
+    }
+
+
     public void setProtectSkillFlag(boolean b) { // needed to attend other guard skills method
         this.protectSkillsOn = b;
     }
 
-    private void learnSkill(){
-        
+    public void addSkillWithTR(TR ebola){
+        Skills skillDoTR = ebola.getSkill();
+        for (Tipo i : this.tipos) {
+            if(skillDoTR.isTypeCompatible(i) && !habilidades.contains(skillDoTR)){
+                habilidades.add(skillDoTR);
+                System.out.println("Skill " + skillDoTR.getNome() + " added!"); 
+            }
+        }
+    }
+    
+    public int showAllSkills(){
+        for (int i = 0; i < habilidades.size(); i++){
+            System.out.println(i + ": "+ habilidades.get(i).getNome());
+        }
+        return habilidades.size();
     }
 
+    public Skills getSkill(int j){
+        return this.habilidades.get(j);
+    }
+
+    public void attack(Pokemon h){
+        int dmg = this.atq[0] - h.def[0];
+        if(h.protectSkillsOn && !this.isType(Tipo.PSYCHIC)){
+            dmg = (int) (dmg * 0.5);
+        }
+        dmg = (dmg <= 0) ? 1 : dmg;
+        h.takeHP(dmg);
+    }
+
+    public void useItem(Item k){
+        k.use(this);
+    }
 
 
 }

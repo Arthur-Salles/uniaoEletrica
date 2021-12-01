@@ -8,6 +8,7 @@ import player.Player;
 public class PokemonNPC extends Pokemon{
 
     private int capMax, dificuldadeCaptura;
+    private int maxTries = 2;
 
     public PokemonNPC(String n, Tipo[] types, Coordenadas posicao, int vida, int atk, int defesa) {
         super(n, types, posicao, vida, atk, defesa);
@@ -25,6 +26,13 @@ public class PokemonNPC extends Pokemon{
             if(dado > dificuldadeCaptura){
                 p.addPokemon(this);
             }
+            else{
+                maxTries -= 1;
+            }
+        }
+        if(maxTries == 0){
+            // engage combat
+            return;
         }
     }
     

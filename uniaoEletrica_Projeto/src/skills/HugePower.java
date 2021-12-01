@@ -3,18 +3,13 @@ package skills;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class HugePower implements Skills {
+public class HugePower extends Skills {
 
     private boolean hasBeenActive = false;
-    private Tipo legalTypes[];
-
+    private Tipo legalTypes[] = {Tipo.NULO}; // using nulo to all
 
     public HugePower(){
-        return;
-    }
-
-    @Override
-    public void passiveEffect(Pokemon p, Pokemon taker) {
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -31,5 +26,15 @@ public class HugePower implements Skills {
         p.takeHP(5);
         hasBeenActive = true;
     }
-    
+
+    @Override
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -3,12 +3,13 @@ package skills;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class Berserk implements Skills{
+public class Berserk extends Skills{
 
-    private Tipo legalTypes[];
+    // criar metodo na skill que compara um tipo com os tipos de dentro
+    private Tipo legalTypes[] = {Tipo.ELECTRIC, Tipo.DRAGON};
 
     public Berserk(){
-
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -24,11 +25,13 @@ public class Berserk implements Skills{
     }
 
     @Override
-    public void activeEffect(Pokemon p, Pokemon taker) {
-        return;
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    
-
-    
 }

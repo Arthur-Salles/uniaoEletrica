@@ -5,15 +5,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
+import pokemon.Pokemon;
 import skills.*;
 
 
 public class TR implements Item{
 
     private final String iconExists = "TR";
-    private final String iconNonExists = "-";
     private Skills habilidadeInTR;
-
 
     public TR(){
         generateSkill();
@@ -25,15 +24,16 @@ public class TR implements Item{
     }
 
     @Override
-    public void use() {
-        // TODO Auto-generated method stub   
+    public void use(Pokemon p) {
+        p.addSkillWithTR(this); 
     }
 
     private void generateSkill(){
 
         Random rnd = new Random();
-        File dir = new File("src/skills");
+        File dir = new File("skills"); // sempre mudar ao mudar a pasta do vs
         File[] allSkills = dir.listFiles();
+
         int classNumber = rnd.nextInt(allSkills.length);
         while(allSkills[classNumber].getName().equals("Skills.java")){ // finds a random skill class in "src/skills"
             classNumber = rnd.nextInt(allSkills.length);
@@ -61,6 +61,10 @@ public class TR implements Item{
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    public Skills getSkill() {
+        return habilidadeInTR;
     }
 
     

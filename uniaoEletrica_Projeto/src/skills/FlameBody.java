@@ -5,16 +5,12 @@ import java.util.Random;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class FlameBody implements Skills {
+public class FlameBody extends Skills {
 
-    private Tipo legalTypes[];
-    
+    private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON};
+
     public FlameBody(){
-        return;
-    }
-
-    @Override
-    public void passiveEffect(Pokemon p, Pokemon taker) {
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -30,4 +26,13 @@ public class FlameBody implements Skills {
         }
     }
     
+    @Override
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

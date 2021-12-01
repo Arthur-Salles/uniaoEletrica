@@ -3,12 +3,13 @@ package skills;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class Intimidate implements Skills{
+public class Intimidate extends Skills{
 
     private boolean hasBeenActive = false;
-    private Tipo legalTypes[];
+    private Tipo legalTypes[] = {Tipo.FIRE, Tipo.DRAGON,Tipo.PSYCHIC};
 
     public Intimidate(){
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -31,10 +32,13 @@ public class Intimidate implements Skills{
     }
 
     @Override
-    public void activeEffect(Pokemon p, Pokemon taker) {
-        return;
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
     }
-
-
     
 }

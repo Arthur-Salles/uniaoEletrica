@@ -5,16 +5,12 @@ import java.util.Random;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
-public class Healer implements Skills {
+public class Healer extends Skills {
 
-    private Tipo legalTypes[];
+    private Tipo legalTypes[] = {Tipo.WATER, Tipo.GRASS, Tipo.PSYCHIC};
 
     public Healer(){
-        return;
-    }
-
-    @Override
-    public void passiveEffect(Pokemon p, Pokemon taker) {
+        m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
@@ -30,4 +26,16 @@ public class Healer implements Skills {
         }
     }
     
+    @Override
+    public boolean isTypeCompatible(Tipo k){
+        for (Tipo tipo : legalTypes) {
+            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+
+
 }

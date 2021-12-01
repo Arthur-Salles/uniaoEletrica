@@ -1,4 +1,6 @@
-package player;
+package player; // dps fazer os pacotes serem todos referentes a pasta global
+
+import java.security.Policy;
 import java.util.ArrayList;
 import mapa.Coordenadas;
 import mapa.ElementoIlha;
@@ -23,8 +25,15 @@ public class Player extends ElementoIlha{
     	posicaoAnterior = posicao;
     }
 
-    public void addPokemon(PokemonNPC k){
+    public void addPokemon(Pokemon k){
         pokemons.add(k);
+        if(pokemons.size() == 0){
+            setActivePokemon(0);
+        }
+    }
+
+    public void addItem(Item k){
+        itens.add(k);
     }
 
 	public boolean moverCima(Mapa mapa) {
@@ -98,6 +107,9 @@ public class Player extends ElementoIlha{
 	}
     
     public int printPokemons(){
+        if(pokemons.size() == 0){
+            System.out.println("Nao há itens");
+        }
         for(int i = 0; i < pokemons.size(); i++){
             System.out.println(i+ ": " + pokemons.get(i).showInfo());
         }
@@ -108,4 +120,31 @@ public class Player extends ElementoIlha{
         this.activePokemon = pokemons.get(k);
     }
 
+    public int printItens(){
+        if(itens.size() == 0){
+            System.out.println("Não há itens");
+        }
+        for (int i = 0; i < itens.size(); i++){
+            System.out.println(i + ": " + itens.get(i).render());
+        }
+        return itens.size();
+    }
+
+    public void consumeItem(int k){
+        Item using = this.itens.get(k);
+        using.use(activePokemon);
+        itens.remove(using);
+    }
+    public void deleteItem(int k){
+        itens.remove(k);
+    }
+
+    public Pokemon getActivePokemon(){
+        return activePokemon;
+    }
+
+    public Item getItem(int k){
+        return this.itens.get(k);
+    }
+    
 }
