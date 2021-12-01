@@ -2,6 +2,8 @@ package player; // dps fazer os pacotes serem todos referentes a pasta global
 
 import java.security.Policy;
 import java.util.ArrayList;
+
+import itens.Item;
 import mapa.Coordenadas;
 import mapa.ElementoIlha;
 import mapa.Ilha;
@@ -15,7 +17,6 @@ public class Player extends ElementoIlha{
     private ArrayList<Ilha> ilhasVisitadas = new ArrayList<Ilha>();
     private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     private Ilha ilhaAtual;
-    private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     private ArrayList<Item> itens = new ArrayList<Item>();
     private Pokemon activePokemon;
 
@@ -146,5 +147,9 @@ public class Player extends ElementoIlha{
     public Item getItem(int k){
         return this.itens.get(k);
     }
+
+	public Coordenadas getCoordenadas() {
+		return super.getPosicaoAtual();
+	}
     
 }

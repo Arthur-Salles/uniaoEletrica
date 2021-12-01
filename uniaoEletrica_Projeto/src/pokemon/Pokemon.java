@@ -6,7 +6,7 @@ import itens.TR;
 import mapa.*;
 import skills.*;
 
-public class Pokemon extends ElementoGeografico{
+public class Pokemon extends ElementoIlha{
     private String nome;
     private Tipo tipos[] = new Tipo[2];
     private int hp[] = new int[2]; // hp[0] current hp, hp[1] max hp
@@ -15,7 +15,7 @@ public class Pokemon extends ElementoGeografico{
     private ArrayList<Skills> habilidades = new ArrayList<Skills>();
     private boolean protectSkillsOn = false;
 
-    public Pokemon(String n, Tipo types[], Coordenadas posicao, int vida, int atk, int defesa){
+    public Pokemon(String n, Tipo types[], TriplaCoordenada posicao, int vida, int atk, int defesa){
         super(posicao, n);
         this.nome = n;
         tipos = types;

@@ -3,7 +3,13 @@ package mapa;
 import java.util.Random;
 import java.util.Scanner;
 
+import itens.Fruta;
+import itens.TR;
 import player.Player;
+import pokemon.Combate;
+import pokemon.Pokemon;
+import pokemon.Tipo;
+import ui.Interacao;
 
 public class Game {
     private Random dado = new Random();
@@ -12,10 +18,14 @@ public class Game {
     private boolean travelling = true;
     private Mapa mapa;
     Player player;
+    Interacao ui;
 		
 	public void start() {
-		criarMapa();		
+		criarMapa();	
+		player = new Player(new TriplaCoordenada(0,0,0));
 		runGame(mapa, player);
+		
+		ui = new Interacao(player);		
 	}
 	
 	private void criarMapa() {
@@ -24,8 +34,29 @@ public class Game {
 		criarIlha(10, 5, new Coordenadas(0,0), "I1");
 		criarIlha(8, 5, new Coordenadas(7,7), "I2");
 		criarIlha(8, 3, new Coordenadas(9,9), "I3");
+	}
+	
+	private void criarCombate(Pokemon pikachu) {
+        Combate rinhaDeAnimal = new Combate(player, pikachu);
+
+	}
+	
+	private void criarPokemons() {
+        TR t1 = new TR();
+
+        Tipo[] kek = {Tipo.WATER};
+        Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 		
-		player = new Player(new TriplaCoordenada(0,0,0));
+		Pokemon pikachu = new Pokemon("pikachu", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
+        Pokemon leonardo = new Pokemon("leonardo", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
+
+        leonardo.addSkillWithTR(t1);
+        player.addItem(new Fruta());
+
+        // player.addPokemon(pikachu);
+        player.addPokemon(leonardo);
+        // player.addPokemon(pikachu);
+        // player.setActivePokemon(0);
 	}
 	
 	private void criarIlha(int i, int k, Coordenadas c, String icone) {
