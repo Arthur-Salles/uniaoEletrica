@@ -1,8 +1,9 @@
 package mapa;
 
+import player.Player;
+
 public class ElementoIlha extends Elemento{
 	private TriplaCoordenada posicaoAtual;
-	private int nivel;
 	
 	public ElementoIlha(TriplaCoordenada posicao, String icone) {
 		super(icone);
@@ -10,14 +11,14 @@ public class ElementoIlha extends Elemento{
 	}
 
 	public int getNivel() {
-		return nivel;
+		return posicaoAtual.getZ();
 	}
 
 	protected void mudarPosicao(int a, int b, int c) {
 		posicaoAtual = posicaoAtual.mudarPosicao(a, b, c);
 	}
 	
-	protected Coordenadas getPosicaoAtual() {
+	protected TriplaCoordenada getPosicaoAtual() {
 		return posicaoAtual;
 	}
 
@@ -25,4 +26,20 @@ public class ElementoIlha extends Elemento{
 		return posicaoAtual.verificarSeEstaDentroDoMapa(a, b, c);
 	} 
 	
+	public void transportar(Player player, Mapa mapa) {
+		
+	}
+	
+	protected void zerarPosicao() {
+		posicaoAtual.zerarPosicao();
+	}
+
+	public boolean ehTransporte() {
+		return false;
+	}
+
+	public void mudarDeNivel(int i, int j, int n) {
+		posicaoAtual.mudarDeNivel(n);		
+	}
+
 }
