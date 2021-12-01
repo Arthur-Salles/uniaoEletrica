@@ -5,22 +5,30 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
+import mapa.TriplaCoordenada;
 import pokemon.Pokemon;
 import skills.*;
 
 
-public class TR implements Item{
+public class TR extends Item{
 
     private final String iconExists = "TR";
     private Skills habilidadeInTR;
+    private String nomeDaHabilidade;
 
-    public TR(){
+    public TR(TriplaCoordenada posicao, String icone) {
+        super(posicao, icone);
         generateSkill();
     }
 
     @Override
     public String render() {
         return iconExists;
+    }
+
+    @Override
+    public String toString(){
+        return "TR: " + this.nomeDaHabilidade;
     }
 
     @Override
@@ -38,6 +46,7 @@ public class TR implements Item{
         while(allSkills[classNumber].getName().equals("Skills.java")){ // finds a random skill class in "src/skills"
             classNumber = rnd.nextInt(allSkills.length);
         }
+        this.nomeDaHabilidade = (allSkills[classNumber].getName()).replace(".java", "");
         String nome = "skills." + (allSkills[classNumber].getName()).replace(".java", ""); // prepares the random class name
         Class<?> c; // creates the Skills class
         Constructor<?> k;

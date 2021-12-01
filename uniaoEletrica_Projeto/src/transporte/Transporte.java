@@ -13,7 +13,7 @@ public class Transporte extends ElementoIlha{
 	
 	@Override
 	public void transportar(Player player, Mapa mapa) {
-	             	
+	    return;
 	}
 	
 	@Override

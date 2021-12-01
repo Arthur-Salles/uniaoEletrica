@@ -38,6 +38,10 @@ public class ElementoIlha extends Elemento{
 		return false;
 	}
 
+	public boolean ehItem(){
+		return false;
+	}
+
 	public void mudarDeNivel(int i, int j, int n) {
 		posicaoAtual.mudarDeNivel(n);		
 	}

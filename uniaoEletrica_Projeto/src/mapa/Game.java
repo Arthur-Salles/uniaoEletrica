@@ -17,8 +17,8 @@ public class Game {
     private Scanner keyboard = new Scanner(System.in);
     private boolean travelling = true;
     private Mapa mapa;
-    Player player;
-    Interacao ui;
+    private Player player;
+    private Interacao ui;
 		
 	public void start() {
 		criarMapa();	
@@ -36,28 +36,27 @@ public class Game {
 		criarIlha(8, 3, new Coordenadas(9,9), "I3");
 	}
 	
-	private void criarCombate(Pokemon pikachu) {
-        Combate rinhaDeAnimal = new Combate(player, pikachu);
-
-	}
+	// private void criarCombate(Pokemon pikachu) {
+    //     Combate rinhaDeAnimal = new Combate(player, pikachu);
+	// }
 	
-	private void criarPokemons() {
-        TR t1 = new TR();
+	// private void criarPokemons() {
+    //     TR t1 = new TR();
 
-        Tipo[] kek = {Tipo.WATER};
-        Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
+    //     Tipo[] kek = {Tipo.WATER};
+    //     Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 		
-		Pokemon pikachu = new Pokemon("pikachu", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
-        Pokemon leonardo = new Pokemon("leonardo", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
+	// 	Pokemon pikachu = new Pokemon("pikachu", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
+    //     Pokemon leonardo = new Pokemon("leonardo", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
 
-        leonardo.addSkillWithTR(t1);
-        player.addItem(new Fruta());
+    //     leonardo.addSkillWithTR(t1);
+    //     player.addItem(new Fruta());
 
-        // player.addPokemon(pikachu);
-        player.addPokemon(leonardo);
-        // player.addPokemon(pikachu);
-        // player.setActivePokemon(0);
-	}
+    //     // player.addPokemon(pikachu);
+    //     player.addPokemon(leonardo);
+    //     // player.addPokemon(pikachu);
+    //     // player.setActivePokemon(0);
+	// }
 	
 	private void criarIlha(int i, int k, Coordenadas c, String icone) {
 		Ilha ilha = new Ilha(i, i, k, c, icone);
@@ -69,13 +68,11 @@ public class Game {
         System.out.print("Digite o numero da Ilha para qual quer viajar: ");
         
         String command = keyboard.nextLine();
-        	
         player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
 	    travelToIsland(player, mapa);
 	}
 	
 	private void travelToIsland(Player player, Mapa mapa) {
-               
         while (travelling) {
         	executarMovimentosPlayer();
     	}	

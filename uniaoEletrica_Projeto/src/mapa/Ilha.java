@@ -1,4 +1,8 @@
 package mapa;
+import java.util.Random;
+
+import itens.Fruta;
+import itens.*;
 import player.Player;
 import pokemon.Tipo;
 import transporte.Elevador;
@@ -23,6 +27,7 @@ public class Ilha extends ElementoGeografico{
 			adicionarPontes(i, j, c);
 			adicionarPortal(i, j, c);
 			adicionarElevador(i, j,c);
+			adicionarFrutas(i,j,c);
 		}
 	}
 	
@@ -49,6 +54,16 @@ public class Ilha extends ElementoGeografico{
 		adicionarObjeto(ponte3, ponte3.getPosicaoAtual());
 		adicionarObjeto(ponte4, ponte4.getPosicaoAtual());
 	}
+
+	private void adicionarFrutas(int i, int j, int k) {
+		Random kek = new Random();
+		int nI = (i > 0) ? i : 1;
+		int nJ = (j > 0) ? j : 1;
+		int nK = (k > 0) ? k : 1;
+		Fruta f = new Fruta(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), kek.nextInt(nK)), "F");
+		adicionarObjeto(f, f.getPosicaoAtual());
+	}
+
 	
 	public boolean adicionarObjeto(ElementoIlha obj, TriplaCoordenada coord) {
 		boolean foiMovido = false;
@@ -67,6 +82,13 @@ public class Ilha extends ElementoGeografico{
 		int nivel = posicaoAntiga.getZ();
 		ilha[linha][coluna][nivel] = new ElementoIlha(new TriplaCoordenada(linha, coluna, nivel), iconePosicoesVazias);
 	}
+
+	private void updateElemento(TriplaCoordenada posicaoAntiga){
+		int linha = posicaoAntiga.getX();
+		int coluna = posicaoAntiga.getY();
+		int nivel = posicaoAntiga.getZ();
+		ilha[linha][coluna][nivel] = new ElementoIlha(new TriplaCoordenada(linha, coluna, nivel), "P");
+	}
 	
 	public boolean moverPlayer(Player player, Mapa mapa, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
 		int i = posicaoNova.getX();
@@ -79,7 +101,14 @@ public class Ilha extends ElementoGeografico{
 				ilha[i][j][k].transportar(player, mapa);
 				viajou = true;
 				removerElemento(posicaoAntiga);
-			}else {
+			}
+			else if(ilha[i][j][k].ehItem()){
+				Item kek = (Item) ilha[i][j][k];
+				updateElemento(posicaoNova);
+				removerElemento(posicaoAntiga);
+				player.addItem(kek);
+			}
+			else {
 				removerElemento(posicaoAntiga);
 				viajou = adicionarObjeto(player, posicaoNova);
 			}

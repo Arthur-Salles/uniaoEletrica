@@ -32,7 +32,7 @@ public class PokemonNPC extends Pokemon{
             }
         }
         if(maxTries == 0){
-            // engage combat
+            Combate cmt = new Combate(p, this);
             return;
         }
     }
