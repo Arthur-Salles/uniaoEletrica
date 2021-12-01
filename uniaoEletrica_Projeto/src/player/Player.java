@@ -13,6 +13,10 @@ public class Player extends ElementoIlha{
     private ArrayList<Ilha> ilhasVisitadas = new ArrayList<Ilha>();
     private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     private Ilha ilhaAtual;
+    private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+    private ArrayList<Item> itens = new ArrayList<Item>();
+    private Pokemon activePokemon;
+
 
     public Player(TriplaCoordenada posicao){
         super(posicao, "P");
@@ -20,11 +24,7 @@ public class Player extends ElementoIlha{
     }
 
     public void addPokemon(PokemonNPC k){
-        return;
-    }
-
-    public Coordenadas getCoordenadas(){
-        return super.getPosicaoAtual();
+        pokemons.add(k);
     }
 
 	public boolean moverCima(Mapa mapa) {
@@ -96,5 +96,16 @@ public class Player extends ElementoIlha{
 	public void imprimirNiveisDisponiveis() {
 		ilhaAtual.imprimirNiveisDisponiveis(super.getNivel());
 	}
+    
+    public int printPokemons(){
+        for(int i = 0; i < pokemons.size(); i++){
+            System.out.println(i+ ": " + pokemons.get(i).showInfo());
+        }
+        return pokemons.size();
+    }
+
+    public void setActivePokemon(int k){
+        this.activePokemon = pokemons.get(k);
+    }
 
 }

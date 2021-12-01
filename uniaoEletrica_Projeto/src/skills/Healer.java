@@ -1,17 +1,33 @@
 package skills;
 
+import java.util.Random;
+
+import pokemon.Pokemon;
+import pokemon.Tipo;
+
 public class Healer implements Skills {
 
-    @Override
-    public void passiveEffect(Pokemon p) {
-        // TODO Auto-generated method stub
-        
+    private Tipo legalTypes[];
+
+    public Healer(){
+        return;
     }
 
     @Override
-    public void activeEffect(Pokemon p) {
-        // TODO Auto-generated method stub
-        
+    public void passiveEffect(Pokemon p, Pokemon taker) {
+        return;
+    }
+
+    @Override
+    public void activeEffect(Pokemon p, Pokemon taker) { // only affects p
+        Random rnd = new Random();
+        int chance = rnd.nextInt(10);
+        if(chance <= 6){
+            p.heal(10);
+        }
+        else if(chance > 6 && chance <= 8){
+            p.heal(20);
+        }
     }
     
 }
