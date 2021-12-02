@@ -1,9 +1,7 @@
 package mapa;
 import java.util.ArrayList;
 import java.util.Random;
-
 import itens.Fruta;
-import itens.Item;
 import itens.TR;
 import player.Player;
 import pokemon.Pokemon;
@@ -99,13 +97,6 @@ public class Ilha extends ElementoGeografico{
 		ilha[linha][coluna][nivel] = new ElementoIlha(new TriplaCoordenada(linha, coluna, nivel), iconePosicoesVazias);
 	}
 
-	private void updateElemento(TriplaCoordenada posicaoAntiga){
-		int linha = posicaoAntiga.getX();
-		int coluna = posicaoAntiga.getY();
-		int nivel = posicaoAntiga.getZ();
-		ilha[linha][coluna][nivel] = new ElementoIlha(new TriplaCoordenada(linha, coluna, nivel), "P");
-	}
-	
 	public boolean moverPlayer(Player player, Mapa mapa, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
 		int i = posicaoNova.getX();
 		int j = posicaoNova.getY();
@@ -124,15 +115,9 @@ public class Ilha extends ElementoGeografico{
 			}
 		}
 		return viajou;
-	}
-	
-	public boolean moverElemento(Player player, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
-		removerElemento(posicaoAntiga);
-
-		return adicionarObjeto(player, posicaoNova);
-	}
+	}	
 		
-	protected boolean verificarSeEstaDentroDoMapa(TriplaCoordenada coord){
+	private boolean verificarSeEstaDentroDoMapa(TriplaCoordenada coord){
 		boolean estaDentro = false;
 		
 		if (coord.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {

@@ -1,8 +1,7 @@
 package turno;
 
-import java.util.Random;
 import java.util.Scanner;
-
+import dados.Dado;
 import mapa.Mapa;
 import player.Player;
 
@@ -10,7 +9,7 @@ public class Movimentacao {
     private Scanner keyboard = new Scanner(System.in);
 	private int movimentos = 0;
 	private Player player;
-	private Random dado = new Random();
+	private Dado dado = new Dado(2, 6);
 	private Mapa mapa;
 	
 	public Movimentacao(Player player, Mapa mapa) {
@@ -25,7 +24,7 @@ public class Movimentacao {
 	private void imprimirInstrucoes() {
 		System.out.println("---FASE DE MOVIMENTACAO---");
 		System.out.println("Lancando dados...");
-        movimentos = dado.nextInt(12)+2;
+        movimentos = dado.jogarDados();
         System.out.println("Você tem " + movimentos + " movimento(s)");
 	}
 	
@@ -35,7 +34,6 @@ public class Movimentacao {
 		imprimirInstrucoes();
 		
         while(this.movimentos > 0) {
-        	clearScreen();
         	player.imprimirIlhaAtual();
             System.out.println("Você tem " + movimentos + " movimento(s)");
             System.out.println("Insira o comando: ");

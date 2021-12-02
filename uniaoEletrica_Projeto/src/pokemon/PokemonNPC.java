@@ -1,7 +1,6 @@
 package pokemon;
 
 import dados.Dado;
-import mapa.Coordenadas;
 import mapa.TriplaCoordenada;
 import player.Player;
 

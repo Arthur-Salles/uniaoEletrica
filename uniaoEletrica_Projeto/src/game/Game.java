@@ -1,8 +1,6 @@
 package game;
 
-import java.util.Random;
 import java.util.Scanner;
-
 import mapa.Coordenadas;
 import mapa.Ilha;
 import mapa.Mapa;
@@ -83,9 +81,4 @@ public class Game {
         
         	System.out.print("GAME OVER");
 	}	
-	
-	public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 }

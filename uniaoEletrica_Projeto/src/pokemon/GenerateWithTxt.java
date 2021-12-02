@@ -2,11 +2,8 @@ package pokemon;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 import skills.Skills;
-
 import java.util.LinkedList;
-import java.util.List;
 
 
 public class GenerateWithTxt {

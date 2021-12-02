@@ -4,10 +4,7 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
-
-import mapa.Mapa;
 import mapa.TriplaCoordenada;
-import player.Player;
 import pokemon.Pokemon;
 import skills.*;
 

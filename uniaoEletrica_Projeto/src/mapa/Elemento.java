@@ -1,7 +1,5 @@
 package mapa;
 
-import player.Player;
-
 public class Elemento {
     private String icone;
 
