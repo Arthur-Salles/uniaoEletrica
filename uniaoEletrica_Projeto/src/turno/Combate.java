@@ -5,7 +5,6 @@ import java.util.Scanner;
 import player.Player;
 import pokemon.Pokemon;
 import skills.Skills;
-import turno.Acao;
 
 public class Combate {
     

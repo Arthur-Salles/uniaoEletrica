@@ -1,13 +1,13 @@
 package turno;
 
-import java.util.Random;
+import dados.Dado;
 import player.Player;
 import pokemon.Pokemon;
 
 public class Captura {
 	private Player player;
 	private Pokemon pokemon;
-    private Random dado = new Random();
+    private Dado dado = new Dado(2, 6);
     
     public Captura(Player player, Pokemon pokemon) {
 		this.player = player;
@@ -17,7 +17,7 @@ public class Captura {
 	public boolean start() {			
 		for (int i=0; i<2; i++) {
             System.out.println("Lancando dados...");
-        	int lance = dado.nextInt(12)+2;
+        	int lance = dado.jogarDados();
             System.out.println(lance);
         	if (pokemon.tryCapture(lance)) {
                 System.out.println("Captura Bem Sucedida!");

@@ -1,15 +1,10 @@
 package turno;
 
-import java.util.Random;
 import java.util.Scanner;
-
-import mapa.Ilha;
 import player.Player;
 import pokemon.Pokemon;
-import skills.Skills;
 
 public class Acao {
-    private Random dado = new Random();
     private Scanner leitor = new Scanner(System.in);
     private Player p;
 

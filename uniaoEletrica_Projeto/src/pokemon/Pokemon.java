@@ -9,6 +9,7 @@ import player.Player;
 import skills.*;
 import tipos.Tipo;
 import turno.Combate;
+import tipos.Tipo;
 
 public class Pokemon extends ElementoIlha {
     private String nome;

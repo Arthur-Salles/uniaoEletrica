@@ -1,7 +1,6 @@
 package pokemon;
 
 import java.util.Random;
-
 import dados.Dado;
 import mapa.Coordenadas;
 import mapa.TriplaCoordenada;
@@ -26,6 +25,9 @@ public class PokemonNPC extends Pokemon {
         if (p.getCoordenadas().calculaDistancia(this.getPosicaoAtual()) <= capMax) {
             int dado = kek.nextInt(6) + 1;
             dado += kek.nextInt(6) + 1;
+        Dado kek = new Dado(6, 2);
+        if (p.getCoordenadas().calculaDistancia(this.getPosicaoAtual()) <= capMax) {
+            int dado = kek.jogarDados();
             if (dado > dificuldadeCaptura) {
                 p.addPokemon(this);
             } else {
