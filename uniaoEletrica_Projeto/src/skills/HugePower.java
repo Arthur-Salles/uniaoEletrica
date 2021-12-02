@@ -1,22 +1,22 @@
 package skills;
 
 import pokemon.Pokemon;
-import pokemon.Tipo;
+import tipos.Tipo;
 
 public class HugePower extends Skills {
 
     private boolean hasBeenActive = false;
-    private Tipo legalTypes[] = {Tipo.NULO}; // using nulo to all
+    private Tipo legalTypes[] = { Tipo.NULO }; // using nulo to all
 
-    public HugePower(){
+    public HugePower() {
         m = this.getClass().getName().replace("skills.", "");
         return;
     }
 
     @Override
     public void activeEffect(Pokemon p, Pokemon taker) {
-        
-        if(hasBeenActive){ // protection for twice activating
+
+        if (hasBeenActive) { // protection for twice activating
             hasBeenActive = false;
             p.resetAttributes();
             return;
@@ -28,9 +28,9 @@ public class HugePower extends Skills {
     }
 
     @Override
-    public boolean isTypeCompatible(Tipo k){
+    public boolean isTypeCompatible(Tipo k) {
         for (Tipo tipo : legalTypes) {
-            if(k.equals(tipo) || tipo.equals(Tipo.NULO)){
+            if (k.equals(tipo) || tipo.equals(Tipo.NULO)) {
                 return true;
             }
         }

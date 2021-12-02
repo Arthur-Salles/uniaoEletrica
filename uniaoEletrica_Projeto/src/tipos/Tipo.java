@@ -1,4 +1,4 @@
-package pokemon;
+package tipos;
 
 public enum Tipo {
     FIRE,

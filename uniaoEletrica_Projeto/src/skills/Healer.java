@@ -3,7 +3,7 @@ package skills;
 import java.util.Random;
 
 import pokemon.Pokemon;
-import pokemon.Tipo;
+import tipos.Tipo;
 
 public class Healer extends Skills {
 
