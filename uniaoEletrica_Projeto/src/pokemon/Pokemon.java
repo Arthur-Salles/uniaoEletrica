@@ -7,6 +7,7 @@ import itens.TR;
 import mapa.*;
 import player.Player;
 import skills.*;
+import tipos.Tipo;
 import turno.Combate;
 import tipos.Tipo;
 
@@ -130,7 +131,6 @@ public class Pokemon extends ElementoIlha {
     public void useItem(Item k) {
         k.use(this);
     }
-
 
 	public boolean verificarDistanciaD(TriplaCoordenada coordPlayer) {
 		boolean podeSerCapturado = false;

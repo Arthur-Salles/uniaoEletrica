@@ -31,3 +31,4 @@ public class Dado {
         return resultado;
     }
 }
+

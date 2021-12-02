@@ -1,6 +1,8 @@
 package pokemon;
 
+import java.util.Random;
 import dados.Dado;
+import mapa.Coordenadas;
 import mapa.TriplaCoordenada;
 import player.Player;
 import tipos.Tipo;
@@ -19,6 +21,10 @@ public class PokemonNPC extends Pokemon {
     }
 
     public void captura(Player p) {
+        Random kek = new Random();
+        if (p.getCoordenadas().calculaDistancia(this.getPosicaoAtual()) <= capMax) {
+            int dado = kek.nextInt(6) + 1;
+            dado += kek.nextInt(6) + 1;
         Dado kek = new Dado(6, 2);
         if (p.getCoordenadas().calculaDistancia(this.getPosicaoAtual()) <= capMax) {
             int dado = kek.jogarDados();
