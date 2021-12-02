@@ -2,6 +2,7 @@ package pokemon;
 
 import java.util.Random;
 
+import dados.Dado;
 import mapa.Coordenadas;
 import mapa.TriplaCoordenada;
 import player.Player;
