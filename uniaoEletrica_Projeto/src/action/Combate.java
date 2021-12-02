@@ -1,21 +1,22 @@
-package pokemon;
+package action;
 
+import action.Acao;
 import player.Player;
+import pokemon.Pokemon;
 import skills.Skills;
-import ui.Interacao;
 
 public class Combate {
     
     private Player jogador;
     private Pokemon nonPlayer;
     private Pokemon activePokemon;
-    private Interacao combatUi;
+    private Acao combatUi;
 
     // constructor with player priority
     public Combate(Player jogador, Pokemon pokemonAdv, boolean priority){
         this.jogador = jogador;
         this.nonPlayer = pokemonAdv;
-        this.combatUi = new Interacao(jogador);
+        this.combatUi = new Acao(jogador);
         this.setupActivePokemon();
         if(priority){ // deve ter um jeito melhor de fazer isso kkk
             this.engageFightPlayerPriority();

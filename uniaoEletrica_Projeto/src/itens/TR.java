@@ -5,7 +5,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
+import mapa.Mapa;
 import mapa.TriplaCoordenada;
+import player.Player;
 import pokemon.Pokemon;
 import skills.*;
 
@@ -39,7 +41,7 @@ public class TR extends Item{
     private void generateSkill(){
 
         Random rnd = new Random();
-        File dir = new File("skills"); // sempre mudar ao mudar a pasta do vs
+        File dir = new File("src/skills"); // sempre mudar ao mudar a pasta do vs
         File[] allSkills = dir.listFiles();
 
         int classNumber = rnd.nextInt(allSkills.length);

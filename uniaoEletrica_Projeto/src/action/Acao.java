@@ -1,20 +1,19 @@
-package ui;
+package action;
 
 import java.util.Random;
 import java.util.Scanner;
 
 import mapa.Ilha;
 import player.Player;
-import pokemon.Combate;
 import pokemon.Pokemon;
 import skills.Skills;
 
-public class Interacao {
+public class Acao {
     private Random dado = new Random();
     private Scanner leitor = new Scanner(System.in);
     private Player p;
 
-    public Interacao(Player k){
+    public Acao(Player k){
         this.p = k;
     }
 

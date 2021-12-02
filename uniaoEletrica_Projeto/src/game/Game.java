@@ -1,15 +1,16 @@
-package mapa;
+package game;
 
 import java.util.Random;
 import java.util.Scanner;
-
+import action.Acao;
 import itens.Fruta;
-import itens.TR;
+import mapa.Coordenadas;
+import mapa.Ilha;
+import mapa.Mapa;
+import mapa.TriplaCoordenada;
 import player.Player;
-import pokemon.Combate;
 import pokemon.Pokemon;
 import pokemon.Tipo;
-import ui.Interacao;
 
 public class Game {
     private Random dado = new Random();
@@ -18,7 +19,7 @@ public class Game {
     private boolean running = true;
     private Mapa mapa;
     private Player player;
-    private Interacao ui;
+    private Acao ui;
 		
     private boolean movimentando = false; 
     
@@ -26,7 +27,7 @@ public class Game {
 		criarMapa();	
 		player = new Player(new TriplaCoordenada(0,0,0));
 		criarPokemons();
-		ui = new Interacao(player);		
+		ui = new Acao(player);		
 
 		runGame(mapa, player);
 	}
@@ -39,39 +40,17 @@ public class Game {
 		criarIlha(8, 3, new Coordenadas(9,9), "I3");
 	}
 	
-	// private void criarCombate(Pokemon pikachu) {
-    //     Combate rinhaDeAnimal = new Combate(player, pikachu);
-	// }
-	
-	// private void criarPokemons() {
-    //     TR t1 = new TR();
 	private void criarPokemons() {
-        //TR t1 = new TR();
 
         Tipo[] kek = {Tipo.WATER};
         Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 		
-	// 	Pokemon pikachu = new Pokemon("pikachu", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
-    //     Pokemon leonardo = new Pokemon("leonardo", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
-
-    //     leonardo.addSkillWithTR(t1);
-    //     player.addItem(new Fruta());
-
-    //     // player.addPokemon(pikachu);
-    //     player.addPokemon(leonardo);
-    //     // player.addPokemon(pikachu);
-    //     // player.setActivePokemon(0);
-	// }
+	
 		Pokemon pikachu = new Pokemon("R", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
         Pokemon leonardo = new Pokemon("L", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
 
-        //leonardo.addSkillWithTR(t1);
-        player.addItem(new Fruta(null, null));
-
-        // player.addPokemon(pikachu);
         player.addPokemon(leonardo);
-        // player.addPokemon(pikachu);
-        // player.setActivePokemon(0);
+
         mapa.getIlha(1).adicionarPokemon(pikachu, pikachu.getPosicaoAtual());
 	}
 	
@@ -90,8 +69,6 @@ public class Game {
 	}
 	
 	private void travelToIsland(Player player, Mapa mapa) {
-        while (running) { // aqui tava travelling mas tava acusando n ser uma variavel
-			executarMovimentosPlayer();
 			movimentando = true;
 		
 			while (running && !player.isDead()) {
@@ -103,8 +80,8 @@ public class Game {
 			}	
         
         	System.out.print("GAME OVER");
-    	}
 	}
+	
 	private void executarAcao() {
 		System.out.println("---FASE DE ACAO---");
 		System.out.println("(1) Escolher um pokemon");
@@ -116,7 +93,7 @@ public class Game {
 
 		switch (keyboard.nextInt()){
 		case 1:
-			ui.choosePokemon();
+			ui.choosePokemon(); 
 			break;
 		case 2:
 			ui.chooseItem();
@@ -158,9 +135,9 @@ public class Game {
             } else if (command == 3) {
                 running = player.moverDireita(mapa);
             }
-            movimento -=1;
-            
+            movimento -=1;  
         } 
+        
     	player.imprimirIlhaAtual();
         System.out.println("Você tem " + movimento + " movimento(s)");
         movimentando = false;

@@ -1,6 +1,7 @@
 package pokemon;
 import java.util.ArrayList;
 
+import action.Combate;
 import itens.Item;
 import itens.TR;
 import mapa.*;

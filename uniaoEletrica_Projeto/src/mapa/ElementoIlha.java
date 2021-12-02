@@ -18,7 +18,7 @@ public class ElementoIlha extends Elemento{
 		posicaoAtual = posicaoAtual.mudarPosicao(a, b, c);
 	}
 	
-	protected TriplaCoordenada getPosicaoAtual() {
+	public TriplaCoordenada getPosicaoAtual() {
 		return posicaoAtual;
 	}
 

@@ -118,12 +118,6 @@ public class Ilha extends ElementoGeografico{
 				viajou = true;
 				removerElemento(posicaoAntiga);
 			}
-			else if(ilha[i][j][k].ehItem()){
-				Item kek = (Item) ilha[i][j][k];
-				updateElemento(posicaoNova);
-				removerElemento(posicaoAntiga);
-				player.addItem(kek);
-			}
 			else {
 				removerElemento(posicaoAntiga);
 				viajou = adicionarObjeto(player, posicaoNova);

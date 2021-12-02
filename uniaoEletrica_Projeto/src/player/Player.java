@@ -127,7 +127,7 @@ public class Player extends ElementoIlha{
             System.out.println("Não há itens");
         }
         for (int i = 0; i < itens.size(); i++){
-            System.out.println("(" + i + ") " + itens.get(i).render());
+            System.out.println("(" + i + ") " + itens.get(i).toString());
         }
         return itens.size();
     }

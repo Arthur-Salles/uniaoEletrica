@@ -2,7 +2,9 @@ package itens;
 
 import pokemon.Pokemon;
 import mapa.ElementoIlha;
+import mapa.Mapa;
 import mapa.TriplaCoordenada;
+import player.Player;
 
 public abstract class Item extends ElementoIlha{
 
@@ -19,6 +21,10 @@ public abstract class Item extends ElementoIlha{
     public boolean ehItem(){
         return true;
     }
-
+    
+    @Override
+    protected void operar(Player player, Mapa mapa) {
+    	player.addItem(this);
+    }
 
 }
