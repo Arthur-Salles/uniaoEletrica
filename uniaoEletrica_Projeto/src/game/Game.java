@@ -8,6 +8,7 @@ import mapa.Ilha;
 import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import player.Player;
+import pokemon.ListaPokemons;
 import pokemon.Pokemon;
 import tipos.Tipo;
 import turno.Acao;

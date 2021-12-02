@@ -114,13 +114,9 @@ public class Player extends ElementoIlha {
         if (pokemons.size() == 0) {
             System.out.println("Nao há itens");
         }
-<<<<<<< HEAD
-        for (int i = 0; i < pokemons.size(); i++) {
-            System.out.println(i + ": " + pokemons.get(i).showInfo());
-=======
+
         for(int i = 0; i < pokemons.size(); i++){
             System.out.println("("+ i+") " + pokemons.get(i).showInfo());
->>>>>>> turno
         }
         return pokemons.size();
     }
@@ -133,13 +129,9 @@ public class Player extends ElementoIlha {
         if (itens.size() == 0) {
             System.out.println("Não há itens");
         }
-<<<<<<< HEAD
-        for (int i = 0; i < itens.size(); i++) {
-            System.out.println(i + ": " + itens.get(i).render());
-=======
+
         for (int i = 0; i < itens.size(); i++){
             System.out.println("(" + i + ") " + itens.get(i).toString());
->>>>>>> turno
         }
         return itens.size();
     }
@@ -162,15 +154,9 @@ public class Player extends ElementoIlha {
         return this.itens.get(k);
     }
 
-<<<<<<< HEAD
     public Coordenadas getCoordenadas() {
         return super.getPosicaoAtual();
     }
-
-=======
-	public Coordenadas getCoordenadas() {
-		return super.getPosicaoAtual();
-	}
 
 	public int imprimirPokemonsDisponiveisParaAtaque() {
 		return ilhaAtual.imprimirPokemonsDisponiveisParaAtaque(super.getPosicaoAtual());
@@ -209,6 +195,5 @@ public class Player extends ElementoIlha {
 		pokemons.forEach((k) -> k.regenerate());
 		
 	}
-    
->>>>>>> turno
+
 }
