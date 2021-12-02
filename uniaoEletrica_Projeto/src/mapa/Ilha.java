@@ -214,5 +214,4 @@ public class Ilha extends ElementoGeografico{
 		pokemons.remove(k);
 		pokemonsParaCaptura.remove(k);
 	}
-	
 }
