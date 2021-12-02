@@ -19,21 +19,25 @@ public class Player extends ElementoIlha {
     private Ilha ilhaAtual;
     private ArrayList<Item> itens = new ArrayList<Item>();
     private Pokemon activePokemon;
+    private boolean gameOver = false;
 
-    public Player(TriplaCoordenada posicao) {
+    public Player(TriplaCoordenada posicao){
         super(posicao, "P ");
-        posicaoAnterior = posicao;
+    	posicaoAnterior = posicao;
     }
 
-    public void addPokemon(Pokemon k) {
-        pokemons.add(k);
-        if (pokemons.size() == 0) {
+    public void addPokemon(Pokemon k){
+        if(pokemons.isEmpty()){
+            pokemons.add(k);
             setActivePokemon(0);
+        }else {
+            pokemons.add(k);
         }
     }
 
     public void addItem(Item k) {
         itens.add(k);
+		System.out.println(k.toString() + " foi adicionado!");
     }
 
     public boolean moverCima(Mapa mapa) {
@@ -110,8 +114,13 @@ public class Player extends ElementoIlha {
         if (pokemons.size() == 0) {
             System.out.println("Nao há itens");
         }
+<<<<<<< HEAD
         for (int i = 0; i < pokemons.size(); i++) {
             System.out.println(i + ": " + pokemons.get(i).showInfo());
+=======
+        for(int i = 0; i < pokemons.size(); i++){
+            System.out.println("("+ i+") " + pokemons.get(i).showInfo());
+>>>>>>> turno
         }
         return pokemons.size();
     }
@@ -124,8 +133,13 @@ public class Player extends ElementoIlha {
         if (itens.size() == 0) {
             System.out.println("Não há itens");
         }
+<<<<<<< HEAD
         for (int i = 0; i < itens.size(); i++) {
             System.out.println(i + ": " + itens.get(i).render());
+=======
+        for (int i = 0; i < itens.size(); i++){
+            System.out.println("(" + i + ") " + itens.get(i).toString());
+>>>>>>> turno
         }
         return itens.size();
     }
@@ -148,8 +162,53 @@ public class Player extends ElementoIlha {
         return this.itens.get(k);
     }
 
+<<<<<<< HEAD
     public Coordenadas getCoordenadas() {
         return super.getPosicaoAtual();
     }
 
+=======
+	public Coordenadas getCoordenadas() {
+		return super.getPosicaoAtual();
+	}
+
+	public int imprimirPokemonsDisponiveisParaAtaque() {
+		return ilhaAtual.imprimirPokemonsDisponiveisParaAtaque(super.getPosicaoAtual());
+	}
+
+	public Pokemon getPokemonParaCombate(int k) {
+		return ilhaAtual.getPokemonParaCombate(k);	
+	}
+
+	public void removerPokemonIlha(Pokemon nonPlayer) {
+		ilhaAtual.removerPokemon(nonPlayer);
+	}
+
+	public void perdeuPokemon(Pokemon k) {
+		pokemons.remove(k);	
+	}
+
+	public boolean temPokemons() {
+		boolean temPokemons = true;
+		
+		if (pokemons.isEmpty()) {
+			temPokemons = false;
+		}
+		return temPokemons;
+	}
+
+	public void gameOver() {
+		gameOver = true;		
+	}
+
+	public boolean isDead() {
+		return gameOver;
+	}
+
+	public void regenerarPokemons() {
+		pokemons.forEach((k) -> k.regenerate());
+		
+	}
+    
+>>>>>>> turno
 }
