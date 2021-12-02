@@ -1,14 +1,25 @@
 package itens;
 
+import mapa.TriplaCoordenada;
 import pokemon.Pokemon;
 
-public class Fruta implements Item {
+public class Fruta extends Item {
 
     private final String iconExists = "F";
 
+
+    public Fruta(TriplaCoordenada posicao, String icone) {
+        super(posicao, icone);
+    }
+
     @Override
-    public String render() {
-        return iconExists;
+    public String toString(){
+        return "Fruta";
+    }
+
+    @Override
+    public String render(){
+        return this.iconExists;
     }
 
     @Override

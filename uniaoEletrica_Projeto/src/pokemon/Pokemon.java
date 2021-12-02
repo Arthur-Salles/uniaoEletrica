@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import itens.Item;
 import itens.TR;
 import mapa.*;
+import player.Player;
 import skills.*;
+import turno.Combate;
 
 public class Pokemon extends ElementoIlha{
     private String nome;
@@ -14,6 +16,7 @@ public class Pokemon extends ElementoIlha{
     private int def[] = new int[2];
     private ArrayList<Skills> habilidades = new ArrayList<Skills>();
     private boolean protectSkillsOn = false;
+    int d = 10;
 
     public Pokemon(String n, Tipo types[], TriplaCoordenada posicao, int vida, int atk, int defesa){
         super(posicao, n);
@@ -98,13 +101,15 @@ public class Pokemon extends ElementoIlha{
             if(skillDoTR.isTypeCompatible(i) && !habilidades.contains(skillDoTR)){
                 habilidades.add(skillDoTR);
                 System.out.println("Skill " + skillDoTR.getNome() + " added!"); 
+            }else if (!skillDoTR.isTypeCompatible(i)){
+            	System.out.println("Skill " + skillDoTR.getNome() + " nao é compativel!"); 
             }
         }
     }
     
     public int showAllSkills(){
         for (int i = 0; i < habilidades.size(); i++){
-            System.out.println(i + ": "+ habilidades.get(i).getNome());
+            System.out.println("("+ i + ") "+ habilidades.get(i).getNome());
         }
         return habilidades.size();
     }
@@ -126,5 +131,37 @@ public class Pokemon extends ElementoIlha{
         k.use(this);
     }
 
+
+	public boolean verificarDistanciaD(TriplaCoordenada coordPlayer) {
+		boolean podeSerCapturado = false;
+		
+		if (coordPlayer.calculaDistancia(super.getPosicaoAtual()) <= d) {
+			podeSerCapturado = true;
+		}
+		
+		return podeSerCapturado;
+	}
+
+	
+	public boolean tryCapture(int lance) {
+		boolean captureSucced = false;
+		if (lance > d+1) {
+			captureSucced = true;
+		}
+		return captureSucced;
+	}
+	
+	@Override
+	protected void operar(Player player, Mapa mapa) {
+		System.out.println("Voce pisou no pokemon! Agora ele esta hostil e pronto pra atacar!");
+		Combate combate = new Combate(player, this, false);
+		combate.start();
+	}
+
+	public void regenerate() {
+		if (hp[0] < hp[1]) {
+			hp[0] += 1;
+		}
+	}
 
 }

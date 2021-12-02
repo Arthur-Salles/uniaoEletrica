@@ -11,9 +11,14 @@ public class Transporte extends ElementoIlha{
 		super(posicao, icone);
 	}
 	
-	@Override
+	
+	@Override 
+	protected void operar(Player player, Mapa mapa) {
+		transportar(player, mapa);
+	}
+	
 	public void transportar(Player player, Mapa mapa) {
-	             	
+	    return;
 	}
 	
 	@Override

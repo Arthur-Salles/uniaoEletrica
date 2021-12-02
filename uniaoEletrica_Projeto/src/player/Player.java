@@ -19,7 +19,7 @@ public class Player extends ElementoIlha{
     private Ilha ilhaAtual;
     private ArrayList<Item> itens = new ArrayList<Item>();
     private Pokemon activePokemon;
-
+    private boolean gameOver = false;
 
     public Player(TriplaCoordenada posicao){
         super(posicao, "P");
@@ -27,14 +27,17 @@ public class Player extends ElementoIlha{
     }
 
     public void addPokemon(Pokemon k){
-        pokemons.add(k);
-        if(pokemons.size() == 0){
+        if(pokemons.isEmpty()){
+            pokemons.add(k);
             setActivePokemon(0);
+        }else {
+            pokemons.add(k);
         }
     }
 
     public void addItem(Item k){
         itens.add(k);
+		System.out.println(k.toString() + " foi adicionado!");
     }
 
 	public boolean moverCima(Mapa mapa) {
@@ -112,7 +115,7 @@ public class Player extends ElementoIlha{
             System.out.println("Nao há itens");
         }
         for(int i = 0; i < pokemons.size(); i++){
-            System.out.println(i+ ": " + pokemons.get(i).showInfo());
+            System.out.println("("+ i+") " + pokemons.get(i).showInfo());
         }
         return pokemons.size();
     }
@@ -126,7 +129,7 @@ public class Player extends ElementoIlha{
             System.out.println("Não há itens");
         }
         for (int i = 0; i < itens.size(); i++){
-            System.out.println(i + ": " + itens.get(i).render());
+            System.out.println("(" + i + ") " + itens.get(i).toString());
         }
         return itens.size();
     }
@@ -150,6 +153,44 @@ public class Player extends ElementoIlha{
 
 	public Coordenadas getCoordenadas() {
 		return super.getPosicaoAtual();
+	}
+
+	public int imprimirPokemonsDisponiveisParaAtaque() {
+		return ilhaAtual.imprimirPokemonsDisponiveisParaAtaque(super.getPosicaoAtual());
+	}
+
+	public Pokemon getPokemonParaCombate(int k) {
+		return ilhaAtual.getPokemonParaCombate(k);	
+	}
+
+	public void removerPokemonIlha(Pokemon nonPlayer) {
+		ilhaAtual.removerPokemon(nonPlayer);
+	}
+
+	public void perdeuPokemon(Pokemon k) {
+		pokemons.remove(k);	
+	}
+
+	public boolean temPokemons() {
+		boolean temPokemons = true;
+		
+		if (pokemons.isEmpty()) {
+			temPokemons = false;
+		}
+		return temPokemons;
+	}
+
+	public void gameOver() {
+		gameOver = true;		
+	}
+
+	public boolean isDead() {
+		return gameOver;
+	}
+
+	public void regenerarPokemons() {
+		pokemons.forEach((k) -> k.regenerate());
+		
 	}
     
 }

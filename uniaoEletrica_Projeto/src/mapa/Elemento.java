@@ -1,5 +1,7 @@
 package mapa;
 
+import player.Player;
+
 public class Elemento {
 	private String icone;
 
@@ -17,5 +19,6 @@ public class Elemento {
 	
 	public void imprimirIcone(String h) {
 		System.out.print(icone + h);		
-	} 
+	}
+
 }

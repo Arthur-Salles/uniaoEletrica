@@ -18,7 +18,7 @@ public class ElementoIlha extends Elemento{
 		posicaoAtual = posicaoAtual.mudarPosicao(a, b, c);
 	}
 	
-	protected TriplaCoordenada getPosicaoAtual() {
+	public TriplaCoordenada getPosicaoAtual() {
 		return posicaoAtual;
 	}
 
@@ -26,7 +26,7 @@ public class ElementoIlha extends Elemento{
 		return posicaoAtual.verificarSeEstaDentroDoMapa(a, b, c);
 	} 
 	
-	public void transportar(Player player, Mapa mapa) {
+	protected void operar(Player player, Mapa mapa) {
 		
 	}
 	
@@ -35,6 +35,10 @@ public class ElementoIlha extends Elemento{
 	}
 
 	public boolean ehTransporte() {
+		return false;
+	}
+
+	public boolean ehItem(){
 		return false;
 	}
 
