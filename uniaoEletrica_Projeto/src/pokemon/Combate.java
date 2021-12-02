@@ -11,16 +11,16 @@ public class Combate {
     private Pokemon activePokemon;
     private Interacao combatUi;
 
-    public Combate(Player jogador, Pokemon nonPlayer){
+    public Combate(Player jogador, Pokemon pokemonAdv){
         this.jogador = jogador;
-        this.nonPlayer = nonPlayer;
+        this.nonPlayer = pokemonAdv;
         this.combatUi = new Interacao(jogador);
         this.setupActivePokemon();
         this.engageFight();
     }
-
+    
     private void setupActivePokemon(){
-        if(this.activePokemon == null){
+        if(jogador.getActivePokemon() == null){
             jogador.setActivePokemon(0);      
         }
         this.activePokemon = jogador.getActivePokemon(); 
@@ -61,6 +61,7 @@ public class Combate {
         else if(nonPlayer.isDead()){
             combatUi.printWinner(activePokemon);
             jogador.addPokemon(nonPlayer);
+            jogador.removerPokemonIlha(nonPlayer);
             combatUi.pokemonCaptured(nonPlayer);
         }
     }

@@ -26,7 +26,7 @@ public class ElementoIlha extends Elemento{
 		return posicaoAtual.verificarSeEstaDentroDoMapa(a, b, c);
 	} 
 	
-	public void transportar(Player player, Mapa mapa) {
+	protected void operar(Player player, Mapa mapa) {
 		
 	}
 	
