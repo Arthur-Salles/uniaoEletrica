@@ -35,6 +35,7 @@ public class Movimentacao {
 		imprimirInstrucoes();
 		
         while(this.movimentos > 0) {
+        	clearScreen();
         	player.imprimirIlhaAtual();
             System.out.println("Você tem " + movimentos + " movimento(s)");
             System.out.println("Insira o comando: ");
@@ -58,5 +59,10 @@ public class Movimentacao {
         System.out.println("Você tem " + movimentos + " movimento(s)");
         
         return running;
-	}	
+	}
+	
+	public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }
