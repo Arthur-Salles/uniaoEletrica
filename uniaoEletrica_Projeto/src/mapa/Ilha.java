@@ -1,13 +1,10 @@
 package mapa;
-<<<<<<< HEAD
+import java.util.ArrayList;
 import java.util.Random;
 
 import itens.Fruta;
-import itens.*;
-=======
-import java.util.ArrayList;
-
->>>>>>> 7083886827c15ea7f7a9b6b95e1a3f6f03c9666f
+import itens.Item;
+import itens.TR;
 import player.Player;
 import pokemon.Pokemon;
 import pokemon.Tipo;
@@ -182,7 +179,6 @@ public class Ilha extends ElementoGeografico{
 	
 	public void obterPokemonsParaCaptura(TriplaCoordenada coordPlayer) {
 	    this.pokemonsParaCaptura = new ArrayList<Pokemon>();
-		
 	    pokemons.forEach((k) -> verificarPodeSerCapturado(k, coordPlayer));   
 		
 	}

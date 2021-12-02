@@ -151,7 +151,7 @@ public class Pokemon extends ElementoIlha{
 	@Override
 	protected void operar(Player player, Mapa mapa) {
 		System.out.println("Voce pisou no pokemon! Agora ele esta hostil e pronto pra atacar!");
-		Combate combate = new Combate(player, this);
+		Combate combate = new Combate(player, this, false);
 	}
 
 }

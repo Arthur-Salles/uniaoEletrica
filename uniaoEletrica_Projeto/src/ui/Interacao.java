@@ -78,7 +78,7 @@ public class Interacao {
         }
         
         Pokemon pokemon = p.getPokemonParaCombate(k);
-        Combate combate = new Combate(p, pokemon);
+        Combate combate = new Combate(p, pokemon,true);
     }
     
 
@@ -153,9 +153,13 @@ public class Interacao {
         }
         
         System.out.println(pokemon.getNome() + " entrando em modo hostil");
-        Combate combate = new Combate(p, pokemon);
+        Combate combate = new Combate(p, pokemon,false);
         return false;
 	}
+
+    public void emitAttackWarning(Pokemon k){
+        System.out.println(k.getNome() + " te atacou!");
+    }
 
 }
 

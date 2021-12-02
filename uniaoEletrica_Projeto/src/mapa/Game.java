@@ -48,8 +48,8 @@ public class Game {
 	private void criarPokemons() {
         //TR t1 = new TR();
 
-    //     Tipo[] kek = {Tipo.WATER};
-    //     Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
+        Tipo[] kek = {Tipo.WATER};
+        Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 		
 	// 	Pokemon pikachu = new Pokemon("pikachu", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
     //     Pokemon leonardo = new Pokemon("leonardo", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
@@ -66,7 +66,7 @@ public class Game {
         Pokemon leonardo = new Pokemon("L", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
 
         //leonardo.addSkillWithTR(t1);
-        player.addItem(new Fruta());
+        player.addItem(new Fruta(null, null));
 
         // player.addPokemon(pikachu);
         player.addPokemon(leonardo);
@@ -90,21 +90,21 @@ public class Game {
 	}
 	
 	private void travelToIsland(Player player, Mapa mapa) {
-        while (travelling) {
-        	executarMovimentosPlayer();
-        movimentando = true;
-       
-        while (running && !player.isDead()) {
-        	if (movimentando) {
-            	executarMovimentosPlayer();
-        	}else {
-        		executarAcao();
-        	}
-    	}	
+        while (running) { // aqui tava travelling mas tava acusando n ser uma variavel
+			executarMovimentosPlayer();
+			movimentando = true;
+		
+			while (running && !player.isDead()) {
+				if (movimentando) {
+					executarMovimentosPlayer();
+				}else {
+					executarAcao();
+				}
+			}	
         
-        System.out.print("GAME OVER");
-    }
-	
+        	System.out.print("GAME OVER");
+    	}
+	}
 	private void executarAcao() {
 		System.out.println("---FASE DE ACAO---");
 		System.out.println("(1) Escolher um pokemon");
