@@ -27,9 +27,11 @@ public class Player extends ElementoIlha{
     }
 
     public void addPokemon(Pokemon k){
-        pokemons.add(k);
-        if(pokemons.size() == 0){
+        if(pokemons.isEmpty()){
+            pokemons.add(k);
             setActivePokemon(0);
+        }else {
+            pokemons.add(k);
         }
     }
 
@@ -184,6 +186,11 @@ public class Player extends ElementoIlha{
 
 	public boolean isDead() {
 		return gameOver;
+	}
+
+	public void regenerarPokemons() {
+		pokemons.forEach((k) -> k.regenerate());
+		
 	}
     
 }

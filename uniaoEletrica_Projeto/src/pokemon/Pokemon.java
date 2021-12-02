@@ -1,12 +1,12 @@
 package pokemon;
 import java.util.ArrayList;
 
-import action.Combate;
 import itens.Item;
 import itens.TR;
 import mapa.*;
 import player.Player;
 import skills.*;
+import turno.Combate;
 
 public class Pokemon extends ElementoIlha{
     private String nome;
@@ -101,6 +101,8 @@ public class Pokemon extends ElementoIlha{
             if(skillDoTR.isTypeCompatible(i) && !habilidades.contains(skillDoTR)){
                 habilidades.add(skillDoTR);
                 System.out.println("Skill " + skillDoTR.getNome() + " added!"); 
+            }else if (!skillDoTR.isTypeCompatible(i)){
+            	System.out.println("Skill " + skillDoTR.getNome() + " nao é compativel!"); 
             }
         }
     }
@@ -153,6 +155,13 @@ public class Pokemon extends ElementoIlha{
 	protected void operar(Player player, Mapa mapa) {
 		System.out.println("Voce pisou no pokemon! Agora ele esta hostil e pronto pra atacar!");
 		Combate combate = new Combate(player, this, false);
+		combate.start();
+	}
+
+	public void regenerate() {
+		if (hp[0] < hp[1]) {
+			hp[0] += 1;
+		}
 	}
 
 }
