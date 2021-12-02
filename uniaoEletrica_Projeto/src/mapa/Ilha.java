@@ -24,10 +24,11 @@ public class Ilha extends ElementoGeografico{
 					ilha[a][b][c] = new ElementoIlha(new TriplaCoordenada(a, b, c), iconePosicoesVazias);
 				}
 			}
+			adicionarTR(i, j, c);
+			adicionarFrutas(i,j,c);
 			adicionarPontes(i, j, c);
 			adicionarPortal(i, j, c);
 			adicionarElevador(i, j,c);
-			adicionarFrutas(i,j,c);
 		}
 	}
 	
@@ -62,6 +63,15 @@ public class Ilha extends ElementoGeografico{
 		int nK = (k > 0) ? k : 1;
 		Fruta f = new Fruta(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), kek.nextInt(nK)), "F");
 		adicionarObjeto(f, f.getPosicaoAtual());
+	}
+
+	private void adicionarTR(int i, int j, int k){
+		Random kek = new Random();
+		int nI = (i > 0) ? i : 1;
+		int nJ = (j > 0) ? j : 1;
+		int nK = (k > 0) ? k : 1;
+		TR tk = new TR(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), kek.nextInt(nK)), "TR");
+		adicionarObjeto(tk, tk.getPosicaoAtual());
 	}
 
 	
