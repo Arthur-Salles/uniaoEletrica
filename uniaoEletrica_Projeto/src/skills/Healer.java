@@ -2,7 +2,7 @@ package skills;
 
 import dados.Dado;
 import pokemon.Pokemon;
-import pokemon.Tipo;
+import tipos.Tipo;
 
 public class Healer extends Skills {
 

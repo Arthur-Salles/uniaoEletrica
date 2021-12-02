@@ -3,14 +3,15 @@ package pokemon;
 import dados.Dado;
 import mapa.TriplaCoordenada;
 import player.Player;
+import tipos.Tipo;
 
 public class PokemonNPC extends Pokemon {
 
     private int capMax, dificuldadeCaptura;
     private int maxTries = 2;
 
-    public PokemonNPC(String n, Tipo[] types, TriplaCoordenada posicao, int vida, int atk, int defesa) {
-        super(n, types, posicao, vida, atk, defesa);
+    public PokemonNPC(String nome, String n, TriplaCoordenada posicao, int vida, int atk, int defesa, Tipo[] tipos) {
+        super(nome, n, posicao, vida, atk, defesa, tipos);
         Dado kek = new Dado(4);
         capMax = kek.jogarDados();
         dificuldadeCaptura = kek.jogarDados();

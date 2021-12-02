@@ -1,5 +1,6 @@
 package game;
 
+import pokemon.ListaPokemons;
 import java.util.Scanner;
 import mapa.Coordenadas;
 import mapa.Ilha;
@@ -7,7 +8,7 @@ import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import player.Player;
 import pokemon.Pokemon;
-import pokemon.Tipo;
+import tipos.Tipo;
 import turno.Acao;
 import turno.Movimentacao;
 
@@ -39,9 +40,10 @@ public class Game {
         Tipo[] kek = {Tipo.WATER};
         Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 		
-	
-		Pokemon pikachu = new Pokemon("R", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
-        Pokemon leonardo = new Pokemon("L", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
+		Pokemon pikachu = new Pokemon(ListaPokemons.Be.getName(), ListaPokemons.Be.toString(),
+		new TriplaCoordenada(2, 2, 0), 20, 15, 7, ListaPokemons.Be.getTipos());
+		Pokemon leonardo = new Pokemon(ListaPokemons.Iv.getName(), ListaPokemons.Iv.toString(),
+		new TriplaCoordenada(2, 2, 0), 20, 15, 7, ListaPokemons.Iv.getTipos());
 
         player.addPokemon(leonardo);
 

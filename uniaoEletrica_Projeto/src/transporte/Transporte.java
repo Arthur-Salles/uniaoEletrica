@@ -5,7 +5,7 @@ import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import player.Player;
 
-public class Transporte extends ElementoIlha{
+public class Transporte extends ElementoIlha {
 
 	public Transporte(TriplaCoordenada posicao, String icone) {
 		super(posicao, icone);
