@@ -1,5 +1,8 @@
 package mapa;
+import java.util.ArrayList;
+
 import player.Player;
+import pokemon.Pokemon;
 import pokemon.Tipo;
 import transporte.Elevador;
 import transporte.Ponte;
@@ -9,6 +12,9 @@ public class Ilha extends ElementoGeografico{
 	private ElementoIlha[][][] ilha;
 	private String iconePosicoesVazias = "-";
 	private Tipo ilhaTipo;
+    private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+    private ArrayList<Pokemon> pokemonsParaCaptura = new ArrayList<Pokemon>();
+
 	
 	public Ilha(int i, int j, int k, Coordenadas posicaoNoMundo, String icone) {
 		super(posicaoNoMundo, icone);
@@ -75,8 +81,8 @@ public class Ilha extends ElementoGeografico{
 		boolean viajou = false;
 		
 		if (posicaoNova.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {
+			ilha[i][j][k].operar(player, mapa);
 			if (ilha[i][j][k].ehTransporte()) {
-				ilha[i][j][k].transportar(player, mapa);
 				viajou = true;
 				removerElemento(posicaoAntiga);
 			}else {
@@ -130,6 +136,51 @@ public class Ilha extends ElementoGeografico{
 		if (ilha[0][0].length>=n) {
 			super.imprimirIcone(" ");
 		}
+	}
+	
+	public void obterPokemonsParaCaptura(TriplaCoordenada coordPlayer) {
+	    this.pokemonsParaCaptura = new ArrayList<Pokemon>();
+		
+	    pokemons.forEach((k) -> verificarPodeSerCapturado(k, coordPlayer));   
+		
+	}
+	
+	
+	private void verificarPodeSerCapturado(Pokemon k, TriplaCoordenada coordPlayer) {
+		if (k.verificarDistanciaD(coordPlayer)) {
+			this.pokemonsParaCaptura.add(k);
+		}
+	}
+
+	public int imprimirPokemonsDisponiveisParaAtaque(TriplaCoordenada coordPlayer) {
+		obterPokemonsParaCaptura(coordPlayer);
+		if(pokemonsParaCaptura.size() == 0){
+            System.out.println("Nao há itens");
+        }
+        for(int i = 0; i < pokemonsParaCaptura.size(); i++){
+            System.out.println("(" + i+ ")" + pokemonsParaCaptura.get(i).showInfo());
+        }
+        return pokemonsParaCaptura.size();			
+	}
+
+	public Pokemon getPokemonParaCombate(int k) {
+		Pokemon pokemon = pokemonsParaCaptura.get(k);
+		return pokemon;
+	}
+
+	public void adicionarPokemon(Pokemon pikachu, TriplaCoordenada posicaoAtual) {
+		adicionarObjeto(pikachu, posicaoAtual);
+		pokemons.add(pikachu);
+	}
+
+	public void removerPokemon(Pokemon k) {
+		TriplaCoordenada c = k.getPosicaoAtual();
+		int x = c.getX();
+		int y = c.getY();
+		int z = c.getZ();
+		ilha[x][y][z] = new ElementoIlha(new TriplaCoordenada(x, y, z), iconePosicoesVazias);
+		pokemons.remove(k);
+		pokemonsParaCaptura.remove(k);
 	}
 	
 }

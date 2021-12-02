@@ -15,17 +15,19 @@ public class Game {
     private Random dado = new Random();
     private int movimento;
     private Scanner keyboard = new Scanner(System.in);
-    private boolean travelling = true;
+    private boolean running = true;
     private Mapa mapa;
-    Player player;
-    Interacao ui;
-		
+    private Player player;
+    private Interacao ui;
+    private boolean movimentando = false; 
+    
 	public void start() {
 		criarMapa();	
 		player = new Player(new TriplaCoordenada(0,0,0));
-		runGame(mapa, player);
-		
+		criarPokemons();
 		ui = new Interacao(player);		
+
+		runGame(mapa, player);
 	}
 	
 	private void criarMapa() {
@@ -42,21 +44,22 @@ public class Game {
 	}
 	
 	private void criarPokemons() {
-        TR t1 = new TR();
+        //TR t1 = new TR();
 
         Tipo[] kek = {Tipo.WATER};
         Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
 		
-		Pokemon pikachu = new Pokemon("pikachu", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
-        Pokemon leonardo = new Pokemon("leonardo", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
+		Pokemon pikachu = new Pokemon("R", kek , new TriplaCoordenada(2, 2, 0), 20, 15, 7);
+        Pokemon leonardo = new Pokemon("L", kek1, new TriplaCoordenada(2, 2, 0), 30, 20, 5);
 
-        leonardo.addSkillWithTR(t1);
+        //leonardo.addSkillWithTR(t1);
         player.addItem(new Fruta());
 
         // player.addPokemon(pikachu);
         player.addPokemon(leonardo);
         // player.addPokemon(pikachu);
         // player.setActivePokemon(0);
+        mapa.getIlha(1).adicionarPokemon(pikachu, pikachu.getPosicaoAtual());
 	}
 	
 	private void criarIlha(int i, int k, Coordenadas c, String icone) {
@@ -75,38 +78,77 @@ public class Game {
 	}
 	
 	private void travelToIsland(Player player, Mapa mapa) {
-               
-        while (travelling) {
-        	
-        	executarMovimentosPlayer();
+        movimentando = true;
+       
+        while (running && !player.isDead()) {
+        	if (movimentando) {
+            	executarMovimentosPlayer();
+        	}else {
+        		executarAcao();
+        	}
     	}	
         
         System.out.print("GAME OVER");
     }
 	
+	private void executarAcao() {
+		System.out.println("---FASE DE ACAO---");
+		System.out.println("(1) Escolher um pokemon");
+		System.out.println("(2) Usar um item do inventario");
+		System.out.println("(3) Atacar um pokemon presente na ilha");
+		System.out.println("(4) Tentar a captura de um pokemon presente na ilha ");
+		System.out.println("(5) Encerrar fase de ação");
+		System.out.println("Digite o numero da acao desejada: ");
+
+		switch (keyboard.nextInt()){
+		case 1:
+			ui.choosePokemon();
+			break;
+		case 2:
+			ui.chooseItem();
+			break;
+		case 3:
+			ui.attackPokemon();
+			break;
+		case 4:
+			ui.capturePokemon();
+			break;
+		default:
+			break;
+		}	
+		movimentando = true;
+
+	}
+	
 	private void executarMovimentosPlayer() {
+		System.out.println("---FASE DE MOVIMENTACAO---");
 		System.out.println("Lancando dados...");
         movimento = dado.nextInt(12)+2;
+        System.out.println("Você tem " + movimento + " movimento(s)");
+
         
         while(this.movimento > 0) {
         	player.imprimirIlhaAtual();
             System.out.println("Você tem " + movimento + " movimento(s)");
-            System.out.print("Insira o comando: ");
-            String command = keyboard.nextLine();
+            System.out.println("Insira o comando: ");
+            int command = keyboard.nextInt();
             
-            if (command.compareTo("quit") == 0) {
-            	travelling = false;
-            } else if (command.compareTo("w") == 0) {
-                travelling = player.moverCima(mapa);
-            } else if (command.compareTo("a") == 0) {
-                travelling = player.moverEsquerda(mapa);
-            } else if (command.compareTo("s") == 0) {
-                travelling = player.moverBaixo(mapa);
-            } else if (command.compareTo("d") == 0) {
-                travelling = player.moverDireita(mapa);
+            if (command == 99) {
+            	running = false;
+            } else if (command == 5) {
+                running = player.moverCima(mapa);
+            } else if (command == 1) {
+                running = player.moverEsquerda(mapa);
+            } else if (command == 2) {
+                running = player.moverBaixo(mapa);
+            } else if (command == 3) {
+                running = player.moverDireita(mapa);
             }
-            
             movimento -=1;
-        }        
+            
+        } 
+    	player.imprimirIlhaAtual();
+        System.out.println("Você tem " + movimento + " movimento(s)");
+        movimentando = false;
 	}	
 }
