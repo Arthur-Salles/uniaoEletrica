@@ -14,24 +14,33 @@ public class Acao {
 
     public boolean start() {
         boolean succed = true;
+        boolean flag = true;
         imprimirInstrucoes();
 
-        switch (leitor.nextInt()) {
-            case 1:
-                choosePokemon();
-                break;
-            case 2:
-                consumeItem();
-                break;
-            case 3:
-                succed = attackPokemon();
-                break;
-            case 4:
-                succed = capturePokemon();
-                break;
-            default:
-                break;
+        do{
+        try {
+            int j = Integer.parseInt(leitor.nextLine());
+            switch (j) {
+                case 1:
+                    choosePokemon();
+                    break;
+                case 2:
+                    consumeItem();
+                    break;
+                case 3:
+                    succed = attackPokemon();
+                    break;
+                case 4:
+                    succed = capturePokemon();
+                    break;
+                default:
+                    break;
+            }
+            flag = false;
+        } catch (NumberFormatException e) {
+            System.out.println("De o comando dnv!");
         }
+    } while(flag);
 
         p.regenerarPokemons();
         return succed;
@@ -72,8 +81,6 @@ public class Acao {
             return;
         }
         System.out.println("De o número para escolher o item: ");
-
-        k = leitor.nextLine();
 
         while(flag){
             try {
@@ -117,6 +124,7 @@ public class Acao {
 
     private boolean capturePokemon() {
         int k = 0;
+        boolean flag = true;
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
@@ -125,10 +133,18 @@ public class Acao {
             return true;
         }
         System.out.println("De o número para escolher o pokemon: ");
-        k = leitor.nextInt();
-        while (k < 0 || k > max) {
-            System.out.println("De um número no intervalo correto!");
-            k = leitor.nextInt();
+        while(flag){
+            try{
+                k = Integer.parseInt(leitor.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("De no formato correto!");
+                k = Integer.parseInt(leitor.nextLine());
+            }
+            if(k < 0 || k > max){
+                System.out.println("De no intervalo correto!");
+                k = Integer.parseInt(leitor.nextLine());
+            }
+            flag = false;
         }
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Captura captura = new Captura(p, pokemon);
