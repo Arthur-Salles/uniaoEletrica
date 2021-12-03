@@ -3,6 +3,7 @@ package player; // dps fazer os pacotes serem todos referentes a pasta global
 import java.security.Policy;
 import java.util.ArrayList;
 
+import dados.Dado;
 import itens.Item;
 import mapa.Coordenadas;
 import mapa.ElementoIlha;
@@ -10,7 +11,6 @@ import mapa.Ilha;
 import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import pokemon.Pokemon;
-import pokemon.PokemonNPC;
 
 public class Player extends ElementoIlha {
     private TriplaCoordenada posicaoAnterior;
@@ -21,23 +21,23 @@ public class Player extends ElementoIlha {
     private Pokemon activePokemon;
     private boolean gameOver = false;
 
-    public Player(TriplaCoordenada posicao){
+    public Player(TriplaCoordenada posicao) {
         super(posicao, "P ");
-    	posicaoAnterior = posicao;
+        posicaoAnterior = posicao;
     }
 
-    public void addPokemon(Pokemon k){
-        if(pokemons.isEmpty()){
+    public void addPokemon(Pokemon k) {
+        if (pokemons.isEmpty()) {
             pokemons.add(k);
             setActivePokemon(0);
-        }else {
+        } else {
             pokemons.add(k);
         }
     }
 
     public void addItem(Item k) {
         itens.add(k);
-		System.out.println(k.toString() + " foi adicionado!");
+        System.out.println(k.toString() + " foi adicionado!");
     }
 
     public boolean moverCima(Mapa mapa) {
@@ -70,6 +70,7 @@ public class Player extends ElementoIlha {
 
     public void viajarParaIlha(Ilha ilha) { /// entrando na ilha
         ilhaAtual = ilha;
+        ilhaAtual.setarDistanciaEDificuldade();
         zerarPosicao();
         ilha.adicionarObjeto(this, super.getPosicaoAtual());
         if (!ilhasVisitadas.contains(ilha)) {
@@ -115,8 +116,8 @@ public class Player extends ElementoIlha {
             System.out.println("Nao há itens");
         }
 
-        for(int i = 0; i < pokemons.size(); i++){
-            System.out.println("("+ i+") " + pokemons.get(i).showInfo());
+        for (int i = 0; i < pokemons.size(); i++) {
+            System.out.println("(" + i + ") " + pokemons.get(i).showInfo());
         }
         return pokemons.size();
     }
@@ -130,7 +131,7 @@ public class Player extends ElementoIlha {
             System.out.println("Não há itens");
         }
 
-        for (int i = 0; i < itens.size(); i++){
+        for (int i = 0; i < itens.size(); i++) {
             System.out.println("(" + i + ") " + itens.get(i).toString());
         }
         return itens.size();
@@ -158,42 +159,42 @@ public class Player extends ElementoIlha {
         return super.getPosicaoAtual();
     }
 
-	public int imprimirPokemonsDisponiveisParaAtaque() {
-		return ilhaAtual.imprimirPokemonsDisponiveisParaAtaque(super.getPosicaoAtual());
-	}
+    public int imprimirPokemonsDisponiveisParaAtaque() {
+        return ilhaAtual.imprimirPokemonsDisponiveisParaAtaque(super.getPosicaoAtual());
+    }
 
-	public Pokemon getPokemonParaCombate(int k) {
-		return ilhaAtual.getPokemonParaCombate(k);	
-	}
+    public Pokemon getPokemonParaCombate(int k) {
+        return ilhaAtual.getPokemonParaCombate(k);
+    }
 
-	public void removerPokemonIlha(Pokemon nonPlayer) {
-		ilhaAtual.removerPokemon(nonPlayer);
-	}
+    public void removerPokemonIlha(Pokemon nonPlayer) {
+        ilhaAtual.removerPokemon(nonPlayer);
+    }
 
-	public void perdeuPokemon(Pokemon k) {
-		pokemons.remove(k);	
-	}
+    public void perdeuPokemon(Pokemon k) {
+        pokemons.remove(k);
+    }
 
-	public boolean temPokemons() {
-		boolean temPokemons = true;
-		
-		if (pokemons.isEmpty()) {
-			temPokemons = false;
-		}
-		return temPokemons;
-	}
+    public boolean temPokemons() {
+        boolean temPokemons = true;
 
-	public void gameOver() {
-		gameOver = true;		
-	}
+        if (pokemons.isEmpty()) {
+            temPokemons = false;
+        }
+        return temPokemons;
+    }
 
-	public boolean isDead() {
-		return gameOver;
-	}
+    public void gameOver() {
+        gameOver = true;
+    }
 
-	public void regenerarPokemons() {
-		pokemons.forEach((k) -> k.regenerate());
-		
-	}
+    public boolean isDead() {
+        return gameOver;
+    }
+
+    public void regenerarPokemons() {
+        pokemons.forEach((k) -> k.regenerate());
+
+    }
 
 }
