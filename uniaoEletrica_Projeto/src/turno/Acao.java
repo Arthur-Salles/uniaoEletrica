@@ -64,7 +64,7 @@ public class Acao {
         System.out.println("Pokemon " + k + " esta ativo!");
     }
 
-    private void consumeItem(){
+    void consumeItem(){
         String k = "";
         boolean flag = true;
         System.out.println("Itens disponiveis: ");
@@ -129,24 +129,6 @@ public class Acao {
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Captura captura = new Captura(p, pokemon);
         return captura.start();
-    }
-
-    public int chooseItem() {
-        String k = "sbhdfshf";
-        boolean flag = true;
-        do{
-            try {
-                System.out.println("Os itens disponiveis sao: ");
-                int max = p.printItens();
-                if(max == 0){
-                	flag = false;
-                    throw new IndexOutOfBoundsException();
-                }
-                k = leitor.nextLine();
-                flag = false;
-            } catch (IndexOutOfBoundsException | NumberFormatException e) {}
-        } while (flag);
-        return Integer.parseInt(k);
     }
 
 	public boolean isStillRunning() {

@@ -53,8 +53,7 @@ public class Combate {
                 break;
             case 3:
                 try {
-                    int itemSelector = combatUi.chooseItem();
-                    jogador.consumeItem(itemSelector);
+                    combatUi.consumeItem();
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Nada acontece");
                 }
