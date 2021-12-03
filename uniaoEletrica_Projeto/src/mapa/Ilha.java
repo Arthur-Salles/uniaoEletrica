@@ -247,6 +247,10 @@ public class Ilha extends ElementoGeografico {
         return ilhaTipo;
     }
 
+    public int totalOfPokemons(){
+        return this.pokemons.size();
+    }
+  
 	public boolean isEmpty() {
 		return pokemons.isEmpty();
 	}

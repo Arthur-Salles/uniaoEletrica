@@ -13,29 +13,51 @@ public class Acao {
         this.p = k;
     }
 
-    public void start() {
+    public boolean start(int totalPokemons) {
+
         boolean succed = true;
+        boolean flag = true;
+        mostrarStatus(totalPokemons);
         imprimirInstrucoes();
 
-        switch (leitor.nextInt()) {
-            case 1:
-                choosePokemon();
-                break;
-            case 2:
-                consumeItem();
-                break;
-            case 3:
-                succed = attackPokemon();
-                break;
-            case 4:
-                succed = capturePokemon();
-                break;
-            default:
-                break;
-        }
+        do{
+            try {
+                int j = Integer.parseInt(leitor.nextLine());
+                switch (j) {
+                    case 1:
+                        choosePokemon();
+                        break;
+                    case 2:
+                        consumeItem();
+                        break;
+                    case 3:
+                        succed = attackPokemon();
+                        break;
+                    case 4:
+                        succed = capturePokemon();
+                        break;
+                    default:
+                        break;
+                }
+                flag = false;
+            } catch (NumberFormatException e) {
+                System.out.println("De o comando dnv!");
+            }
+    } while(flag);
 
         p.regenerarPokemons();
         isStillRunning = succed;
+    }
+
+    private void mostrarStatus(int o) {
+        System.out.println(" --- Status do jogo ---\nSeus Pokemons: ");
+        p.printPokemons();
+        System.out.println("Seu inventário: ");
+        p.printItens();
+        System.out.println("Pokemons Atacaveis e Capturaveis: ");
+        int max = p.imprimirPokemonsDisponiveisParaAtaque();
+        System.out.printf("Existem %d pokemons restantes dentre todas ilhas\n",o);
+
     }
 
     private void imprimirInstrucoes() {
@@ -64,7 +86,7 @@ public class Acao {
         System.out.println("Pokemon " + k + " esta ativo!");
     }
 
-    void consumeItem(){
+    protected void consumeItem(){
         String k = "";
         boolean flag = true;
         System.out.println("Itens disponiveis: ");
@@ -73,8 +95,6 @@ public class Acao {
             return;
         }
         System.out.println("De o número para escolher o item: ");
-
-        k = leitor.nextLine();
 
         while(flag){
             try {
@@ -89,7 +109,8 @@ public class Acao {
     }
 
     public boolean attackPokemon() {
-        int k = 0;
+        String k = "sdffsf";
+        boolean flag = true;
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
@@ -98,21 +119,26 @@ public class Acao {
             return true;
         }
 
+        Pokemon pokemon;
+
         System.out.println("De o número para escolher o pokemon: ");
-        k = leitor.nextInt();
-        while (k < 0 || k > max) {
-            System.out.println("De um número no intervalo correto!");
-            k = leitor.nextInt();
-        }
-
-        Pokemon pokemon = p.getPokemonParaCombate(k);
-        Combate combate = new Combate(p, pokemon, true);
-        return combate.start();
-
+        do {
+            try {
+                k = leitor.nextLine();
+                pokemon = p.getPokemonParaCombate(Integer.parseInt(k));
+                Combate combate = new Combate(p, pokemon, true);
+                flag = false;
+                return combate.start();
+            } catch (NumberFormatException| IndexOutOfBoundsException e) {
+                System.out.println("De um numero valido");
+            }
+        } while (flag);
+        return false;
     }
 
     private boolean capturePokemon() {
         int k = 0;
+        boolean flag = true;
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
@@ -121,10 +147,18 @@ public class Acao {
             return true;
         }
         System.out.println("De o número para escolher o pokemon: ");
-        k = leitor.nextInt();
-        while (k < 0 || k > max) {
-            System.out.println("De um número no intervalo correto!");
-            k = leitor.nextInt();
+        while(flag){
+            try{
+                k = Integer.parseInt(leitor.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("De no formato correto!");
+                k = Integer.parseInt(leitor.nextLine());
+            }
+            if(k < 0 || k > max){
+                System.out.println("De no intervalo correto!");
+                k = Integer.parseInt(leitor.nextLine());
+            }
+            flag = false;
         }
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Captura captura = new Captura(p, pokemon);

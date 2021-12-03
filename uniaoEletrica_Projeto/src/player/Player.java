@@ -161,9 +161,13 @@ public class Player extends ElementoIlha {
     }
 
     public void consumeItem(int k) {
-        Item using = this.itens.get(k);
-        using.use(activePokemon);
-        itens.remove(using);
+        try {
+            Item using = this.itens.get(k);
+            using.use(activePokemon);
+            itens.remove(using);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Nada!");
+        }
     }
 
     public void deleteItem(int k) {

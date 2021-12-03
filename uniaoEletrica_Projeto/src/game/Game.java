@@ -91,4 +91,8 @@ public class Game {
 
         System.out.println("GAME OVER");
     }
+
+    public int pokemonsTotal(){
+        return mapa.totalPokemons();
+    }
 }
