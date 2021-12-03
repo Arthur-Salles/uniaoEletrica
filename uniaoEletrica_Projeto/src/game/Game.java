@@ -21,7 +21,7 @@ public class Game {
     public void start() {
         criarMapa();
         player = new Player(new TriplaCoordenada(0, 0, 0));
-        criarPokemons();
+        adicionarPokemons();
         new Acao(player);
         runGame(mapa, player);
     }
@@ -34,7 +34,7 @@ public class Game {
         criarIlha(8, 3, new Coordenadas(9, 9), "I3", Tipo.FIRE);
     }
 
-    private void criarPokemons() {
+    private void adicionarPokemons() {
         Pokemon leonardo = new Pokemon(ListaPokemons.Iv, new TriplaCoordenada(2, 2, 0));
         player.addPokemon(leonardo); // leonardo e o melhor pokemon existente
     }
@@ -66,19 +66,29 @@ public class Game {
     private void travelToIsland() {
         Acao faseAcao = new Acao(player);
         Movimentacao faseMovimentacao = new Movimentacao(player, mapa);
-        while (running) {
-            if (!faseMovimentacao.start()) {
-                running = false;
-                // se perdeu, running = false
-
-            } else {
-                if (!faseAcao.start()) {
-                    running = false;
-                }
-                // se perdeu running = false
+        
+        while (running && !(player.wonTheGame(mapa))) {
+            faseMovimentacao.start();         
+            running = faseMovimentacao.isStillRunning();
+            
+            if (running){
+                faseAcao.start(); 
+                running = faseAcao.isStillRunning();            
             }
         }
+        
+        gameOver();
+    }   
+    
+    private void gameOver() {
+    	System.out.println(" ");
 
-        System.out.print("GAME OVER");
+        if (player.wonTheGame(mapa)){
+            System.out.println("YOU WIN!!!");
+        }else {
+            System.out.println("YOU LOST");
+        }
+
+        System.out.println("GAME OVER");
     }
 }

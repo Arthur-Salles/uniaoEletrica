@@ -7,12 +7,13 @@ import pokemon.Pokemon;
 public class Acao {
     private Scanner leitor = new Scanner(System.in);
     private Player p;
+    private boolean isStillRunning = true;
 
     public Acao(Player k) {
         this.p = k;
     }
 
-    public boolean start() {
+    public void start() {
         boolean succed = true;
         imprimirInstrucoes();
 
@@ -34,7 +35,7 @@ public class Acao {
         }
 
         p.regenerarPokemons();
-        return succed;
+        isStillRunning = succed;
     }
 
     private void imprimirInstrucoes() {
@@ -138,6 +139,7 @@ public class Acao {
                 System.out.println("Os itens disponiveis sao: ");
                 int max = p.printItens();
                 if(max == 0){
+                	flag = false;
                     throw new IndexOutOfBoundsException();
                 }
                 k = leitor.nextLine();
@@ -146,5 +148,9 @@ public class Acao {
         } while (flag);
         return Integer.parseInt(k);
     }
+
+	public boolean isStillRunning() {
+		return isStillRunning;
+	}
 
 }
