@@ -36,7 +36,7 @@ public class Ilha extends ElementoGeografico {
 
             adicionarTR(i, j, c);
             adicionarFrutas(i, j, c);
-            for (int l = 0; l < random.nextInt(3) + 2; l++) {
+            for (int l = 0; l < random.nextInt(i / 3) + 2; l++) {
                 adicionarPokemons(i, j, c);
             }
             adicionarPontes(i, j, c);
@@ -74,8 +74,7 @@ public class Ilha extends ElementoGeografico {
         Random kek = new Random();
         int nI = (i > 0) ? i : 1;
         int nJ = (j > 0) ? j : 1;
-        int nK = (k > 0) ? k : 1;
-        Fruta f = new Fruta(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), kek.nextInt(nK)), "F ");
+        Fruta f = new Fruta(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), k), "F ");
         adicionarObjeto(f, f.getPosicaoAtual());
     }
 
@@ -83,8 +82,7 @@ public class Ilha extends ElementoGeografico {
         Random kek = new Random();
         int nI = (i > 0) ? i : 1;
         int nJ = (j > 0) ? j : 1;
-        int nK = (k > 0) ? k : 1;
-        TR tk = new TR(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), kek.nextInt(nK)), "TR");
+        TR tk = new TR(new TriplaCoordenada(kek.nextInt(nI), kek.nextInt(nJ), k), "TR");
         adicionarObjeto(tk, tk.getPosicaoAtual());
     }
 
@@ -107,21 +105,21 @@ public class Ilha extends ElementoGeografico {
         int k = posicaoNova.getZ();
 
         if (posicaoNova.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {
-            
+
             if (ilha[i][j][k].ehTransporte()) {
                 removerElemento(posicaoAntiga);
-            	ilha[i][j][k].operar(player, mapa);
+                ilha[i][j][k].operar(player, mapa);
                 return false;
-            } else if (ilha[i][j][k].podePassarPorCima()){
-            	ilha[i][j][k].operar(player, mapa);
-            	removerElemento(posicaoAntiga);
+            } else if (ilha[i][j][k].podePassarPorCima()) {
+                ilha[i][j][k].operar(player, mapa);
+                removerElemento(posicaoAntiga);
                 adicionarObjeto(player, posicaoNova);
                 return true;
-            }else {
-            	return false;
+            } else {
+                return false;
             }
-        }else {
-        	return false;
+        } else {
+            return false;
         }
     }
 
@@ -151,14 +149,14 @@ public class Ilha extends ElementoGeografico {
 
     public void imprimirNiveisDisponiveis(int nivelAtual) {
         verificarNiveisDisponiveis(nivelAtual);
-    	niveisDisponiveis.forEach((k) -> System.out.print(" " + k));
+        niveisDisponiveis.forEach((k) -> System.out.print(" " + k));
 
         System.out.println(" ");
     }
-    
+
     private void verificarNiveisDisponiveis(int nivelAtual) {
-    	niveisDisponiveis.clear();
-    	for (int i = 0; i < ilha[0][0].length; i++) {
+        niveisDisponiveis.clear();
+        for (int i = 0; i < ilha[0][0].length; i++) {
             if (i != nivelAtual) {
                 niveisDisponiveis.add(i);
             }
@@ -223,7 +221,7 @@ public class Ilha extends ElementoGeografico {
     }
 
     public void imprimirSeTemNivel(int n) {
-    	
+
         if (ilha[0][0].length >= n) {
             super.imprimirIcone(" ");
         }
@@ -247,19 +245,19 @@ public class Ilha extends ElementoGeografico {
         return ilhaTipo;
     }
 
-    public int totalOfPokemons(){
+    public int totalOfPokemons() {
         return this.pokemons.size();
     }
-  
-	public boolean isEmpty() {
-		return pokemons.isEmpty();
-	}
 
-	public boolean nivelEhValido(Integer n) {
-		if (ilha[0][0].length >= n) {
-			return true;
-		}
-		return false;
-	}
+    public boolean isEmpty() {
+        return pokemons.isEmpty();
+    }
+
+    public boolean nivelEhValido(Integer n) {
+        if (ilha[0][0].length >= n) {
+            return true;
+        }
+        return false;
+    }
 
 }
