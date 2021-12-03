@@ -74,7 +74,7 @@ public class Combate {
         if (activePokemon.isDead()) {
             isWinner = false;
             printWinner(nonPlayer);
-            pokemonIsDead(activePokemon);
+            isWinner = pokemonIsDead(activePokemon);
         } else if (nonPlayer.isDead()) {
             isWinner = true;
             printWinner(activePokemon);
@@ -138,15 +138,18 @@ public class Combate {
         return k;
     }
 
-    private void pokemonIsDead(Pokemon k) {
+    private boolean pokemonIsDead(Pokemon k) {
         jogador.perdeuPokemon(k);
         if (jogador.temPokemons()) {
             System.out.println(k.showInfo() + " esta morto!\nEscolha outro!");
             Acao acao = new Acao(jogador);
             acao.choosePokemon();
+            this.activePokemon = jogador.getActivePokemon();
+            return engageFightNPCPriority();
         } else {
             System.out.println(k.showInfo() + " esta morto!\nVoce nao tem outros pokemons!");
             jogador.gameOver();
+            return false;
         }
     }
 

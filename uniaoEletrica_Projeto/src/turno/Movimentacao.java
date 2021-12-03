@@ -12,14 +12,19 @@ public class Movimentacao {
 	private Player player;
 	private Dado dado = new Dado(2, 6);
 	private Mapa mapa;
+	private boolean isStillRunning = true;
 	
 	public Movimentacao(Player player, Mapa mapa) {
 		this.player = player;
 		this.mapa = mapa;
 	}
 	
-	public boolean start() {
-		return executarMovimentos();
+	public boolean isStillRunning() {
+		return isStillRunning && !player.isDead();
+	}
+	
+	public void start() {
+		isStillRunning = executarMovimentos();
 	}
 	
 	private void imprimirInstrucoes() {
@@ -49,18 +54,18 @@ public class Movimentacao {
                     movimentos += 1;
                 }
                 keyboard.nextLine(); // limpa o buffer
-            }while(Character.isAlphabetic(command));
+            }while(Character.isAlphabetic(command) && running);
 
             if (command == 99) {
             	running = false;
             } else if (command == 5) {
-                running = player.moverCima(mapa);
+                 player.moverCima(mapa);
             } else if (command == 1) {
-                running = player.moverEsquerda(mapa);
+                player.moverEsquerda(mapa);
             } else if (command == 2) {
-                running = player.moverBaixo(mapa);
+                player.moverBaixo(mapa);
             } else if (command == 3) {
-                running = player.moverDireita(mapa);
+                player.moverDireita(mapa);
             }
             else{
                 System.out.println("Nao quis digitar certo vai perder movimento");

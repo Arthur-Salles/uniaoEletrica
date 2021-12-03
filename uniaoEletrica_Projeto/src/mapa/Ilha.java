@@ -87,15 +87,10 @@ public class Ilha extends ElementoGeografico {
         adicionarObjeto(tk, tk.getPosicaoAtual());
     }
 
-    public boolean adicionarObjeto(ElementoIlha obj, TriplaCoordenada coord) {
-        boolean foiMovido = false;
-
+    public void adicionarObjeto(ElementoIlha obj, TriplaCoordenada coord) {
         if (verificarSeEstaDentroDoMapa(coord)) {
             this.ilha[coord.getX()][coord.getY()][coord.getZ()] = obj;
-            foiMovido = true;
         }
-
-        return foiMovido;
     }
 
     private void removerElemento(TriplaCoordenada posicaoAntiga) {
@@ -109,19 +104,24 @@ public class Ilha extends ElementoGeografico {
         int i = posicaoNova.getX();
         int j = posicaoNova.getY();
         int k = posicaoNova.getZ();
-        boolean viajou = false;
 
         if (posicaoNova.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {
-            ilha[i][j][k].operar(player, mapa);
+            
             if (ilha[i][j][k].ehTransporte()) {
-                viajou = true;
+            	ilha[i][j][k].operar(player, mapa);
                 removerElemento(posicaoAntiga);
-            } else {
-                removerElemento(posicaoAntiga);
-                viajou = adicionarObjeto(player, posicaoNova);
+                return true;
+            } else if (ilha[i][j][k].podePassarPorCima()){
+            	ilha[i][j][k].operar(player, mapa);
+            	removerElemento(posicaoAntiga);
+                adicionarObjeto(player, posicaoNova);
+                return true;
+            }else {
+            	return false;
             }
+        }else {
+        	return false;
         }
-        return viajou;
     }
 
     protected boolean verificarSeEstaDentroDoMapa(TriplaCoordenada coord) {
@@ -193,10 +193,10 @@ public class Ilha extends ElementoGeografico {
         return pokemonsParaCaptura.size();
     }
 
-    public boolean moverElemento(Player player, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
+    public void moverElemento(Player player, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
         removerElemento(posicaoAntiga);
 
-        return adicionarObjeto(player, posicaoNova);
+        adicionarObjeto(player, posicaoNova);
     }
 
     public Pokemon getPokemonParaCombate(int k) {
@@ -237,5 +237,9 @@ public class Ilha extends ElementoGeografico {
     public Tipo getTipo() {
         return ilhaTipo;
     }
+
+	public boolean isEmpty() {
+		return pokemons.isEmpty();
+	}
 
 }

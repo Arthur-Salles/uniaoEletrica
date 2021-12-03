@@ -45,5 +45,16 @@ public class Mapa {
 	public Ilha getIlha (int i) {
 		return ilhasDisponiveis.get(i-1);
 	}
+
+	public boolean AllIslandsAreEmpty() {
+		if (!ilhasDisponiveis.isEmpty()) {
+			for (int i=0; i<ilhasDisponiveis.size(); i++) {
+				if (!ilhasDisponiveis.get(i).isEmpty()) { //se nao esta vazia eh mentira que todas ihas estao vazias
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	
 }
