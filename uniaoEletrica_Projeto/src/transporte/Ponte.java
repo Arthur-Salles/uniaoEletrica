@@ -21,17 +21,17 @@ public class Ponte extends Transporte {
         boolean flag = true;
 
         System.out.print("Voce pode ir para as seguintes ilhas: ");
-        mapa.imprimirIlhasDisponiveis(nivelAtual);
+        mapa.imprimirIlhasDisponiveis(nivelAtual, player.getIlhaAtual());
         System.out.println(" ");
         System.out.print("Digite o numero da ilha: ");
 
         do {
-            try {
-                String command = keyboard.nextLine();
-                player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
+            int n = keyboard.nextInt();
+            if(mapa.ilhaEhValida(n, player.getNivel(), player.getIlhaAtual())) {
+                player.viajarParaIlha(mapa.getIlha(n));
                 flag = false;
-            } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                System.out.println("para de quebrar pfv leonardo!");
+            }else {
+                System.out.println("Digite um numero valido: ");
             }
         } while (flag);
     }
