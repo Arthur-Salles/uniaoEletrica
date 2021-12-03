@@ -57,4 +57,11 @@ public class Mapa {
 		return true;
 	}
 	
+	public int totalPokemons(){
+		int r = 0;
+		for (Ilha k : ilhasDisponiveis) {
+			r += k.totalOfPokemons();
+		}
+		return r;
+	}
 }
