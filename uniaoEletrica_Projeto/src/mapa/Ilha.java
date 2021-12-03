@@ -166,10 +166,14 @@ public class Ilha extends ElementoGeografico {
     private void adicionarPokemons(int i, int j, int k) {
 
         ListaPokemons poke = pokemonAleatorio();
-        Pokemon pokemon1 = new Pokemon(poke, new TriplaCoordenada(random.nextInt(i), random.nextInt(j), k));
-        adicionarObjeto(pokemon1, pokemon1.getPosicaoAtual());
-        pokemon1.sortearDistanciaEDificuldade();
-        pokemons.add(pokemon1);
+        Pokemon pokemon = new Pokemon(poke, new TriplaCoordenada(random.nextInt(i), random.nextInt(j), k));
+        for (var tipo : pokemon.getTipos()) {
+            if (tipo == ilhaTipo)
+                pokemon.igualTipoIlha();
+        }
+        adicionarObjeto(pokemon, pokemon.getPosicaoAtual());
+        pokemon.sortearDistanciaEDificuldade();
+        pokemons.add(pokemon);
     }
 
     private void verificarPodeSerCapturado(Pokemon k, TriplaCoordenada coordPlayer) {
@@ -200,11 +204,6 @@ public class Ilha extends ElementoGeografico {
         return pokemon;
     }
 
-    public void adicionarPokemon(Pokemon pikachu, TriplaCoordenada posicaoAtual) {
-        adicionarObjeto(pikachu, posicaoAtual);
-        pokemons.add(pikachu);
-    }
-
     public void removerPokemon(Pokemon k) {
         TriplaCoordenada c = k.getPosicaoAtual();
         int x = c.getX();
@@ -233,6 +232,10 @@ public class Ilha extends ElementoGeografico {
         for (var i : pokemons) {
             i.sortearDistanciaEDificuldade();
         }
+    }
+
+    public Tipo getTipo() {
+        return ilhaTipo;
     }
 
 }

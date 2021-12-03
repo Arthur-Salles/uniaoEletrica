@@ -1,9 +1,6 @@
 package player; // dps fazer os pacotes serem todos referentes a pasta global
 
-import java.security.Policy;
 import java.util.ArrayList;
-
-import dados.Dado;
 import itens.Item;
 import mapa.Coordenadas;
 import mapa.ElementoIlha;
@@ -11,6 +8,7 @@ import mapa.Ilha;
 import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import pokemon.Pokemon;
+import tipos.Tipo;
 
 public class Player extends ElementoIlha {
     private TriplaCoordenada posicaoAnterior;
@@ -71,6 +69,7 @@ public class Player extends ElementoIlha {
     public void viajarParaIlha(Ilha ilha) { /// entrando na ilha
         ilhaAtual = ilha;
         ilhaAtual.setarDistanciaEDificuldade();
+        igualTipoIlha(ilha.getTipo());
         zerarPosicao();
         ilha.adicionarObjeto(this, super.getPosicaoAtual());
         if (!ilhasVisitadas.contains(ilha)) {
@@ -194,7 +193,15 @@ public class Player extends ElementoIlha {
 
     public void regenerarPokemons() {
         pokemons.forEach((k) -> k.regenerate());
+    }
 
+    public void igualTipoIlha(Tipo ilhatipo) {
+        for (var pokemon : pokemons) {
+            for (var tipo : pokemon.getTipos()) {
+                if (tipo == ilhatipo)
+                    pokemon.igualTipoIlha();
+            }
+        }
     }
 
 }
