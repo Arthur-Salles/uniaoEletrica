@@ -50,8 +50,12 @@ public class Pokemon extends ElementoIlha {
         return this.nome;
     }
 
+    public Tipo[] getTipos() {
+        return tipos;
+    }
+
     public String showInfo() {
-        return this.nome + " hp: " + getHp()[0] + "/" + getHp()[1];
+        return nome + " hp: " + hp[0] + "/" + hp[1] + " atq: " + atq[0] + " def: " + def[0];
     }
 
     public char renderPokemon() {
@@ -187,6 +191,12 @@ public class Pokemon extends ElementoIlha {
         System.out.println("Voce pisou no pokemon! Agora ele esta hostil e pronto pra atacar!");
         Combate combate = new Combate(player, this, false);
         combate.start();
+    }
+
+    public void igualTipoIlha() {
+        hp[0] = hp[0] * 115 / 100;
+        atq[0] = atq[0] * 115 / 100;
+        def[0] = def[0] * 115 / 100;
     }
 
 }
