@@ -48,18 +48,19 @@ public class Acao {
     }
 
     private void choosePokemon() {
-        int k = 0;
+        boolean flag = true;
+        String k = "dgshgbhdfsgy";
         System.out.println("Pokemons disponiveis: ");
-        int max = p.printPokemons();
+        p.printPokemons();
         System.out.println("Digite o numero do pokemon escolhido: ");
-        k = leitor.nextInt();
-        while (k < 0 || k > max) {
-            System.out.println("De um número no intervalo correto!");
-            k = leitor.nextInt();
-        }
-        p.setActivePokemon(k);
+        do {
+            try {
+                k = leitor.nextLine();
+                p.setActivePokemon(Integer.parseInt(k));
+                flag = false;
+            } catch (IndexOutOfBoundsException | NumberFormatException e){}
+        } while (flag);
         System.out.println("Pokemon " + k + " esta ativo!");
-
     }
 
     private void consumeItem() {

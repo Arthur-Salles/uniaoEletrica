@@ -36,9 +36,7 @@ public class Game {
 
     private void criarPokemons() {
         Pokemon leonardo = new Pokemon(ListaPokemons.Iv, new TriplaCoordenada(2, 2, 0));
-
-        player.addPokemon(leonardo);
-
+        player.addPokemon(leonardo); // leonardo e o melhor pokemon existente
     }
 
     private void criarIlha(int i, int k, Coordenadas c, String icone, Tipo tipo) {
@@ -60,7 +58,6 @@ public class Game {
             }
             catch(IndexOutOfBoundsException | NumberFormatException e){
                 System.out.println("Use um comando valido!");
-                // command = keyboard.nextLine();
             }
         } while (flag);
 
