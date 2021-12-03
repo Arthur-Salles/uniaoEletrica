@@ -13,11 +13,10 @@ public class Acao {
         this.p = k;
     }
 
-    public boolean start(int totalPokemons) {
+    public void start() {
 
         boolean succed = true;
         boolean flag = true;
-        mostrarStatus(totalPokemons);
         imprimirInstrucoes();
 
         do{
@@ -49,18 +48,9 @@ public class Acao {
         isStillRunning = succed;
     }
 
-    private void mostrarStatus(int o) {
-        System.out.println(" --- Status do jogo ---\nSeus Pokemons: ");
-        p.printPokemons();
-        System.out.println("Seu inventário: ");
-        p.printItens();
-        System.out.println("Pokemons Atacaveis e Capturaveis: ");
-        int max = p.imprimirPokemonsDisponiveisParaAtaque();
-        System.out.printf("Existem %d pokemons restantes dentre todas ilhas\n",o);
-
-    }
 
     private void imprimirInstrucoes() {
+		System.out.println(" ");
         System.out.println("---FASE DE ACAO---");
         System.out.println("(1) Escolher um pokemon");
         System.out.println("(2) Usar um item do inventario");

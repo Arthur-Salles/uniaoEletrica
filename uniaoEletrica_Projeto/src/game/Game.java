@@ -2,6 +2,8 @@ package game;
 
 import pokemon.ListaPokemons;
 import java.util.Scanner;
+
+import turno.Status;
 import mapa.Coordenadas;
 import mapa.Ilha;
 import mapa.Mapa;
@@ -66,6 +68,7 @@ public class Game {
     private void travelToIsland() {
         Acao faseAcao = new Acao(player);
         Movimentacao faseMovimentacao = new Movimentacao(player, mapa);
+        Status status = new Status(player, mapa);
         
         while (running && !(player.wonTheGame(mapa))) {
             faseMovimentacao.start();         
@@ -75,6 +78,7 @@ public class Game {
                 faseAcao.start(); 
                 running = faseAcao.isStillRunning();            
             }
+            status.imprimir();
         }
         
         gameOver();

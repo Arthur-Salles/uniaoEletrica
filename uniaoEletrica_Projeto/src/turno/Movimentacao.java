@@ -28,6 +28,7 @@ public class Movimentacao {
 	}
 	
 	private void imprimirInstrucoes() {
+		System.out.println(" ");
 		System.out.println("---FASE DE MOVIMENTACAO---");
 		System.out.println("Lancando dados...");
         movimentos = dado.jogarDados();
