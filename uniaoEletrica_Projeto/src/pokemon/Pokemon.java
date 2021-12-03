@@ -23,7 +23,7 @@ public class Pokemon extends ElementoIlha {
 
     public Pokemon(String nome, String n, TriplaCoordenada posicao, int vida, int atk, int defesa, Tipo[] tipos) {
         super(posicao, n);
-        this.nome = n;
+        this.nome = nome;
         this.tipos = tipos;
         hp[0] = vida;
         hp[1] = vida;

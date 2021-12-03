@@ -37,19 +37,11 @@ public class Game {
 	}
 	
 	private void criarPokemons() {
-
-        Tipo[] kek = {Tipo.WATER};
-        Tipo[] kek1 = {Tipo.WATER, Tipo.WATER};
-		
-
-        Pokemon pikachu = new Pokemon(ListaPokemons.Be.getName(), ListaPokemons.Be.toString(),
-                new TriplaCoordenada(2, 2, 0), 20, 15, 7, ListaPokemons.Be.getTipos());
         Pokemon leonardo = new Pokemon(ListaPokemons.Iv.getName(), ListaPokemons.Iv.toString(),
-                new TriplaCoordenada(2, 2, 0), 20, 15, 7, ListaPokemons.Iv.getTipos());
+                new TriplaCoordenada(2, 2, 0), 60, 15, 7, ListaPokemons.Iv.getTipos());
 
         player.addPokemon(leonardo);
 
-        mapa.getIlha(1).adicionarPokemon(pikachu, pikachu.getPosicaoAtual());
 	}
 	
 	private void criarIlha(int i, int k, Coordenadas c, String icone) {

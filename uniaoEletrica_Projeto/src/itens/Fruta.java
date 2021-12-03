@@ -5,7 +5,7 @@ import pokemon.Pokemon;
 
 public class Fruta extends Item {
 
-    private final String iconExists = "F";
+    private final String iconExists = "F ";
 
 
     public Fruta(TriplaCoordenada posicao, String icone) {
