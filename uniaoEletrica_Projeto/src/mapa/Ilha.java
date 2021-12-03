@@ -4,6 +4,7 @@ import java.util.Random;
 import player.Player;
 import pokemon.ListaPokemons;
 import pokemon.Pokemon;
+import tela.TelaPrincipal;
 import tipos.Tipo;
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class Ilha extends ElementoGeografico {
 
             adicionarTR(i, j, c);
             adicionarFrutas(i, j, c);
-            for (int l = 0; l < random.nextInt(3) + 2; l++) {
+            for (int l = 0; l < random.nextInt(i / 3) + 2; l++) {
                 adicionarPokemons(i, j, c);
             }
             adicionarPontes(i, j, c);
@@ -137,13 +138,16 @@ public class Ilha extends ElementoGeografico {
     }
 
     public void imprimirIlha(int nivel) {
-        System.out.println(" ----- " + super.getIcone() + " ----- ");
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.imprimirTela();
+        System.out.println("\u001b[H\u001b[" + 1 + "B\u001b[1C       ilha " + super.getIcone() + " - Nível " + nivel);
         for (int i = 0; i < ilha.length; i++) {
+            centralizarIlha(i);
             for (int j = 0; j < ilha[0].length; j++) {
                 ilha[i][j][nivel].imprimirIcone();
-                System.out.print(" ");
+                System.out.print("");
             }
-            System.out.println(" ");
+            System.out.println("\u001b[0m\u001b[0m ");
         }
 
     }
@@ -236,6 +240,13 @@ public class Ilha extends ElementoGeografico {
 
     public Tipo getTipo() {
         return ilhaTipo;
+    }
+
+    public void centralizarIlha(int i) {
+        System.out.print(
+                "\u001b[31;1m\u001b[43m\u001b[H\u001b[" + ((17 - ilha.length) / 2 + 1 + i) + "B\u001b["
+                        + ((34 - ilha.length * 2) / 2)
+                        + "C");
     }
 
 }
