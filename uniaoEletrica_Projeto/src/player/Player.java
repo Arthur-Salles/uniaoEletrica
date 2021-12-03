@@ -38,28 +38,52 @@ public class Player extends ElementoIlha {
         System.out.println(k.toString() + " foi adicionado!");
     }
 
-    public boolean moverCima(Mapa mapa) {
-        posicaoAnterior = super.getPosicaoAtual();
-        super.mudarPosicao(-1, 0, 0);
-        return ilhaAtual.moverPlayer(this, mapa, posicaoAnterior, super.getPosicaoAtual());
+    public void moverCima(Mapa mapa) {
+    	int x = super.getPosicaoAtual().getX();
+    	int y = super.getPosicaoAtual().getY();
+    	int z = super.getPosicaoAtual().getZ();
+    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x-1, y, z);
+    	
+    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+        	posicaoAnterior = super.getPosicaoAtual();
+            super.mudarPosicao(-1, 0, 0);
+        }
     }
 
-    public boolean moverEsquerda(Mapa mapa) {
-        posicaoAnterior = super.getPosicaoAtual();
-        super.mudarPosicao(0, -1, 0);
-        return ilhaAtual.moverPlayer(this, mapa, posicaoAnterior, super.getPosicaoAtual());
+    public void moverEsquerda(Mapa mapa) {
+    	int x = super.getPosicaoAtual().getX();
+    	int y = super.getPosicaoAtual().getY();
+    	int z = super.getPosicaoAtual().getZ();
+    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x, y-1, z);
+    	
+    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+        	posicaoAnterior = super.getPosicaoAtual();
+            super.mudarPosicao(0, -1, 0);
+        }
     }
 
-    public boolean moverBaixo(Mapa mapa) {
-        posicaoAnterior = super.getPosicaoAtual();
-        super.mudarPosicao(1, 0, 0);
-        return ilhaAtual.moverPlayer(this, mapa, posicaoAnterior, super.getPosicaoAtual());
+    public void moverBaixo(Mapa mapa) {
+    	int x = super.getPosicaoAtual().getX();
+    	int y = super.getPosicaoAtual().getY();
+    	int z = super.getPosicaoAtual().getZ();
+    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x+1, y, z);
+    	
+    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+        	posicaoAnterior = super.getPosicaoAtual();
+            super.mudarPosicao(1, 0, 0);
+        }
     }
 
-    public boolean moverDireita(Mapa mapa) {
-        posicaoAnterior = super.getPosicaoAtual();
-        super.mudarPosicao(0, 1, 0);
-        return ilhaAtual.moverPlayer(this, mapa, posicaoAnterior, super.getPosicaoAtual());
+    public void moverDireita(Mapa mapa) {
+    	int x = super.getPosicaoAtual().getX();
+    	int y = super.getPosicaoAtual().getY();
+    	int z = super.getPosicaoAtual().getZ();
+    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x, y+1, z);
+    	
+    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+        	posicaoAnterior = super.getPosicaoAtual();
+            super.mudarPosicao(0, 1, 0);
+        }
     }
 
     public TriplaCoordenada getPosicaoAnterior() {
@@ -208,5 +232,8 @@ public class Player extends ElementoIlha {
         }
     }
 
+	public boolean wonTheGame(Mapa mapa) {
+		return mapa.AllIslandsAreEmpty();
+	}
 
 }

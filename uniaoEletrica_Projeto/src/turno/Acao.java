@@ -7,12 +7,14 @@ import pokemon.Pokemon;
 public class Acao {
     private Scanner leitor = new Scanner(System.in);
     private Player p;
+    private boolean isStillRunning = true;
 
     public Acao(Player k) {
         this.p = k;
     }
 
     public boolean start(int totalPokemons) {
+
         boolean succed = true;
         boolean flag = true;
         mostrarStatus(totalPokemons);
@@ -44,7 +46,7 @@ public class Acao {
     } while(flag);
 
         p.regenerarPokemons();
-        return succed;
+        isStillRunning = succed;
     }
 
     private void mostrarStatus(int o) {
@@ -162,5 +164,9 @@ public class Acao {
         Captura captura = new Captura(p, pokemon);
         return captura.start();
     }
+
+	public boolean isStillRunning() {
+		return isStillRunning;
+	}
 
 }

@@ -46,4 +46,8 @@ public class ElementoIlha extends Elemento{
 		posicaoAtual.mudarDeNivel(n);		
 	}
 
+	public boolean podePassarPorCima() {
+		return true;
+	}
+
 }

@@ -197,4 +197,8 @@ public class Pokemon extends ElementoIlha {
         def[0] = def[0] * 115 / 100;
     }
 
+    @Override   
+    public boolean podePassarPorCima() {
+    	return false;
+    }
 }
