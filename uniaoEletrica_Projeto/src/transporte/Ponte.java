@@ -12,7 +12,6 @@ public class Ponte extends Transporte {
 
     public Ponte(TriplaCoordenada posicao) {
         super(posicao, "~ ");
-        // TODO Auto-generated constructor stub
     }
 
     @Override

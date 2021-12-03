@@ -185,7 +185,7 @@ public class Ilha extends ElementoGeografico {
     public int imprimirPokemonsDisponiveisParaAtaque(TriplaCoordenada coordPlayer) {
         obterPokemonsParaCaptura(coordPlayer);
         if (pokemonsParaCaptura.size() == 0) {
-            System.out.println("Nao há itens");
+            System.out.println("Nao há Pokemons");
         }
         for (int i = 0; i < pokemonsParaCaptura.size(); i++) {
             System.out.println("(" + i + ")" + pokemonsParaCaptura.get(i).showInfo());

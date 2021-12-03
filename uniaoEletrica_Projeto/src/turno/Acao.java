@@ -47,7 +47,7 @@ public class Acao {
         System.out.println("Digite o numero da acao desejada: ");
     }
 
-    void choosePokemon() {
+    private void choosePokemon() {
         int k = 0;
         System.out.println("Pokemons disponiveis: ");
         int max = p.printPokemons();
@@ -59,6 +59,7 @@ public class Acao {
         }
         p.setActivePokemon(k);
         System.out.println("Pokemon " + k + " esta ativo!");
+
     }
 
     private void consumeItem() {
@@ -76,6 +77,11 @@ public class Acao {
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
+        if(max == 0){
+            System.out.println("Nada pra fazer agora!\nRetornando a Movimentação");
+            return true;
+        }
+
         System.out.println("De o número para escolher o pokemon: ");
         k = leitor.nextInt();
         while (k < 0 || k > max) {
@@ -85,8 +91,8 @@ public class Acao {
 
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Combate combate = new Combate(p, pokemon, true);
-
         return combate.start();
+
     }
 
     private boolean capturePokemon() {
@@ -94,20 +100,22 @@ public class Acao {
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
+        if(max == 0){
+            System.out.println("Nada pra fazer agora! Retornando a Movimentação");
+            return true;
+        }
         System.out.println("De o número para escolher o pokemon: ");
         k = leitor.nextInt();
         while (k < 0 || k > max) {
             System.out.println("De um número no intervalo correto!");
             k = leitor.nextInt();
         }
-
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Captura captura = new Captura(p, pokemon);
-
         return captura.start();
     }
 
-    int chooseItem() {
+    private int chooseItem() {
         try {
             System.out.println("Os itens disponiveis sao: ");
             int max = p.printItens();

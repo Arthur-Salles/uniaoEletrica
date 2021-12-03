@@ -12,7 +12,6 @@ public class Portal extends Transporte {
 
     public Portal(TriplaCoordenada posicao) {
         super(posicao, "o ");
-        // TODO Auto-generated constructor stub
     }
 
     @Override

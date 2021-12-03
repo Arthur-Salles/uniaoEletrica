@@ -1,6 +1,5 @@
 package turno;
 
-import java.awt.RenderingHints.Key;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import dados.Dado;

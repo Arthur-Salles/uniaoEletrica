@@ -112,7 +112,7 @@ public class Player extends ElementoIlha {
 
     public int printPokemons() {
         if (pokemons.size() == 0) {
-            System.out.println("Nao há itens");
+            System.out.println("Nao há Pokemons");
         }
 
         for (int i = 0; i < pokemons.size(); i++) {

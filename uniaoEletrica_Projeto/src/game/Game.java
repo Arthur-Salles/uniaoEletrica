@@ -47,12 +47,23 @@ public class Game {
     }
 
     private void runGame(Mapa mapa, Player player) {
+        String command = "dhfshf";
         mapa.imprimirMapa();
         System.out.print("Digite o numero da Ilha para qual quer viajar: ");
+        boolean flag = true;
+        do {
+            try{
+                command = keyboard.nextLine();
+                player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
+                travelToIsland();
+                flag = false;
+            }
+            catch(IndexOutOfBoundsException | NumberFormatException e){
+                System.out.println("Use um comando valido!");
+                // command = keyboard.nextLine();
+            }
+        } while (flag);
 
-        String command = keyboard.nextLine();
-        player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
-        travelToIsland();
     }
 
     private void travelToIsland() {
