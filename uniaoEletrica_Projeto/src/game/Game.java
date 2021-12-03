@@ -8,6 +8,7 @@ import mapa.Mapa;
 import mapa.TriplaCoordenada;
 import player.Player;
 import pokemon.Pokemon;
+import tela.TelaPrincipal;
 import tipos.Tipo;
 import turno.Acao;
 import turno.Movimentacao;
@@ -19,6 +20,8 @@ public class Game {
     private Player player;
 
     public void start() {
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.imprimirTela();
         criarMapa();
         player = new Player(new TriplaCoordenada(0, 0, 0));
         criarPokemons();
@@ -30,7 +33,7 @@ public class Game {
     private void criarMapa() {
         mapa = new Mapa(10, 10);
 
-        criarIlha(10, 5, new Coordenadas(0, 0), "I1", Tipo.WATER);
+        criarIlha(15, 5, new Coordenadas(0, 0), "I1", Tipo.WATER);
         criarIlha(8, 5, new Coordenadas(7, 7), "I2", Tipo.ELECTRIC);
         criarIlha(8, 3, new Coordenadas(9, 9), "I3", Tipo.FIRE);
     }
@@ -49,7 +52,7 @@ public class Game {
 
     private void runGame(Mapa mapa, Player player) {
         mapa.imprimirMapa();
-        System.out.print("Digite o numero da Ilha para qual quer viajar: ");
+        System.out.print("\u001b[H\u001b[" + 19 + "B\u001b[1CDigite o numero da Ilha para qual quer viajar: ");
 
         String command = keyboard.nextLine();
         player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));

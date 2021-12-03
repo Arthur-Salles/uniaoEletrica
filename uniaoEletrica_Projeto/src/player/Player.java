@@ -96,7 +96,7 @@ public class Player extends ElementoIlha {
     public void imprimirIlhaAtual() {
         int nivel = super.getNivel();
         ilhaAtual.imprimirIlha(nivel);
-        System.out.println("Nivel " + nivel);
+        // System.out.println("Nivel " + nivel);
     }
 
     public void mudarDeNivel(int n) {
