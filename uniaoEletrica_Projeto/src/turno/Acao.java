@@ -63,7 +63,7 @@ public class Acao {
         System.out.println("Pokemon " + k + " esta ativo!");
     }
 
-    private void consumeItem(){
+    protected void consumeItem(){
         String k = "";
         boolean flag = true;
         System.out.println("Itens disponiveis: ");
@@ -88,7 +88,8 @@ public class Acao {
     }
 
     public boolean attackPokemon() {
-        int k = 0;
+        String k = "sdffsf";
+        boolean flag = true;
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
@@ -97,17 +98,21 @@ public class Acao {
             return true;
         }
 
+        Pokemon pokemon;
+
         System.out.println("De o número para escolher o pokemon: ");
-        k = leitor.nextInt();
-        while (k < 0 || k > max) {
-            System.out.println("De um número no intervalo correto!");
-            k = leitor.nextInt();
-        }
-
-        Pokemon pokemon = p.getPokemonParaCombate(k);
-        Combate combate = new Combate(p, pokemon, true);
-        return combate.start();
-
+        do {
+            try {
+                k = leitor.nextLine();
+                pokemon = p.getPokemonParaCombate(Integer.parseInt(k));
+                Combate combate = new Combate(p, pokemon, true);
+                flag = false;
+                return combate.start();
+            } catch (NumberFormatException| IndexOutOfBoundsException e) {
+                System.out.println("De um numero valido");
+            }
+        } while (flag);
+        return false;
     }
 
     private boolean capturePokemon() {
@@ -128,23 +133,6 @@ public class Acao {
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Captura captura = new Captura(p, pokemon);
         return captura.start();
-    }
-
-    public int chooseItem() {
-        String k = "sbhdfshf";
-        boolean flag = true;
-        do{
-            try {
-                System.out.println("Os itens disponiveis sao: ");
-                int max = p.printItens();
-                if(max == 0){
-                    throw new IndexOutOfBoundsException();
-                }
-                k = leitor.nextLine();
-                flag = false;
-            } catch (IndexOutOfBoundsException | NumberFormatException e) {}
-        } while (flag);
-        return Integer.parseInt(k);
     }
 
 }

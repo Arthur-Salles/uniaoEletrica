@@ -52,12 +52,7 @@ public class Combate {
                 habilidadeDoPokemonPlayer.passiveEffect(activePokemon, nonPlayer);
                 break;
             case 3:
-                try {
-                    int itemSelector = combatUi.chooseItem();
-                    jogador.consumeItem(itemSelector);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Nada acontece");
-                }
+                combatUi.consumeItem();
                 break;
         }
     }
