@@ -1,6 +1,0 @@
-pikachu/1/2/3/fire-electric/s1#s2#s3#s4/
-meow/1/2/3/fire-electric/s1#s2#s3#s5
-bulbassauro/1/2/3/fire/s1#s2
-sharpedo/1/2/3/fire-electric/s1
-
-

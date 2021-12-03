@@ -17,13 +17,20 @@ public class Elevador extends Transporte{
 	@Override
 	public void transportar(Player player, Mapa mapa) {
         keyboard = new Scanner(System.in);
-        
+		boolean flag = true;
+
 		System.out.print("Voce pode ir para os seguintes niveis: ");
 		player.imprimirNiveisDisponiveis();
 		System.out.print("Digite um nível: ");
-        String command = keyboard.nextLine();
-        
-		player.mudarDeNivel(Integer.valueOf(command));
+		do {
+			try {
+				String command = keyboard.nextLine();
+				player.mudarDeNivel(Integer.valueOf(command));
+				flag = false;
+			} catch (IndexOutOfBoundsException | NumberFormatException e) {
+				System.out.println("Para de tentar quebrar");
+			}
+		} while (flag);
 		
 	}
 

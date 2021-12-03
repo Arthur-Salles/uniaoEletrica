@@ -12,21 +12,27 @@ public class Ponte extends Transporte {
 
     public Ponte(TriplaCoordenada posicao) {
         super(posicao, "~ ");
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void transportar(Player player, Mapa mapa) {
         keyboard = new Scanner(System.in);
         int nivelAtual = player.getNivel();
+        boolean flag = true;
 
         System.out.print("Voce pode ir para as seguintes ilhas: ");
         mapa.imprimirIlhasDisponiveis(nivelAtual);
         System.out.println(" ");
         System.out.print("Digite o numero da ilha: ");
-        String command = keyboard.nextLine();
 
-        player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
-
+        do {
+            try {
+                String command = keyboard.nextLine();
+                player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
+                flag = false;
+            } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                System.out.println("para de quebrar pfv leonardo!");
+            }
+        } while (flag);
     }
 }

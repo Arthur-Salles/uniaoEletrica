@@ -47,26 +47,42 @@ public class Acao {
         System.out.println("Digite o numero da acao desejada: ");
     }
 
-    void choosePokemon() {
-        int k = 0;
+    protected void choosePokemon() {
+        boolean flag = true;
+        String k = "dgshgbhdfsgy";
         System.out.println("Pokemons disponiveis: ");
-        int max = p.printPokemons();
+        p.printPokemons();
         System.out.println("Digite o numero do pokemon escolhido: ");
-        k = leitor.nextInt();
-        while (k < 0 || k > max) {
-            System.out.println("De um número no intervalo correto!");
-            k = leitor.nextInt();
-        }
-        p.setActivePokemon(k);
+        do {
+            try {
+                k = leitor.nextLine();
+                p.setActivePokemon(Integer.parseInt(k));
+                flag = false;
+            } catch (IndexOutOfBoundsException | NumberFormatException e){}
+        } while (flag);
         System.out.println("Pokemon " + k + " esta ativo!");
     }
 
-    private void consumeItem() {
-        try {
-            int itemSelector = chooseItem();
-            p.consumeItem(itemSelector);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Nada acontece");
+    private void consumeItem(){
+        String k = "";
+        boolean flag = true;
+        System.out.println("Itens disponiveis: ");
+        if(p.printItens() == 0){
+            System.out.println("Nada a fazer");
+            return;
+        }
+        System.out.println("De o número para escolher o item: ");
+
+        k = leitor.nextLine();
+
+        while(flag){
+            try {
+                k = leitor.nextLine();
+                p.consumeItem(Integer.parseInt(k));
+                flag = false;
+            } catch (IndexOutOfBoundsException | NumberFormatException e){
+                System.out.println("Comando certo pfv!");
+            }
         }
 
     }
@@ -76,6 +92,11 @@ public class Acao {
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
+        if(max == 0){
+            System.out.println("Nada pra fazer agora!\nRetornando a Movimentação");
+            return true;
+        }
+
         System.out.println("De o número para escolher o pokemon: ");
         k = leitor.nextInt();
         while (k < 0 || k > max) {
@@ -85,8 +106,8 @@ public class Acao {
 
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Combate combate = new Combate(p, pokemon, true);
-
         return combate.start();
+
     }
 
     private boolean capturePokemon() {
@@ -94,38 +115,36 @@ public class Acao {
 
         System.out.println("Pokemons Disponiveis:");
         int max = p.imprimirPokemonsDisponiveisParaAtaque();
+        if(max == 0){
+            System.out.println("Nada pra fazer agora! Retornando a Movimentação");
+            return true;
+        }
         System.out.println("De o número para escolher o pokemon: ");
         k = leitor.nextInt();
         while (k < 0 || k > max) {
             System.out.println("De um número no intervalo correto!");
             k = leitor.nextInt();
         }
-
         Pokemon pokemon = p.getPokemonParaCombate(k);
         Captura captura = new Captura(p, pokemon);
-
         return captura.start();
     }
 
-    int chooseItem() {
-        try {
-            System.out.println("Os itens disponiveis sao: ");
-            int max = p.printItens();
-            if (max == 0) {
-                throw new IndexOutOfBoundsException();
-            }
-
-            System.out.println("Digite o numero do item escolhido: ");
-
-            int k = leitor.nextInt();
-            while (k < 0 || k > max) {
-                System.out.println("De um numero no intervalo correto!");
-                k = leitor.nextInt();
-            }
-            return k;
-        } catch (IndexOutOfBoundsException e) {
-            return 0;
-        }
+    public int chooseItem() {
+        String k = "sbhdfshf";
+        boolean flag = true;
+        do{
+            try {
+                System.out.println("Os itens disponiveis sao: ");
+                int max = p.printItens();
+                if(max == 0){
+                    throw new IndexOutOfBoundsException();
+                }
+                k = leitor.nextLine();
+                flag = false;
+            } catch (IndexOutOfBoundsException | NumberFormatException e) {}
+        } while (flag);
+        return Integer.parseInt(k);
     }
 
 }

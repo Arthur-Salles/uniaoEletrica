@@ -23,7 +23,6 @@ public class Game {
         player = new Player(new TriplaCoordenada(0, 0, 0));
         criarPokemons();
         new Acao(player);
-
         runGame(mapa, player);
     }
 
@@ -37,9 +36,7 @@ public class Game {
 
     private void criarPokemons() {
         Pokemon leonardo = new Pokemon(ListaPokemons.Iv, new TriplaCoordenada(2, 2, 0));
-
-        player.addPokemon(leonardo);
-
+        player.addPokemon(leonardo); // leonardo e o melhor pokemon existente
     }
 
     private void criarIlha(int i, int k, Coordenadas c, String icone, Tipo tipo) {
@@ -48,18 +45,27 @@ public class Game {
     }
 
     private void runGame(Mapa mapa, Player player) {
+        String command = "dhfshf";
         mapa.imprimirMapa();
         System.out.print("Digite o numero da Ilha para qual quer viajar: ");
+        boolean flag = true;
+        do {
+            try{
+                command = keyboard.nextLine();
+                player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
+                travelToIsland();
+                flag = false;
+            }
+            catch(IndexOutOfBoundsException | NumberFormatException e){
+                System.out.println("Use um comando valido!");
+            }
+        } while (flag);
 
-        String command = keyboard.nextLine();
-        player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
-        travelToIsland();
     }
 
     private void travelToIsland() {
         Acao faseAcao = new Acao(player);
         Movimentacao faseMovimentacao = new Movimentacao(player, mapa);
-
         while (running) {
             if (!faseMovimentacao.start()) {
                 running = false;
