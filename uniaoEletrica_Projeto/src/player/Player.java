@@ -236,4 +236,8 @@ public class Player extends ElementoIlha {
 		return mapa.AllIslandsAreEmpty();
 	}
 
+	public Ilha getIlhaAtual() {
+		return ilhaAtual;
+	}
+
 }

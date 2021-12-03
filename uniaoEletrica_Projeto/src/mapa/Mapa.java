@@ -6,6 +6,7 @@ public class Mapa {
 	private ElementoGeografico[][] mapa;
     private ArrayList<Ilha> ilhasDisponiveis = new ArrayList<Ilha>();
 	private String iconePosicoesVazias = "--";
+	private int n;
 	
 	public Mapa (int i, int j) {
 		mapa = new ElementoGeografico[i][j];
@@ -38,8 +39,15 @@ public class Mapa {
 		}
 	}
 
-	public void imprimirIlhasDisponiveis(int n) {
-		ilhasDisponiveis.forEach((k) -> k.imprimirSeTemNivel(n));
+	public void imprimirIlhasDisponiveis(int n, Ilha ilhaAtual) {
+		if (!ilhasDisponiveis.isEmpty()) {
+			for(int i=0; i<ilhasDisponiveis.size(); i++) {
+				Ilha ilha =	ilhasDisponiveis.get(i);
+				if (ilha != ilhaAtual) {
+					ilha.imprimirSeTemNivel(n);
+				}
+			}
+		}
 	}
 	
 	public Ilha getIlha (int i) {
@@ -55,6 +63,24 @@ public class Mapa {
 			}
 		}
 		return true;
+	}
+
+	public boolean ilhaEhValida(Integer valueOf, int nivelAtual, Ilha ilhaAtual) {
+		boolean ilhaEhValida = false;
+		
+		if (!ilhasDisponiveis.isEmpty()) {
+			if (valueOf > 0) {
+				if (ilhasDisponiveis.size() >= (valueOf)){
+					Ilha ilha = ilhasDisponiveis.get(valueOf-1);
+					if (ilha!=ilhaAtual) {
+						if (ilha.nivelEhValido(nivelAtual)){
+							ilhaEhValida = true;
+						}
+					}
+				}
+			}
+		}
+		return ilhaEhValida;
 	}
 	
 	public int totalPokemons(){

@@ -20,6 +20,7 @@ public class Ilha extends ElementoGeografico {
     private ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     private ArrayList<Pokemon> pokemonsParaCaptura = new ArrayList<Pokemon>();
     private Random random = new Random();
+    private ArrayList<Integer> niveisDisponiveis = new ArrayList<Integer>();
 
     public Ilha(int i, int j, int k, Coordenadas posicaoNoMundo, String icone, Tipo tipo) {
         super(posicaoNoMundo, icone);
@@ -108,9 +109,9 @@ public class Ilha extends ElementoGeografico {
         if (posicaoNova.verificarSeEstaDentroDoMapa(ilha.length, ilha[0].length)) {
             
             if (ilha[i][j][k].ehTransporte()) {
-            	ilha[i][j][k].operar(player, mapa);
                 removerElemento(posicaoAntiga);
-                return true;
+            	ilha[i][j][k].operar(player, mapa);
+                return false;
             } else if (ilha[i][j][k].podePassarPorCima()){
             	ilha[i][j][k].operar(player, mapa);
             	removerElemento(posicaoAntiga);
@@ -149,12 +150,19 @@ public class Ilha extends ElementoGeografico {
     }
 
     public void imprimirNiveisDisponiveis(int nivelAtual) {
-        for (int i = 0; i < ilha[0][0].length; i++) {
+        verificarNiveisDisponiveis(nivelAtual);
+    	niveisDisponiveis.forEach((k) -> System.out.print(" " + k));
+
+        System.out.println(" ");
+    }
+    
+    private void verificarNiveisDisponiveis(int nivelAtual) {
+    	niveisDisponiveis.clear();
+    	for (int i = 0; i < ilha[0][0].length; i++) {
             if (i != nivelAtual) {
-                System.out.print(" " + i);
+                niveisDisponiveis.add(i);
             }
         }
-        System.out.println(" ");
     }
 
     public void obterPokemonsParaCaptura(TriplaCoordenada coordPlayer) {
@@ -215,6 +223,7 @@ public class Ilha extends ElementoGeografico {
     }
 
     public void imprimirSeTemNivel(int n) {
+    	
         if (ilha[0][0].length >= n) {
             super.imprimirIcone(" ");
         }
@@ -244,6 +253,13 @@ public class Ilha extends ElementoGeografico {
   
 	public boolean isEmpty() {
 		return pokemons.isEmpty();
+	}
+
+	public boolean nivelEhValido(Integer n) {
+		if (ilha[0][0].length >= n) {
+			return true;
+		}
+		return false;
 	}
 
 }

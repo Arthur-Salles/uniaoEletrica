@@ -31,7 +31,7 @@ public class Portal extends Transporte {
                 player.viajarParaIlha(mapa.getIlha(Integer.valueOf(command)));
                 flag = false;
             } catch (NumberFormatException| IndexOutOfBoundsException e) {
-                System.out.println("PARAAAAAAAAAA");
+                System.out.println("Digite um numero valido:");
             }
         } while (flag);
 
