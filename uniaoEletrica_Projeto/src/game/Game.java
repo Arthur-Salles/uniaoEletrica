@@ -23,7 +23,6 @@ public class Game {
         player = new Player(new TriplaCoordenada(0, 0, 0));
         criarPokemons();
         new Acao(player);
-
         runGame(mapa, player);
     }
 
@@ -59,7 +58,6 @@ public class Game {
     private void travelToIsland() {
         Acao faseAcao = new Acao(player);
         Movimentacao faseMovimentacao = new Movimentacao(player, mapa);
-
         while (running) {
             if (!faseMovimentacao.start()) {
                 running = false;

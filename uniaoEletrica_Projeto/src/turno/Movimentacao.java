@@ -1,5 +1,7 @@
 package turno;
 
+import java.awt.RenderingHints.Key;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import dados.Dado;
 import mapa.Mapa;
@@ -26,6 +28,7 @@ public class Movimentacao {
 		System.out.println("Lancando dados...");
         movimentos = dado.jogarDados();
         System.out.println("Você tem " + movimentos + " movimento(s)");
+        System.out.println("Utilize:\n(1) Esquerda\n(2) Baixo\n(3) Direita\n(5) Cima");
 	}
 	
 	private boolean executarMovimentos() {
@@ -36,9 +39,19 @@ public class Movimentacao {
         while(this.movimentos > 0) {
         	player.imprimirIlhaAtual();
             System.out.println("Você tem " + movimentos + " movimento(s)");
-            System.out.println("Insira o comando: ");
-            int command = keyboard.nextInt();
-            
+            int command = 0;
+            do{
+                try{
+                    System.out.println("Insira o comando: ");
+                    command = keyboard.nextInt();
+                }
+                catch (InputMismatchException e){
+                    System.out.println("Por favor para de tentar quebrar o codigo\nDigite um NUMERO:\n");
+                    movimentos += 1;
+                }
+                keyboard.nextLine(); // limpa o buffer
+            }while(Character.isAlphabetic(command));
+
             if (command == 99) {
             	running = false;
             } else if (command == 5) {
@@ -49,6 +62,9 @@ public class Movimentacao {
                 running = player.moverBaixo(mapa);
             } else if (command == 3) {
                 running = player.moverDireita(mapa);
+            }
+            else{
+                System.out.println("Nao quis digitar certo vai perder movimento");
             }
             movimentos -=1;  
         } 
