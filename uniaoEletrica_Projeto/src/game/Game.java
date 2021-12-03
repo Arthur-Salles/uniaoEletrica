@@ -30,9 +30,9 @@ public class Game {
     private void criarMapa() {
         mapa = new Mapa(10, 10);
 
-        criarIlha(10, 5, new Coordenadas(0, 0), "I1");
-        criarIlha(8, 5, new Coordenadas(7, 7), "I2");
-        criarIlha(8, 3, new Coordenadas(9, 9), "I3");
+        criarIlha(10, 5, new Coordenadas(0, 0), "I1", Tipo.WATER);
+        criarIlha(8, 5, new Coordenadas(7, 7), "I2", Tipo.ELECTRIC);
+        criarIlha(8, 3, new Coordenadas(9, 9), "I3", Tipo.FIRE);
     }
 
     private void criarPokemons() {
@@ -42,8 +42,8 @@ public class Game {
 
     }
 
-    private void criarIlha(int i, int k, Coordenadas c, String icone) {
-        Ilha ilha = new Ilha(i, i, k, c, icone, Tipo.DRAGON);
+    private void criarIlha(int i, int k, Coordenadas c, String icone, Tipo tipo) {
+        Ilha ilha = new Ilha(i, i, k, c, icone, tipo);
         mapa.adicionarIlha(ilha, c);
     }
 
