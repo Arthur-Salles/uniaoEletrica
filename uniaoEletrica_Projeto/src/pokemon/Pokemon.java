@@ -125,8 +125,6 @@ public class Pokemon extends ElementoIlha {
             if (skillDoTR.isTypeCompatible(i) && !habilidades.contains(skillDoTR)) {
                 habilidades.add(skillDoTR);
                 System.out.println("Skill " + skillDoTR.getNome() + " added!");
-            } else if (!skillDoTR.isTypeCompatible(i)) {
-                System.out.println("Skill " + skillDoTR.getNome() + " nao é compativel!");
             }
         }
     }
