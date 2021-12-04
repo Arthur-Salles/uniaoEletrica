@@ -1,4 +1,4 @@
-package turno;
+package game;
 
 import mapa.Mapa;
 import player.Player;
@@ -23,4 +23,16 @@ public class Status {
 	        int n = mapa.totalPokemons();
 	        System.out.printf("Existem %d pokemons restantes dentre todas ilhas\n", n);
 	}
+	
+	protected void gameOver() {
+        System.out.println(" ");
+
+        if (player.wonTheGame(mapa)) {
+            System.out.println("YOU WIN!!!");
+        } else {
+            System.out.println("YOU LOST");
+        }
+
+        System.out.println("GAME OVER");
+    }
 }

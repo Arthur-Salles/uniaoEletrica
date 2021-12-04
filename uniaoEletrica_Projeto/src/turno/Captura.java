@@ -14,7 +14,7 @@ public class Captura {
         this.pokemon = pokemon;
     }
 
-    public boolean start() {
+    public void start() {
         for (int i = 0; i < 2; i++) {
             System.out.println("Lancando dados...");
             int lance = dado.jogarDados();
@@ -24,7 +24,7 @@ public class Captura {
                 pokemonCaptured(pokemon);
                 player.addPokemon(pokemon);
                 player.removerPokemonIlha(pokemon);
-                return true;
+                return;
             } else {
                 System.out.println("Captura Falhou!");
             }
@@ -32,8 +32,7 @@ public class Captura {
 
         System.out.println(pokemon.getNome() + " entrando em modo hostil");
         Combate combate = new Combate(player, pokemon, false);
-
-        return combate.start();
+        combate.start();
     }
 
     private void pokemonCaptured(Pokemon k) {

@@ -214,7 +214,7 @@ public class Player extends ElementoIlha {
         gameOver = true;
     }
 
-    public boolean isDead() {
+    public boolean lostTheGame() {
         return gameOver;
     }
 

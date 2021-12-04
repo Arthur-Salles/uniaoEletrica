@@ -26,11 +26,11 @@ public class Combate {
 
     }
 
-    public boolean start() {
-        if (priority) { // deve ter um jeito melhor de fazer isso kkk
-            return this.engageFightPlayerPriority();
+    public void start() {
+        if (priority) { 
+            this.engageFightPlayerPriority();
         } else {
-            return this.engageFightNPCPriority();
+            this.engageFightNPCPriority();
         }
     }
 
@@ -67,25 +67,20 @@ public class Combate {
         printPokemonsStatus(this.activePokemon, nonPlayer);
     }
 
-    private boolean checkWinners() {
-        boolean isWinner = false;
+    private void checkWinners() {
 
         if (activePokemon.isDead()) {
-            isWinner = false;
             printWinner(nonPlayer);
-            isWinner = pokemonIsDead(activePokemon);
+            pokemonIsDead(activePokemon);
         } else if (nonPlayer.isDead()) {
-            isWinner = true;
             printWinner(activePokemon);
             jogador.addPokemon(nonPlayer);
             jogador.removerPokemonIlha(nonPlayer);
             pokemonCaptured(nonPlayer);
         }
-
-        return isWinner;
     }
 
-    private boolean engageFightPlayerPriority() {
+    private void engageFightPlayerPriority() {
 
         System.out.printf("%s VERSUS %s\n", activePokemon.getNome(), nonPlayer.getNome());
 
@@ -93,11 +88,12 @@ public class Combate {
             playerTurn();
             adversaryTurn();
         }
-        return checkWinners();
+        
+        checkWinners();
 
     }
 
-    private boolean engageFightNPCPriority() {
+    private void engageFightNPCPriority() {
         System.out.printf("%s VERSUS %s\n", activePokemon.getNome(), nonPlayer.getNome());
 
         while (!activePokemon.isDead() && !nonPlayer.isDead()) {
@@ -105,7 +101,7 @@ public class Combate {
             playerTurn();
         }
 
-        return checkWinners();
+        checkWinners();
     }
 
     private Skills chooseSkill(Pokemon activePokemon) {
@@ -137,18 +133,17 @@ public class Combate {
         return k;
     }
 
-    private boolean pokemonIsDead(Pokemon k) {
+    private void pokemonIsDead(Pokemon k) {
         jogador.perdeuPokemon(k);
         if (jogador.temPokemons()) {
             System.out.println(k.showInfo() + " esta morto!\nEscolha outro!");
             Acao acao = new Acao(jogador);
             acao.choosePokemon();
             this.activePokemon = jogador.getActivePokemon();
-            return engageFightNPCPriority();
+            engageFightNPCPriority();
         } else {
             System.out.println(k.showInfo() + " esta morto!\nVoce nao tem outros pokemons!");
             jogador.gameOver();
-            return false;
         }
     }
 
