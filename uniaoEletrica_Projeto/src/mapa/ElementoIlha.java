@@ -37,7 +37,7 @@ public class ElementoIlha extends Elemento{
 	public boolean ehTransporte() {
 		return false;
 	}
-
+	
 	public boolean ehItem(){
 		return false;
 	}

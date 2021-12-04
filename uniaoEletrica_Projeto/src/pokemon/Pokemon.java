@@ -201,4 +201,5 @@ public class Pokemon extends ElementoIlha {
     public boolean podePassarPorCima() {
         return false;
     }
+    
 }

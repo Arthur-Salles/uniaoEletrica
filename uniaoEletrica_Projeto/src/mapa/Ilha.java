@@ -177,7 +177,7 @@ public class Ilha extends ElementoGeografico {
         int y =  random.nextInt(j);
         int z =  k;
         
-        if ((!ilha[x][y][z].ehTransporte()) && x!=0 && y!=0) {
+        if ((!ilha[x][y][z].ehTransporte()) && x!=0 && y!=0 && ilha[x][y][z].podePassarPorCima()) {
         	
         	Pokemon pokemon = new Pokemon(poke, new TriplaCoordenada(x, y, z));
             
