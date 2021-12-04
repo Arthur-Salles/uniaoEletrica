@@ -7,7 +7,7 @@ import pokemon.Pokemon;
 public class Captura {
     private Player player;
     private Pokemon pokemon;
-    private Dado dado = new Dado(2, 6);
+    private Dado dado = new Dado(6, 2);
 
     public Captura(Player player, Pokemon pokemon) {
         this.player = player;
