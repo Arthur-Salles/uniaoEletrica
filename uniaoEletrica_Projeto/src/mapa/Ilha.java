@@ -36,7 +36,7 @@ public class Ilha extends ElementoGeografico {
 
             adicionarTR(i, j, c);
             adicionarFrutas(i, j, c);
-            for (int l = 0; l < random.nextInt(i / 3) + 2; l++) {
+            for (int l = 0; l < random.nextInt(i / 2) + 2; l++) {
                 adicionarPokemons(i, j, c);
             }
             adicionarPontes(i, j, c);
