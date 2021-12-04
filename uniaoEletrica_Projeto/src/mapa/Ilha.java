@@ -36,12 +36,13 @@ public class Ilha extends ElementoGeografico {
 
             adicionarTR(i, j, c);
             adicionarFrutas(i, j, c);
-            for (int l = 0; l < random.nextInt(i / 2) + 2; l++) {
-                adicionarPokemons(i, j, c);
-            }
             adicionarPontes(i, j, c);
             adicionarPortal(i, j, c);
             adicionarElevador(i, j, c);
+            
+            for (int l = 0; l < random.nextInt(i / 2) + 2; l++) {
+                    adicionarPokemons(i-1, j-1, c);
+            }
 
         }
     }
@@ -172,14 +173,23 @@ public class Ilha extends ElementoGeografico {
     private void adicionarPokemons(int i, int j, int k) {
 
         ListaPokemons poke = pokemonAleatorio();
-        Pokemon pokemon = new Pokemon(poke, new TriplaCoordenada(random.nextInt(i), random.nextInt(j), k));
-        for (var tipo : pokemon.getTipos()) {
-            if (tipo == ilhaTipo)
-                pokemon.igualTipoIlha();
+        int x =  random.nextInt(i);
+        int y =  random.nextInt(j);
+        int z =  k;
+        
+        if ((!ilha[x][y][z].ehTransporte()) && x!=0 && y!=0) {
+        	
+        	Pokemon pokemon = new Pokemon(poke, new TriplaCoordenada(x, y, z));
+            
+        	for (var tipo : pokemon.getTipos()) {
+                if (tipo == ilhaTipo)
+                    pokemon.igualTipoIlha();
+            }
+            
+        	 adicionarObjeto(pokemon, pokemon.getPosicaoAtual());
+             pokemon.sortearDistanciaEDificuldade();
+             pokemons.add(pokemon);
         }
-        adicionarObjeto(pokemon, pokemon.getPosicaoAtual());
-        pokemon.sortearDistanciaEDificuldade();
-        pokemons.add(pokemon);
     }
 
     private void verificarPodeSerCapturado(Pokemon k, TriplaCoordenada coordPlayer) {
@@ -259,5 +269,14 @@ public class Ilha extends ElementoGeografico {
         }
         return false;
     }
+
+	public boolean temMaisDeUmNivel() {
+		boolean temMaisDeUmNivel = false;
+		if(ilha[0][0].length > 1) {
+			temMaisDeUmNivel = true;
+		}
+		return temMaisDeUmNivel;
+	}
+
 
 }
