@@ -72,7 +72,7 @@ public class Game {
                 // se perdeu, running = false
 
             } else {
-                if (!faseAcao.start()) {
+                if (!faseAcao.start(pokemonsTotal())) {
                     running = false;
                 }
                 // se perdeu running = false
@@ -80,5 +80,9 @@ public class Game {
         }
 
         System.out.print("GAME OVER");
+    }
+
+    public int pokemonsTotal(){
+        return mapa.totalPokemons();
     }
 }

@@ -12,38 +12,50 @@ public class Acao {
         this.p = k;
     }
 
-    public boolean start() {
+    public boolean start(int totalPokemons) {
         boolean succed = true;
         boolean flag = true;
+        mostrarStatus(totalPokemons);
         imprimirInstrucoes();
 
         do{
-        try {
-            int j = Integer.parseInt(leitor.nextLine());
-            switch (j) {
-                case 1:
-                    choosePokemon();
-                    break;
-                case 2:
-                    consumeItem();
-                    break;
-                case 3:
-                    succed = attackPokemon();
-                    break;
-                case 4:
-                    succed = capturePokemon();
-                    break;
-                default:
-                    break;
+            try {
+                int j = Integer.parseInt(leitor.nextLine());
+                switch (j) {
+                    case 1:
+                        choosePokemon();
+                        break;
+                    case 2:
+                        consumeItem();
+                        break;
+                    case 3:
+                        succed = attackPokemon();
+                        break;
+                    case 4:
+                        succed = capturePokemon();
+                        break;
+                    default:
+                        break;
+                }
+                flag = false;
+            } catch (NumberFormatException e) {
+                System.out.println("De o comando dnv!");
             }
-            flag = false;
-        } catch (NumberFormatException e) {
-            System.out.println("De o comando dnv!");
-        }
     } while(flag);
 
         p.regenerarPokemons();
         return succed;
+    }
+
+    private void mostrarStatus(int o) {
+        System.out.println(" --- Status do jogo ---\nSeus Pokemons: ");
+        p.printPokemons();
+        System.out.println("Seu inventário: ");
+        p.printItens();
+        System.out.println("Pokemons Atacaveis e Capturaveis: ");
+        int max = p.imprimirPokemonsDisponiveisParaAtaque();
+        System.out.printf("Existem %d pokemons restantes dentre todas ilhas\n",o);
+
     }
 
     private void imprimirInstrucoes() {

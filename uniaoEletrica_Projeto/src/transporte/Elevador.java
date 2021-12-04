@@ -27,7 +27,7 @@ public class Elevador extends Transporte{
 				String command = keyboard.nextLine();
 				player.mudarDeNivel(Integer.valueOf(command));
 				flag = false;
-			} catch (IndexOutOfBoundsException | NumberFormatException e) {
+			} catch (NumberFormatException e) {
 				System.out.println("Para de tentar quebrar");
 			}
 		} while (flag);
