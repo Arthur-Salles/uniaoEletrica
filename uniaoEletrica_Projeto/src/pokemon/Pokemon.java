@@ -178,7 +178,7 @@ public class Pokemon extends ElementoIlha {
 
     public boolean tryCapture(int lance) {
         boolean captureSucced = false;
-        if (lance > d + 1) {
+        if (lance > d + k) {
             captureSucced = true;
         }
         return captureSucced;
@@ -197,8 +197,8 @@ public class Pokemon extends ElementoIlha {
         def[0] = def[0] * 115 / 100;
     }
 
-    @Override   
+    @Override
     public boolean podePassarPorCima() {
-    	return false;
+        return false;
     }
 }
