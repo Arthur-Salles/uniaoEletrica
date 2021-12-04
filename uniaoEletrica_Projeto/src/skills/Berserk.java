@@ -5,7 +5,6 @@ import tipos.Tipo;
 
 public class Berserk extends Skills {
 
-    // criar metodo na skill que compara um tipo com os tipos de dentro
     private Tipo legalTypes[] = { Tipo.ELECTRIC, Tipo.DRAGON };
 
     public Berserk() {
