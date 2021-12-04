@@ -7,7 +7,6 @@ public class Fruta extends Item {
 
     private final String iconExists = "F ";
 
-
     public Fruta(TriplaCoordenada posicao, String icone) {
         super(posicao, icone);
     }

@@ -27,7 +27,7 @@ public class ElementoIlha extends Elemento{
 	} 
 	
 	protected void operar(Player player, Mapa mapa) {
-		
+		return;
 	}
 	
 	protected void zerarPosicao() {

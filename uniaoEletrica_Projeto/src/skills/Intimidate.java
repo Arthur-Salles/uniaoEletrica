@@ -27,7 +27,6 @@ public class Intimidate extends Skills {
             hasBeenActive = true;
             p.setProtectSkillFlag(true);
         }
-
     }
 
     @Override
