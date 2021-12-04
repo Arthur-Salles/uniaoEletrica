@@ -33,7 +33,6 @@ public class Ilha extends ElementoGeografico {
                     ilha[a][b][c] = new ElementoIlha(new TriplaCoordenada(a, b, c), iconePosicoesVazias);
                 }
             }
-
             adicionarTR(i, j, c);
             adicionarFrutas(i, j, c);
             adicionarPontes(i, j, c);
@@ -41,7 +40,7 @@ public class Ilha extends ElementoGeografico {
             adicionarElevador(i, j, c);
             
             for (int l = 0; l < random.nextInt(i / 2) + 2; l++) {
-                    adicionarPokemons(i-1, j-1, c);
+                adicionarPokemons(i-1, j-1, c);
             }
 
         }
@@ -167,7 +166,6 @@ public class Ilha extends ElementoGeografico {
     public void obterPokemonsParaCaptura(TriplaCoordenada coordPlayer) {
         this.pokemonsParaCaptura = new ArrayList<Pokemon>();
         pokemons.forEach((k) -> verificarPodeSerCapturado(k, coordPlayer));
-
     }
 
     private void adicionarPokemons(int i, int j, int k) {
@@ -178,17 +176,17 @@ public class Ilha extends ElementoGeografico {
         int z =  k;
         
         if ((!ilha[x][y][z].ehTransporte()) && x!=0 && y!=0 && ilha[x][y][z].podePassarPorCima()) {
-        	
-        	Pokemon pokemon = new Pokemon(poke, new TriplaCoordenada(x, y, z));
+
+            Pokemon pokemon = new Pokemon(poke, new TriplaCoordenada(x, y, z));
             
         	for (var tipo : pokemon.getTipos()) {
                 if (tipo == ilhaTipo)
                     pokemon.igualTipoIlha();
             }
             
-        	 adicionarObjeto(pokemon, pokemon.getPosicaoAtual());
-             pokemon.sortearDistanciaEDificuldade();
-             pokemons.add(pokemon);
+        	adicionarObjeto(pokemon, pokemon.getPosicaoAtual());
+            pokemon.sortearDistanciaEDificuldade();
+            pokemons.add(pokemon);
         }
     }
 
@@ -211,7 +209,6 @@ public class Ilha extends ElementoGeografico {
 
     public void moverElemento(Player player, TriplaCoordenada posicaoAntiga, TriplaCoordenada posicaoNova) {
         removerElemento(posicaoAntiga);
-
         adicionarObjeto(player, posicaoNova);
     }
 
@@ -231,7 +228,6 @@ public class Ilha extends ElementoGeografico {
     }
 
     public void imprimirSeTemNivel(int n) {
-
         if (ilha[0][0].length >= n) {
             super.imprimirIcone(" ");
         }

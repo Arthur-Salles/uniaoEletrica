@@ -55,7 +55,7 @@ public class Mundo {
     public static void criarKanto(Mapa mapa) {
         criarIlha(8, 1, new Coordenadas(9, 10), "I1", Tipo.ELECTRIC, mapa);
         criarIlha(8, 2, new Coordenadas(9, 13), "I2", Tipo.ELECTRIC, mapa);
-        criarIlha(13, 1, new Coordenadas(11, 11), "I3", Tipo.ELECTRIC, mapa);
+        criarIlha(13, 1,new Coordenadas(11, 11), "I3", Tipo.ELECTRIC, mapa);
         criarIlha(5, 4, new Coordenadas(13, 10), "I4", Tipo.FIRE, mapa);
         criarIlha(7, 2, new Coordenadas(13, 12), "I5", Tipo.WATER, mapa);
     }

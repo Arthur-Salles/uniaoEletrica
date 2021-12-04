@@ -64,11 +64,11 @@ public class Pokemon extends ElementoIlha {
 
     /* skills related methods */
     public boolean ishalfHp() {
-        return (getHp()[0] > (getHp()[1] * 0.5));
+        return (hp[0] > (hp[1] * 0.5));
     }
 
     public boolean isDead() {
-        return (getHp()[0] <= 0);
+        return (hp[0] <= 0);
     }
 
     public void boostAtk(double i) {
@@ -80,8 +80,8 @@ public class Pokemon extends ElementoIlha {
     }
 
     public void regenerate() {
-        if (getHp()[0] < getHp()[1]) {
-            getHp()[0] += 1;
+        if (hp[0] < hp[1]) {
+            hp[0] += 1;
         }
     }
 
@@ -102,17 +102,17 @@ public class Pokemon extends ElementoIlha {
     }
 
     public void takeHP(int i) {
-        getHp()[0] = getHp()[0] - i;
-        getHp()[0] = (getHp()[0] < 0) ? 0 : getHp()[0];
+        hp[0] = hp[0] - i;
+        hp[0] = (hp[0] < 0) ? 0 : hp[0];
     }
 
     public void heal(int i) {
-        int healthPool = (int) (getHp()[0] * i * 0.01);
-        getHp()[0] = (getHp()[0] + healthPool > getHp()[1]) ? getHp()[1] : getHp()[0] + healthPool;
+        int healthPool = (int) (hp[0] * i * 0.01);
+        hp[0] = (hp[0] + healthPool > hp[1]) ? hp[1] : hp[0] + healthPool;
     }
 
     public void addLife(int i) {
-        getHp()[0] = ((getHp()[0] + i) > getHp()[1]) ? getHp()[1] : getHp()[0] + i;
+        hp[0] = ((hp[0] + i) > hp[1]) ? hp[1] : hp[0] + i;
     }
 
     public void setProtectSkillFlag(boolean b) { // needed to attend other guard skills method

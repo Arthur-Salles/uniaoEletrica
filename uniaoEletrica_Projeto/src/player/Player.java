@@ -39,49 +39,48 @@ public class Player extends ElementoIlha {
     }
 
     public void moverCima(Mapa mapa) {
-    	int x = super.getPosicaoAtual().getX();
-    	int y = super.getPosicaoAtual().getY();
-    	int z = super.getPosicaoAtual().getZ();
-    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x-1, y, z);
-    	
-    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
-        	posicaoAnterior = super.getPosicaoAtual();
+        int x = super.getPosicaoAtual().getX();
+        int y = super.getPosicaoAtual().getY();
+        int z = super.getPosicaoAtual().getZ();
+        TriplaCoordenada posicaoNova = new TriplaCoordenada(x-1, y, z);
+        if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+            posicaoAnterior = super.getPosicaoAtual();
             super.mudarPosicao(-1, 0, 0);
         }
     }
 
     public void moverEsquerda(Mapa mapa) {
-    	int x = super.getPosicaoAtual().getX();
-    	int y = super.getPosicaoAtual().getY();
-    	int z = super.getPosicaoAtual().getZ();
-    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x, y-1, z);
-    	
-    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
-        	posicaoAnterior = super.getPosicaoAtual();
+        int x = super.getPosicaoAtual().getX();
+        int y = super.getPosicaoAtual().getY();
+        int z = super.getPosicaoAtual().getZ();
+        TriplaCoordenada posicaoNova = new TriplaCoordenada(x, y-1, z);
+
+        if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+            posicaoAnterior = super.getPosicaoAtual();
             super.mudarPosicao(0, -1, 0);
         }
     }
 
     public void moverBaixo(Mapa mapa) {
-    	int x = super.getPosicaoAtual().getX();
-    	int y = super.getPosicaoAtual().getY();
-    	int z = super.getPosicaoAtual().getZ();
-    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x+1, y, z);
-    	
-    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
-        	posicaoAnterior = super.getPosicaoAtual();
-            super.mudarPosicao(1, 0, 0);
-        }
+        int x = super.getPosicaoAtual().getX();
+        int y = super.getPosicaoAtual().getY();
+        int z = super.getPosicaoAtual().getZ();
+        TriplaCoordenada posicaoNova = new TriplaCoordenada(x+1, y, z);
+        
+        if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+            posicaoAnterior = super.getPosicaoAtual();
+                super.mudarPosicao(1, 0, 0);
+            }
     }
 
     public void moverDireita(Mapa mapa) {
-    	int x = super.getPosicaoAtual().getX();
-    	int y = super.getPosicaoAtual().getY();
-    	int z = super.getPosicaoAtual().getZ();
-    	TriplaCoordenada posicaoNova = new TriplaCoordenada(x, y+1, z);
-    	
-    	if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
-        	posicaoAnterior = super.getPosicaoAtual();
+        int x = super.getPosicaoAtual().getX();
+        int y = super.getPosicaoAtual().getY();
+        int z = super.getPosicaoAtual().getZ();
+        TriplaCoordenada posicaoNova = new TriplaCoordenada(x, y+1, z);
+        
+        if (ilhaAtual.moverPlayer(this, mapa, super.getPosicaoAtual(), posicaoNova)) {
+            posicaoAnterior = super.getPosicaoAtual();
             super.mudarPosicao(0, 1, 0);
         }
     }
