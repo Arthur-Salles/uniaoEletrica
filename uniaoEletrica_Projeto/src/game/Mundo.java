@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Mundo {
 
-    public static void criarMapaAleatorio(Mapa mapa) {
+    public void criarMapaAleatorio(Mapa mapa) {
         Random random = new Random();
         int j = random.nextInt(10) + 2;
 
@@ -26,7 +26,7 @@ public class Mundo {
         }
     }
 
-    public static void criarTerra(Mapa mapa) {
+    public void criarTerra(Mapa mapa) {
         criarIlha(13, 2, new Coordenadas(4, 4), "I1", Tipo.DRAGON, mapa);
         criarIlha(13, 3, new Coordenadas(6, 3), "I2", Tipo.FIRE, mapa);
         criarIlha(13, 5, new Coordenadas(8, 5), "I3", Tipo.ELECTRIC, mapa);
@@ -38,21 +38,21 @@ public class Mundo {
         criarIlha(13, 5, new Coordenadas(6, 11), "I9", Tipo.ELECTRIC, mapa);
     }
 
-    public static void criarHoenn(Mapa mapa) {
+    public void criarHoenn(Mapa mapa) {
         criarIlha(6, 1, new Coordenadas(13, 2), "I1", Tipo.FIRE, mapa);
         criarIlha(6, 1, new Coordenadas(11, 3), "I2", Tipo.DRAGON, mapa);
         criarIlha(6, 1, new Coordenadas(12, 4), "I3", Tipo.ELECTRIC, mapa);
         criarIlha(6, 1, new Coordenadas(10, 5), "I4", Tipo.WATER, mapa);
     }
 
-    public static void criarJohto(Mapa mapa) {
+    public void criarJohto(Mapa mapa) {
         criarIlha(7, 1, new Coordenadas(12, 4), "I1", Tipo.WATER, mapa);
         criarIlha(6, 2, new Coordenadas(12, 6), "I2", Tipo.WATER, mapa);
         criarIlha(13, 1, new Coordenadas(12, 7), "I3", Tipo.ELECTRIC, mapa);
         criarIlha(6, 4, new Coordenadas(12, 9), "I4", Tipo.WATER, mapa);
     }
 
-    public static void criarKanto(Mapa mapa) {
+    public void criarKanto(Mapa mapa) {
         criarIlha(8, 1, new Coordenadas(9, 10), "I1", Tipo.ELECTRIC, mapa);
         criarIlha(8, 2, new Coordenadas(9, 13), "I2", Tipo.ELECTRIC, mapa);
         criarIlha(13, 1,new Coordenadas(11, 11), "I3", Tipo.ELECTRIC, mapa);
@@ -60,7 +60,7 @@ public class Mundo {
         criarIlha(7, 2, new Coordenadas(13, 12), "I5", Tipo.WATER, mapa);
     }
 
-    public static void criarSinnoh(Mapa mapa) {
+    public void criarSinnoh(Mapa mapa) {
         criarIlha(5, 4, new Coordenadas(2, 2), "I1", Tipo.ELECTRIC, mapa);
         criarIlha(5, 4, new Coordenadas(2, 5), "I2", Tipo.GRASS, mapa);
         criarIlha(5, 4, new Coordenadas(2, 8), "I3", Tipo.PSYCHIC, mapa);
@@ -84,7 +84,7 @@ public class Mundo {
         return true;
     }
 
-    public static void imprimirMapasDisponiveis() {
+    public void imprimirMapasDisponiveis() {
         System.out.println("Selecione o mapa para jogar: ");
         System.out.println("(1) - Hoenn. Hoenn fica no oeste do japão. Possui ilhas planas");
         System.out.println("(2) - Johto. Johto fica no sul do japão. É uma região bem aquática");

@@ -10,13 +10,14 @@ import turno.Turno;
 
 public class Game {
     private Scanner keyboard = new Scanner(System.in);
-    private Mapa mapa;
+    private Mundo mundo;
     private Player player;
     private Status status;
     private Turno turno;
 
     public void start() {
-        criarMapa();
+    	mundo = new Mundo();
+    	Mapa mapa = criarMapa();
         player = new Player(new TriplaCoordenada(0, 0, 0));
         adicionarPokemonInicialDoJogador();
         status = new Status(player, mapa);
@@ -24,25 +25,25 @@ public class Game {
         runGame(mapa, player);
     }
 
-    private void criarMapa() {
-        mapa = new Mapa(14, 14);
-        Mundo.imprimirMapasDisponiveis();
+    private Mapa criarMapa() {
+        Mapa mapa = new Mapa(14, 14);
+        mundo.imprimirMapasDisponiveis();
         int command = 0;
         command = keyboard.nextInt();
         if (command == 1) {
-            Mundo.criarHoenn(mapa);
+            mundo.criarHoenn(mapa);
         } else if (command == 2) {
-            Mundo.criarJohto(mapa);
+            mundo.criarJohto(mapa);
         } else if (command == 3) {
-            Mundo.criarKanto(mapa);
+            mundo.criarKanto(mapa);
         } else if (command == 4) {
-            Mundo.criarSinnoh(mapa);
+            mundo.criarSinnoh(mapa);
         } else if (command == 5) {
-            Mundo.criarTerra(mapa);
+            mundo.criarTerra(mapa);
         } else if (command == 6) {
-            Mundo.criarMapaAleatorio(mapa);
+            mundo.criarMapaAleatorio(mapa);
         }
-
+        return mapa;
     }
 
     private void adicionarPokemonInicialDoJogador() {
@@ -52,7 +53,7 @@ public class Game {
 
     private void runGame(Mapa mapa, Player player) {
         
-        chooseIsland();
+        chooseIsland(mapa);
 
         while (!(player.lostTheGame() && !(player.wonTheGame(mapa)))) {
             turno.start();
@@ -62,7 +63,7 @@ public class Game {
 
     }
 
-    private void chooseIsland() {
+    private void chooseIsland(Mapa mapa) {
     	String command = " ";
         mapa.imprimirMapa();
         System.out.print("Digite o numero da Ilha para qual quer viajar: ");
