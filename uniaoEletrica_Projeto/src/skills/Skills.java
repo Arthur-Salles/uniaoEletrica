@@ -6,7 +6,6 @@ import tipos.Tipo;
 public class Skills {
 
     protected String m;
-    private Tipo legalTypes[] = {};
 
     public void passiveEffect(Pokemon p, Pokemon taker) {
         return;
@@ -25,12 +24,7 @@ public class Skills {
     };
 
     public boolean isTypeCompatible(Tipo k) {
-        for (Tipo tipo : legalTypes) {
-            if (k.equals(tipo) || tipo.equals(Tipo.NULO)) {
-                return true;
-            }
-        }
-        return false;
+		return false;
     }
 
 }
