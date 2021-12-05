@@ -46,8 +46,8 @@ public class Game {
     }
 
     private void adicionarPokemonInicialDoJogador() {
-        Pokemon picachu = new Pokemon(ListaPokemons.Pi, new TriplaCoordenada(2, 2, 0));
-        player.addPokemon(picachu);
+        Pokemon pikachu = new Pokemon(ListaPokemons.Pi, new TriplaCoordenada(2, 2, 0));
+        player.addPokemon(pikachu);
     }
 
     private void runGame(Mapa mapa, Player player) {
